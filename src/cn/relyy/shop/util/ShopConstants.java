@@ -8,7 +8,5 @@ public class ShopConstants {
     public static final String USER_STAGE_Y0 = "Y0";
     public static final String USER_STAGE_Y1 = "Y1";
     public static final String USER_STAGE_Y2 = "Y2";
-    public static final String USER_STAGE_Y3 = "Y3";
-    public static final String USER_STAGE_Y4 = "Y4";
-    public static final String USER_STAGE_Y5 = "Y5";
+
 }
