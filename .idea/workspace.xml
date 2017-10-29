@@ -2,386 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb440c0f-74c6-41d8-8992-013333727cdf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/bo/IUserBo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/bo/impl/UserBoImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/controller/IndexController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/controller/UserController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/dao/IUserDao.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/test/SSMDemo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/util/StringUtil.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/vo/UserVo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/c3p0-0.9.1.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/commons-dbcp-1.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/commons-fileupload-1.2.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/commons-io-2.0.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/commons-lang3-3.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/commons-logging-1.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/commons-pool-1.6.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/jackson-annotations-2.8.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/jackson-core-2.8.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/jackson-core-asl-1.9.12.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/jackson-databind-2.8.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/jackson-mapper-asl-1.9.12.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/junit-4.8.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/log4j-1.2.14.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/mybatis-3.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/mybatis-spring-1.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.31.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/ognl-3.0.5.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-aop-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-aspects-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-beans-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-context-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-context-support-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-core-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-expression-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-instrument-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-instrument-tomcat-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-jdbc-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-orm-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-oxm-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-test-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-tx-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-web-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-webmvc-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/lib/spring-webmvc-portlet-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/059b5245-e3c8-43bf-80fe-700f0e4e68b8-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/0ff130db-0a1b-4b8d-a918-ed9016317009-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/1 .jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/12.JPG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/15.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/17.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/18.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/4a51167a-89d5-4710-aca2-7c76edc355b8-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/51afeef5-f6cb-4936-abea-315cfca0edc0-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/54890cf9-91b0-40bc-9f68-51462e9c43a8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/750a9ce8-8c19-444d-b8cc-f3e7e786ec5d-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/93b9e55f-cbae-4c3c-b2f7-2636c7369db7-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/a.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/adidas.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/b.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/beijirong.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPic13867cc1-935a-4a3a-98f9-edf87ddb1c09.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPic372e7faa-3ad0-444d-a89b-a8e9f0d6e929.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPic4ed6edbf-fb3e-49a7-be5e-361b2ce02961.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPic5ab54f67-a479-48fe-a41d-7d34b57036a3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPica5720219-ba48-460a-a084-24d5b314bd03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPica7e5d3dd-5984-4d0f-9851-35cc0987d9b9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPicaa443d05-27b4-4964-958e-c81536f01d04.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPicc1e3a29e-17f5-4d9f-a186-b2c5a0b39b88.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPicd0459632-fe4e-4a5d-8373-1a67c9f43ec2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPice7c2e240-4147-4c11-b369-db3765ec3df9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/bigPicee0785e3-68e2-4e23-93ef-68904bc2a3c6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/blank.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/article.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/cart.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/common.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/dialog_overlay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/error.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/finalbutton.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/index.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/info.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/loading_bar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/loading_icon.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/login.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/member.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/message.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/order.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/password.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/product.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/register.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/button_img/review.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/c.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/cart.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/common.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/d.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/dadonggua.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/e.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/eifini.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/f.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/f37ba36a-181b-4161-a88f-f74c9adb485d-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/f5e39c37-94b2-462e-8e58-8bde3c5f1b8c-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/footer.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/g.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/h.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/header.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/hengyuanxiang.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/i.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/index_2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/index_3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/index_right.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/index_top.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/j.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/jackjones.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/k.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/l.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/lining.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/login.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/logo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/m.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/maoren.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/n.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/nike.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/o.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/p.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/product.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/q.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/15.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/bigPic139f030b-d68b-41dd-be6d-b94cc568d3c5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/bigPic19533252-0faa-4e64-8077-6e1908f47739.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/bigPic1ea8f1c9-8b8e-4262-8ca9-690912434692.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/bigPic5f3622b8-028a-4e62-a77f-f41a16d715ed.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/footer.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/header.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/logo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/renleipic_01/product.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/semir.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/sentubila.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/septwolves.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/sundance.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/vimly.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/img/yishion.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/bo/IUserBo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/bo/impl/UserBoImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/controller/IndexController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/controller/UserController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/dao/IUserDao.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/test/SSMDemo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/util/StringUtil.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/vo/UserVo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/c3p0-0.9.1.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-dbcp-1.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-fileupload-1.2.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-io-2.0.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-lang3-3.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-logging-1.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-pool-1.6.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jackson-annotations-2.8.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jackson-core-2.8.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jackson-core-asl-1.9.12.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jackson-databind-2.8.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jackson-mapper-asl-1.9.12.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/junit-4.8.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/log4j-1.2.14.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mybatis-3.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mybatis-spring-1.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mysql-connector-java-5.1.31.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/ognl-3.0.5.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-aop-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-aspects-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-beans-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-context-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-context-support-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-core-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-expression-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-instrument-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-instrument-tomcat-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-jdbc-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-orm-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-oxm-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-test-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-tx-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-web-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-webmvc-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/spring-webmvc-portlet-4.2.0.RELEASE.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/059b5245-e3c8-43bf-80fe-700f0e4e68b8-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/0ff130db-0a1b-4b8d-a918-ed9016317009-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/1 .jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/12.JPG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/15.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/17.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/18.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/4a51167a-89d5-4710-aca2-7c76edc355b8-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/51afeef5-f6cb-4936-abea-315cfca0edc0-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/54890cf9-91b0-40bc-9f68-51462e9c43a8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/750a9ce8-8c19-444d-b8cc-f3e7e786ec5d-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/93b9e55f-cbae-4c3c-b2f7-2636c7369db7-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/a.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/adidas.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/b.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/beijirong.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPic13867cc1-935a-4a3a-98f9-edf87ddb1c09.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPic372e7faa-3ad0-444d-a89b-a8e9f0d6e929.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPic4ed6edbf-fb3e-49a7-be5e-361b2ce02961.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPic5ab54f67-a479-48fe-a41d-7d34b57036a3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPica5720219-ba48-460a-a084-24d5b314bd03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPica7e5d3dd-5984-4d0f-9851-35cc0987d9b9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPicaa443d05-27b4-4964-958e-c81536f01d04.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPicc1e3a29e-17f5-4d9f-a186-b2c5a0b39b88.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPicd0459632-fe4e-4a5d-8373-1a67c9f43ec2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPice7c2e240-4147-4c11-b369-db3765ec3df9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/bigPicee0785e3-68e2-4e23-93ef-68904bc2a3c6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/blank.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/article.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/cart.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/common.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/dialog_overlay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/error.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/finalbutton.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/index.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/info.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/loading_bar.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/loading_icon.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/login.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/member.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/message.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/order.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/password.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/product.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/register.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/button_img/review.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/c.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/cart.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/common.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/d.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/dadonggua.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/e.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/eifini.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/f.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/f37ba36a-181b-4161-a88f-f74c9adb485d-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/f5e39c37-94b2-462e-8e58-8bde3c5f1b8c-thumbnail.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/footer.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/g.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/h.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/header.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/hengyuanxiang.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/i.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/index_2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/index_3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/index_right.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/index_top.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/j.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/jackjones.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/k.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/l.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/lining.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/login.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/logo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/m.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/maoren.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/n.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/nike.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/o.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/p.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/product.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/q.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/15.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/bigPic139f030b-d68b-41dd-be6d-b94cc568d3c5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/bigPic19533252-0faa-4e64-8077-6e1908f47739.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/bigPic1ea8f1c9-8b8e-4262-8ca9-690912434692.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/bigPic5f3622b8-028a-4e62-a77f-f41a16d715ed.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/footer.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/header.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/logo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/renleipic_01/product.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/semir.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/sentubila.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/septwolves.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/sundance.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/vimly.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/img/yishion.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/ssmShop_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/applicationContext.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/cn/relyy/shop/mapping/UserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/db.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/spring-mybatis.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/classes/springmvc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/jsp/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/jsp/login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/jsp/menu.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/jsp/regist.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/WEB-INF/web.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/js/regist.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/refi/jquery.form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/refi/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/Style1.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/WdatePicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/cart.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/common.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/datepicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/dtree.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/index.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/left.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/login.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/product.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/register.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/ssmShop_war_exploded/resource/css/slider.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/applicationContext.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/bo/IUserBo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/bo/impl/UserBoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/controller/IndexController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/controller/UserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/dao/IUserDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/mapping/UserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/test/SSMDemo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/util/ShopConstants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/util/StringUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/vo/UserVo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/db.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/spring-mybatis.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/springmvc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssmShop.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/applicationContext.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/cn/relyy/shop/mapping/UserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/db.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/spring-mybatis.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/springmvc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/menu.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/regist.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/regist.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/refi/jquery.form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/refi/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/Style1.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/WdatePicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/cart.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/common.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/datepicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/dtree.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/index.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/left.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/login.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/product.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/register.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resource/css/slider.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/relyy/shop/util/ShopConstants.java" afterPath="$PROJECT_DIR$/src/cn/relyy/shop/util/ShopConstants.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -438,7 +60,7 @@
             <state relative-caret-position="462">
               <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1305#1321#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -457,8 +79,8 @@
       <file leaf-file-name="ShopConstants.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/relyy/shop/util/ShopConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+            <state relative-caret-position="297">
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -479,7 +101,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
               <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#420#421#0" expanded="false" />
+                <element signature="e#446#447#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -499,7 +125,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
               <caret line="11" column="75" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="75" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -530,9 +158,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="releaseBranch" />
+        <entry key="$PROJECT_DIR$" value="release-branch" />
       </map>
     </option>
+    <option name="FORCE_PUSH_ALLOWED" value="true" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -803,8 +432,8 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
-    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -1349,7 +978,7 @@
       <workItem from="1505137868046" duration="30000" />
       <workItem from="1508250695578" duration="2416000" />
       <workItem from="1508943033499" duration="35000" />
-      <workItem from="1509241938964" duration="1031000" />
+      <workItem from="1509241938964" duration="3605000" />
     </task>
     <task id="LOCAL-00001" summary="测试">
       <created>1503411193355</created>
@@ -1365,7 +994,21 @@
       <option name="project" value="LOCAL" />
       <updated>1508252147513</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="测试">
+      <created>1509245605156</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1509245605156</updated>
+    </task>
+    <task id="LOCAL-00004" summary="测试">
+      <created>1509246085801</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1509246085801</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1389,11 +1032,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80773000" />
+    <option name="totallyTimeSpent" value="83347000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1050" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1413,11 +1056,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06681271" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25287357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25287357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1769,7 +1412,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="11" column="75" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="75" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1786,7 +1431,7 @@
         <state relative-caret-position="462">
           <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1305#1321#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1795,7 +1440,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#420#421#0" expanded="false" />
+            <element signature="e#446#447#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1841,8 +1490,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/relyy/shop/util/ShopConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+        <state relative-caret-position="297">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
