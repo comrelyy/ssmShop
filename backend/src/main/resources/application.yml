@@ -1,0 +1,20 @@
+server:
+  port: 8071
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 30
+      max-request-size: 30
+mybatis-plus:
+  type-aliases-package:
+  configuration-properties:
+    map-underscore-to-camel-case: true
+  mapper-locations: mapper/*Mapper.xml
