@@ -1,4 +1,4 @@
-var prefix = "/${pathName}/${className}"
+var prefix = "/backend/dict"
 $(function () {
     load();
 });
@@ -59,45 +59,97 @@ function load() {
                             return arguments[2] + 1;
                         }
                     },
-                    #foreach($column in $columns)
-                        #if($column.pageType == 2)
-                            {
-                                field: '${column.attrName}',
-                                title: '${column.columnLabel}',
-                                formatter: function (value, row, index) {
-                                    return formatDict("${column.dictType}", value);
-                                }
-                            },
-                        #elseif($column.pageType == 7)
-                            {
-                                field: '${column.attrName}',
-                                title: '${column.columnLabel}',
-                                formatter: function (value, row, index) {
-                                    return "<img width='100' height='100' src='" + value + "'>";
-                                }
-                            },
-                        #else
-                            {
-                                field: '${column.attrName}',
-                                title: '${column.columnLabel}'
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '编号'
                             },
 
-                        #end
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '标签名'
+                            },
 
-                    #end
-                    {
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '数据值'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '类型'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '描述'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '排序（升序）'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '父级编号'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '创建者'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '创建时间'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '更新者'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '更新时间'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '备注信息'
+                            },
+
+                        
+                                                                        {
+                                field: '${column.attrname}',
+                                title: '删除标记'
+                            },
+
+                        
+                                        {
                         title: '操作',
                         field: 'id',
                         align: 'center',
                         formatter: function (value, row, index) {
                             var d = '<a class="btn btn-primary btn-sm ' + s_detail_h + '" href="#" mce_href="#" title="详情" onclick="detail(\''
-                                + row.${priKeyColumn.attrName}
+                                + row.${pk.attrname}
                                 + '\')"><i class="fa fa-file"></i></a> ';
                             var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
-                                + row.${priKeyColumn.attrName}
+                                + row.${pk.attrname}
                                 + '\')"><i class="fa fa-edit"></i></a> ';
                             var r = '<a class="btn btn-warning btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
-                                + row.${priKeyColumn.attrName}
+                                + row.${pk.attrname}
                                 + '\')"><i class="fa fa-remove"></i></a> ';
                             return d + e + r;
                         }
@@ -145,7 +197,7 @@ function remove(id) {
             url: prefix + "/remove",
             type: "post",
             data: {
-                '${priKeyColumn.attrName}': id
+                '${pk.attrname}': id
             },
             success: function (r) {
                 if (r.code == 0) {
@@ -174,7 +226,7 @@ function batchRemove() {
         var ids = new Array();
         // 遍历所有选择的行数据，取每条数据对应的ID
         $.each(rows, function (i, row) {
-            ids[i] = row['${priKeyColumn.attrName}'];
+            ids[i] = row['${pk.attrname}'];
         });
         $.ajax({
             type: 'POST',

@@ -9,10 +9,10 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm">
-                        <input id="${pk.columnName}" name="${pk.columnName}" th:value="${${classname}.${pk.columnName}}"
+                        <input id="${priKeyColumn.columnName}" name="${priKeyColumn.columnName}" th:value="${${className}.${priKeyColumn.columnName}}"
                                type="hidden">
                         #foreach($column in $columns)
-                            #if($column.columnName != $pk.columnName)
+                            #if($column.columnName != $priKeyColumn.columnName)
                                 <div class="form-group">
                                     #if($column.pageType != 11 && $column.pageType != 12)
                                         <label class="col-sm-3 control-label">${column.columnLabel}：</label>
@@ -20,48 +20,48 @@
                                     <div class="col-sm-8">
                                         #if($column.pageType == 4)
                                             <input type="text" class="laydate-icon layer-date form-control"
-                                                   id="${column.attrname}"
-                                                   name="${column.attrname}"
-                                                   th:value="${${classname}.${column.attrname}}==null?null:${#dates.format(${classname}.${column.attrname},'yyyy-MM-dd HH:mm:ss')}"
+                                                   id="${column.attrName}"
+                                                   name="${column.attrName}"
+                                                   th:value="${${className}.${column.attrName}}==null?null:${#dates.format(${className}.${column.attrName},'yyyy-MM-dd HH:mm:ss')}"
                                                    onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
                                                    style="background-color: #fff;" readonly="readonly"/>
                                         #elseif($column.pageType == 1)
-                                            <input id="${column.attrname}" name="${column.attrname}"
-                                                   th:value="${${classname}.${column.attrname}}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
+                                                   th:value="${${className}.${column.attrName}}"
                                                    class="form-control"
                                                    type="text">
                                         #elseif($column.pageType == 2)
 
-                                            <select data-placeholder="--选择--" id="${column.attrname}"
-                                                    name="${column.attrname}"
+                                            <select data-placeholder="--选择--" id="${column.attrName}"
+                                                    name="${column.attrName}"
                                                     class="form-control chosen-select" tabindex="2"
                                                     dict-type="${column.dictType}"
-                                                    th:attr="dict-value=${${classname}.${column.attrname}}" >
+                                                    th:attr="dict-value=${${className}.${column.attrName}}" >
                                             </select>
                                         #elseif($column.pageType == 3)
-                                            <input id="${column.attrname}" name="${column.attrname}"
-                                                   th:value="${${classname}.${column.attrname}}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
+                                                   th:value="${${className}.${column.attrName}}"
                                                    class="form-control"
                                                    type="number">
                                         #elseif($column.pageType == 5)
-                                            <textarea id="${column.attrname}" name="${column.attrname}"
-                                                      class="form-control"  th:text="${${classname}.${column.attrname}}"></textarea>
+                                            <textarea id="${column.attrName}" name="${column.attrName}"
+                                                      class="form-control"  th:text="${${className}.${column.attrName}}"></textarea>
                                         #elseif($column.pageType == 6)
-                                            <input type="hidden" id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${column.attrname}}"/>
-                                            <div id="contentEditor${column.attrname}">
+                                            <input type="hidden" id="${column.attrName}" name="${column.attrName}" th:value="${${className}.${column.attrName}}"/>
+                                            <div id="contentEditor${column.attrName}">
 
                                             </div>
                                         #elseif($column.pageType == 7)
-                                            <img title="点击选择图片" id="picImage${column.attrname}"
+                                            <img title="点击选择图片" id="picImage${column.attrName}"
                                                  style="cursor:pointer;width: 100px;height: 100px"
-                                                 th:src="${${classname}.${column.attrname}}==null?'/img/webuploader.png':${${classname}.${column.attrname}}"/>
-                                            <input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${column.attrname}}"
+                                                 th:src="${${className}.${column.attrName}}==null?'/img/webuploader.png':${${className}.${column.attrName}}"/>
+                                            <input id="${column.attrName}" name="${column.attrName}" th:value="${${className}.${column.attrName}}"
                                                    class="form-control"
                                                    type="hidden">
                                         #elseif($column.pageType == 11)
-                                            <input type="hidden" id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${column.attrname}}"/>
+                                            <input type="hidden" id="${column.attrName}" name="${column.attrName}" th:value="${${className}.${column.attrName}}"/>
                                         #*#else
-                                            <input id="${column.attrname}" name="${column.attrname}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
                                                    class="form-control"
                                                    type="text">*#
                                         #end
@@ -82,7 +82,7 @@
 </div>
 <div th:include="include::footer"></div>
 <script type="text/javascript" src="/wangEditor/release/wangEditor.js"></script>
-<script type="text/javascript" src="/js/appjs/${pathName}/${classname}/edit.js">
+<script type="text/javascript" src="/js/appjs/${pathName}/${className}/edit.js">
 </script>
 </body>
 </html>

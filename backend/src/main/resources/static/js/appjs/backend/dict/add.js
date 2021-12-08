@@ -74,7 +74,7 @@ function save() {
     $.ajax({
         cache: true,
         type: "POST",
-        url: "/${pathName}/${className}/save",
+        url: "/backend/dict/save",
         data: $('#signupForm').serialize(),// 你的formid
         async: false,
         error: function (request) {
@@ -100,22 +100,8 @@ function validateRule() {
         $("#signupForm").validate({
             ignore: "",
             rules: {
-    #foreach($column in $columns)
-        #if($column.columnName != $priKeyColumn.columnName && $column.isRequired == 1)
-            ${column.attrName}: {
-                required: true
-            }#if($velocityCount != $columns.size()), #end
-        #end
-    #end
-    },
+                                                                                                                                                                    },
     messages: {
-        #foreach($column in $columns)
-            #if($column.columnName != $priKeyColumn.columnName && $column.isRequired == 1)
-                ${column.attrName}: {
-                required: icon + "请选择${column.columnLabel}"
-            }#if($velocityCount != $columns.size()), #end
-            #end
-        #end
-    }
+                                                                                                                                                                                                                                                                                }
 })
 }

@@ -9,37 +9,37 @@
             <div class="ibox float-e-margins">
             <div class="ibox-content">
             <form class="form-horizontal m-t" id="signupForm">
-                <input id="${pk.columnName}" name="${pk.columnName}" th:value="${${classname}.${pk.columnName}}"
+                <input id="${priKeyColumn.columnName}" name="${priKeyColumn.columnName}" th:value="${${className}.${priKeyColumn.columnName}}"
                        type="hidden">
                 #foreach($column in $columns)
-                    #if($column.columnName != $pk.columnName)
+                    #if($column.columnName != $priKeyColumn.columnName)
                     <div class="form-group">
                         <label class="col-sm-3 control-label">${column.columnLabel}：</label>
 
                         #if($column.pageType == 4)
                             <div style="padding-top:8px" class="col-sm-8"
-                                 th:text="${${classname}.${column.attrname}}==null?null:${#dates.format(${classname}.${column.attrname},'yyyy-MM-dd HH:mm:ss')}">
+                                 th:text="${${className}.${column.attrName}}==null?null:${#dates.format(${className}.${column.attrName},'yyyy-MM-dd HH:mm:ss')}">
                             </div>
                         #elseif($column.pageType == 2)
                             <div style="padding-top:8px" class="col-sm-8 dict-type" dict-type="${column.dictType}"
-                                 th:attr="dict-value=${${classname}.${column.attrname}}">
+                                 th:attr="dict-value=${${className}.${column.attrName}}">
                             </div>
 
                         #elseif($column.pageType == 6)
                             <div style="padding-top:8px" class="col-sm-8"
-                                 th:utext="${${classname}.${column.attrname}}"></div>
+                                 th:utext="${${className}.${column.attrName}}"></div>
                         #elseif($column.pageType == 7)
                             <div style="padding-top:8px" class="col-sm-8">
-                            <img id="picImage${column.attrname}"
+                            <img id="picImage${column.attrName}"
                                  style="cursor:pointer;width: 100px;height: 100px"
-                                 th:src="${${classname}.${column.attrname}}==null?'/img/webuploader.png':${${classname}.${column.attrname}}"/>
+                                 th:src="${${className}.${column.attrName}}==null?'/img/webuploader.png':${${className}.${column.attrName}}"/>
                         </div>
                         #else
                             <div style="padding-top:8px" class="col-sm-8"
-                                 th:text="${${classname}.${column.attrname}}">
+                                 th:text="${${className}.${column.attrName}}">
                             </div>
                         #*#else
-                            <input id="${column.attrname}" name="${column.attrname}"
+                            <input id="${column.attrName}" name="${column.attrName}"
                                    class="form-control"
                                    type="text">*#
                         #end

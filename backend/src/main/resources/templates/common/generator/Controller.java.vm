@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import io.swagger.annotations.ApiOperation;
 
 
-import ${package}.domain.${className}DO;
-import ${package}.service.${className}Service;
+import ${package}.domain.${classNameUpFrist}DO;
+import ${package}.service.${classNameUpFrist}Service;
 import com.java2nb.common.utils.PageBean;
 import com.java2nb.common.utils.Query;
 import com.java2nb.common.utils.R;
@@ -31,53 +31,53 @@ import com.java2nb.common.utils.R;
  */
 
 @Controller
-@RequestMapping("/${pathName}/${classname}")
+@RequestMapping("/${pathName}/${className}")
 public class ${className}Controller {
     @Autowired
-    private ${className}Service ${classname}Service;
+    private ${classNameUpFrist}Service ${className}Service;
 
     @GetMapping()
-    @RequiresPermissions("${pathName}:${classname}:${classname}")
-    String ${className}() {
-        return "${pathName}/${classname}/${classname}";
+    @RequiresPermissions("${pathName}:${className}:${className}")
+    String ${classNameUpFrist}() {
+        return "${pathName}/${className}/${className}";
     }
 
     @ApiOperation(value = "获取${comments}列表", notes = "获取${comments}列表")
     @ResponseBody
     @GetMapping("/list")
-    @RequiresPermissions("${pathName}:${classname}:${classname}")
+    @RequiresPermissions("${pathName}:${className}:${className}")
     public R list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<${className}DO> ${classname}List = ${classname}Service.list(query);
-        int total = ${classname}Service.count(query);
-        PageBean pageBean = new PageBean(${classname}List, total);
+        List<${className}DO> ${className}List = ${className}Service.list(query);
+        int total = ${className}Service.count(query);
+        PageBean pageBean = new PageBean(${className}List, total);
         return R.ok().put("data", pageBean);
     }
 
     @ApiOperation(value = "新增${comments}页面", notes = "新增${comments}页面")
     @GetMapping("/add")
-    @RequiresPermissions("${pathName}:${classname}:add")
+    @RequiresPermissions("${pathName}:${className}:add")
     String add() {
-        return "${pathName}/${classname}/add";
+        return "${pathName}/${className}/add";
     }
 
     @ApiOperation(value = "修改${comments}页面", notes = "修改${comments}页面")
-    @GetMapping("/edit/{${pk.attrname}}")
-    @RequiresPermissions("${pathName}:${classname}:edit")
-    String edit(@PathVariable("${pk.attrname}") ${pk.javaType} ${pk.attrname}, Model model) {
-            ${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
-        model.addAttribute("${classname}", ${classname});
-        return "${pathName}/${classname}/edit";
+    @GetMapping("/edit/{${priKeyColumn.attrName}}")
+    @RequiresPermissions("${pathName}:${className}:edit")
+    String edit(@PathVariable("${priKeyColumn.attrName}") ${priKeyColumn.javaType} ${priKeyColumn.attrName}, Model model) {
+            ${classNameUpFrist}DO ${className} = ${className}Service.get(${priKeyColumn.attrName});
+        model.addAttribute("${className}", ${className});
+        return "${pathName}/${className}/edit";
     }
 
     @ApiOperation(value = "查看${comments}页面", notes = "查看${comments}页面")
-    @GetMapping("/detail/{${pk.attrname}}")
-    @RequiresPermissions("${pathName}:${classname}:detail")
-    String detail(@PathVariable("${pk.attrname}") ${pk.javaType} ${pk.attrname}, Model model) {
-			${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
-        model.addAttribute("${classname}", ${classname});
-        return "${pathName}/${classname}/detail";
+    @GetMapping("/detail/{${priKeyColumn.attrName}}")
+    @RequiresPermissions("${pathName}:${className}:detail")
+    String detail(@PathVariable("${priKeyColumn.attrName}") ${priKeyColumn.javaType} ${priKeyColumn.attrName}, Model model) {
+			${classNameUpFrist}DO ${className} = ${className}Service.get(${priKeyColumn.attrName});
+        model.addAttribute("${className}", ${className});
+        return "${pathName}/${className}/detail";
     }
 
     /**
@@ -86,9 +86,9 @@ public class ${className}Controller {
     @ApiOperation(value = "新增${comments}", notes = "新增${comments}")
     @ResponseBody
     @PostMapping("/save")
-    @RequiresPermissions("${pathName}:${classname}:add")
-    public R save( ${className}DO ${classname}) {
-        if (${classname}Service.save(${classname}) > 0) {
+    @RequiresPermissions("${pathName}:${className}:add")
+    public R save( ${classNameUpFrist}DO ${className}) {
+        if (${className}Service.save(${className}) > 0) {
             return R.ok();
         }
         return R.error();
@@ -100,9 +100,9 @@ public class ${className}Controller {
     @ApiOperation(value = "修改${comments}", notes = "修改${comments}")
     @ResponseBody
     @RequestMapping("/update")
-    @RequiresPermissions("${pathName}:${classname}:edit")
-    public R update( ${className}DO ${classname}) {
-            ${classname}Service.update(${classname});
+    @RequiresPermissions("${pathName}:${className}:edit")
+    public R update( ${className}DO ${className}) {
+            ${className}Service.update(${className});
         return R.ok();
     }
 
@@ -112,9 +112,9 @@ public class ${className}Controller {
     @ApiOperation(value = "删除${comments}", notes = "删除${comments}")
     @PostMapping("/remove")
     @ResponseBody
-    @RequiresPermissions("${pathName}:${classname}:remove")
-    public R remove( ${pk.javaType} ${pk.attrname}) {
-        if (${classname}Service.remove(${pk.attrname}) > 0) {
+    @RequiresPermissions("${pathName}:${className}:remove")
+    public R remove( ${priKeyColumn.javaType} ${priKeyColumn.attrName}) {
+        if (${className}Service.remove(${priKeyColumn.attrName}) > 0) {
             return R.ok();
         }
         return R.error();
@@ -126,9 +126,9 @@ public class ${className}Controller {
     @ApiOperation(value = "批量删除${comments}", notes = "批量删除${comments}")
     @PostMapping("/batchRemove")
     @ResponseBody
-    @RequiresPermissions("${pathName}:${classname}:batchRemove")
-    public R remove(@RequestParam("ids[]") ${pk.javaType}[] ${pk.attrname}s) {
-            ${classname}Service.batchRemove(${pk.attrname}s);
+    @RequiresPermissions("${pathName}:${className}:batchRemove")
+    public R remove(@RequestParam("ids[]") ${priKeyColumn.javaType}[] ${priKeyColumn.attrName}s) {
+            ${className}Service.batchRemove(${priKeyColumn.attrName}s);
         return R.ok();
     }
 

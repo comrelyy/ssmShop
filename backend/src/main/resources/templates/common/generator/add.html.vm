@@ -18,44 +18,44 @@
                                     <div class="col-sm-8">
                                         #if($column.pageType == 4)
                                             <input type="text" class="laydate-icon layer-date form-control"
-                                                   id="${column.attrname}"
-                                                   name="${column.attrname}"
+                                                   id="${column.attrName}"
+                                                   name="${column.attrName}"
                                                    onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
                                                    style="background-color: #fff;" readonly="readonly"/>
                                         #elseif($column.pageType == 1)
-                                            <input id="${column.attrname}" name="${column.attrname}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
                                                    class="form-control"
                                                    type="text">
                                         #elseif($column.pageType == 2)
 
-                                            <select data-placeholder="--选择--" id="${column.attrname}"
-                                                    name="${column.attrname}"
+                                            <select data-placeholder="--选择--" id="${column.attrName}"
+                                                    name="${column.attrName}"
                                                     class="form-control chosen-select" tabindex="2"
                                                     dict-type="${column.dictType}">
                                             </select>
                                         #elseif($column.pageType == 3)
-                                            <input id="${column.attrname}" name="${column.attrname}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
                                                    class="form-control"
                                                    type="number">
                                         #elseif($column.pageType == 5)
-                                            <textarea id="${column.attrname}" name="${column.attrname}"
+                                            <textarea id="${column.attrName}" name="${column.attrName}"
                                                       class="form-control"></textarea>
                                         #elseif($column.pageType == 6)
-                                            <input type="hidden" id="${column.attrname}" name="${column.attrname}"/>
-                                            <div id="contentEditor${column.attrname}">
+                                            <input type="hidden" id="${column.attrName}" name="${column.attrName}"/>
+                                            <div id="contentEditor${column.attrName}">
 
                                             </div>
                                         #elseif($column.pageType == 7)
-                                            <img title="点击选择图片" id="picImage${column.attrname}"
+                                            <img title="点击选择图片" id="picImage${column.attrName}"
                                                  style="cursor:pointer;width: 100px;height: 100px"
                                                  src="/img/webuploader.png"/>
-                                            <input id="${column.attrname}" name="${column.attrname}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
                                                    class="form-control"
                                                    type="hidden">
                                         #elseif($column.pageType == 11)
-                                            <input type="hidden" id="${column.attrname}" name="${column.attrname}"/>
+                                            <input type="hidden" id="${column.attrName}" name="${column.attrName}"/>
                                         #*#else
-                                            <input id="${column.attrname}" name="${column.attrname}"
+                                            <input id="${column.attrName}" name="${column.attrName}"
                                                    class="form-control"
                                                    type="text">*#
                                         #end

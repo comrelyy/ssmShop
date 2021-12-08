@@ -37,8 +37,13 @@ spring:
 
 logging:
   level:
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            logging: info
     root: info
-    com.relyy.shop: debug
+    com.relyy.shop: info
 
 mybatis-plus:
   type-aliases-package:

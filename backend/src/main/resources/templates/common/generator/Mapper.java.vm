@@ -1,10 +1,11 @@
-package ${package}.dao;
+package ${package}.mapper;
 
-import ${package}.domain.${className}DO;
+import ${package}.entity.${classNameUpFirst}DO;
 
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,12 +19,12 @@ import org.apache.ibatis.annotations.Update;
  * @date ${datetime}
  */
 @Mapper
-public interface ${className}Mapper {
+public interface ${classNameUpFirst}Mapper extends BaseMapper<${classNameUpFirst}DO> {
 
 	@Select("select #foreach($column in $columns)
 `$column.columnName`#if($velocityCount != $columns.size()), #end	
-#end from ${tableName} where ${pk.columnName} = #{id}")
-	${className}DO get(${pk.javaType} ${pk.attrname});
+#end from ${tableName} where ${priKeyColumn.columnName} = #{id}")
+	${classNameUpFirst}DO get(${priKeyColumn.javaType} ${priKeyColumn.attrName});
 	
 	@Select("<script>" +
 	"select * from ${tableName} " + 
@@ -37,14 +38,14 @@ public interface ${className}Mapper {
 	                "order by ${sort} ${order}" + 
 	            "</when>" + 
 				"<otherwise>" + 
-	                "order by ${pk.columnName} desc" + 
+	                "order by ${priKeyColumn.columnName} desc" +
 				"</otherwise>" + 
 	        "</choose>"+
 			"<if test=\"offset != null and limit != null\">"+
 			"limit #{offset}, #{limit}" + 
 			"</if>"+
 			"</script>")
-	List<${className}DO> list(Map<String,Object> map);
+	List<${classNameUpFirst}DO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
 	"select count(*) from ${tableName} " + 
@@ -57,18 +58,18 @@ public interface ${className}Mapper {
 	int count(Map<String,Object> map);
 	
 	@Insert("insert into ${tableName} (#foreach($column in $columns)
-#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+#if($column.columnName != $priKeyColumn.columnName || $priKeyColumn.extra != 'auto_increment')
 `$column.columnName`#if($velocityCount != $columns.size()), #end
 #end			
 #end)"
 	+ "values (#foreach($column in $columns)
-#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-#{$column.attrname}#if($velocityCount != $columns.size()), #end
+#if($column.columnName != $priKeyColumn.columnName || $pk.extra != 'auto_increment')
+#{$column.attrName}#if($velocityCount != $columns.size()), #end
 #end			
 #end)")
-	int save(${className}DO ${classname});
+	int save(${classNameUpFirst}DO ${className});
 
-    int saveSelective(${className}DO ${classname});
+    int saveSelective(${classNameUpFirst}DO ${className});
 	
 	@Update("<script>"+ 
 			"update ${tableName} " + 
@@ -79,16 +80,16 @@ public interface ${className}Mapper {
 					"</set>" + 
 					"where ${pk.columnName} = #{${pk.attrname}}"+
 			"</script>")
-	int update(${className}DO ${classname});
+	int update(${classNameUpFirst}DO ${className});
 	
 	@Delete("delete from ${tableName} where ${pk.columnName} =#{${pk.attrname}}")
-	int remove(${pk.javaType} ${pk.columnName});
+	int remove(${priKeyColumn.javaType} ${priKeyColumn.columnName});
 	
 	@Delete("<script>"+ 
-			"delete from ${tableName} where ${pk.columnName} in " + 
-					"<foreach item=\"${pk.attrname}\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" + 
-						"#{${pk.attrname}}" + 
+			"delete from ${tableName} where ${priKeyColumn.columnName} in " +
+					"<foreach item=\"${priKeyColumn.attrName}\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
+						"#{${priKeyColumn.attrName}}" +
 					"</foreach>"+
 			"</script>")
-	int batchRemove(${pk.javaType}[] ${pk.attrname}s);
+	int batchRemove(${priKeyColumn.javaType}[] ${priKeyColumn.attrName}s);
 }

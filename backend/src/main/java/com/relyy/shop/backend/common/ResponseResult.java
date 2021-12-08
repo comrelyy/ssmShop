@@ -26,9 +26,19 @@ public class ResponseResult<T> {
 		this.msg = msg;
 	}
 
+	public ResponseResult(boolean success,String msg) {
+		this.success = success;
+		this.data = null;
+		this.code = null;
+		this.msg = msg;
+	}
+
 	public ResponseResult(boolean success) {
 		this.success = success;
 	}
 
 
+	public static ResponseResult ok(String s) {
+		return new ResponseResult(true,s);
+	}
 }

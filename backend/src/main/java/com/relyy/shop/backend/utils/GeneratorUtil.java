@@ -1,22 +1,33 @@
 package com.relyy.shop.backend.utils;
 
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
+import com.google.common.collect.Maps;
 import com.relyy.shop.backend.common.Constant;
+import com.relyy.shop.backend.entity.GenColumnsDO;
+import com.relyy.shop.backend.entity.TableDO;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 /**
  * @Description 利用volecity模板引擎生成代码
  * @Created by Reeve Cai
  * @Date 2021/12/6
  */
+@Slf4j
 public class GeneratorUtil {
 
 	public static List<String> getTemplates(){
@@ -88,13 +99,13 @@ public class GeneratorUtil {
 			return javaPackagePath + "entity" + File.separator + className + "DO.java";
 		}
 
-		if (template.contains("Dao.java.vm")) {
+//		if (template.contains("Dao.java.vm")) {
+//			return javaPackagePath + "mapper" + File.separator + className + "Mapper.java";
+//		}
+
+		if(template.contains("Mapper.java.vm")){
 			return javaPackagePath + "mapper" + File.separator + className + "Mapper.java";
 		}
-
-//		if(template.contains("Mapper.java.vm")){
-//			return packagePath + "dao" + File.separator + className + "Mapper.java";
-//		}
 
 		if (template.contains("Service.java.vm")) {
 			return javaPackagePath + "service" + File.separator + className + "Service.java";
@@ -155,8 +166,104 @@ public class GeneratorUtil {
 		return null;
 	}
 
-	public static void generatorCode(){
+	@SneakyThrows
+	public static GenColumnsDO transGenColumnDO(String tableName,Map<String, Object> column,int columnSort){
+		GenColumnsDO genColumnsDO = new GenColumnsDO();
+		genColumnsDO.setTableName(tableName);
+		genColumnsDO.setColumnName(column.get("columnName")+"");
+		genColumnsDO.setColumnType(column.get("dataType")+"");
+		genColumnsDO.setColumnComment(column.get("columnComment")+"");
+		PropertiesConfiguration conf = new PropertiesConfiguration("generator.properties");
+		genColumnsDO.setJavaType(conf.getString(column.get("dataType")+""));
+		genColumnsDO.setColumnSort(columnSort);
+		genColumnsDO.setExtra(column.get("extra")+"");
+		genColumnsDO.setIsRequired(0);
+		if ("Date".equals(conf.getString(column.get("dataType")+""))) {
+			genColumnsDO.setPageType(4);
 
+		} else {
+			genColumnsDO.setPageType(1);
+		}
+		genColumnsDO.setColumnLabel(column.get("columnComment")+"");
+		return genColumnsDO;
+	}
+
+	public static void generatorCode(Map<String,String> tableMap, GenColumnsDO priKeyColumn,List<GenColumnsDO> columnsDOList){
+		Configuration config = getConfig();
+		//封装表信息
+		TableDO tableDO = new TableDO();
+		tableDO.setTableName(tableMap.get("tableName"));
+		tableDO.setComments(tableMap.get("tableComment"));
+		String className = tableToJava(tableDO.getTableName(), config.getString("tablePrefix"), config.getString("autoRemovePre"));
+		tableDO.setClassNameUpFirst(className);
+		tableDO.setClassName(StringUtils.uncapitalize(className));
+
+		Collections.sort(columnsDOList, Comparator.comparingInt(GenColumnsDO::getColumnSort));
+		columnsDOList.forEach(genColumnsDO -> {
+			String column = columnToJava(genColumnsDO.getColumnName());
+			genColumnsDO.setAttrNameUpFirst(column);
+			genColumnsDO.setAttrName(StringUtils.uncapitalize(column));
+		});
+
+		String columnName = columnToJava(priKeyColumn.getColumnName());
+		priKeyColumn.setAttrNameUpFirst(columnName);
+		priKeyColumn.setAttrName(StringUtils.uncapitalize(columnName));
+
+		tableDO.setPriKeyColumn(priKeyColumn);
+		columnsDOList.add(0,priKeyColumn);
+		tableDO.setColumns(columnsDOList);
+
+		//设置velocity资源加载器
+		Properties properties = new Properties();
+		properties.put("file.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+		Velocity.init(properties);
+
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("tableName", tableDO.getTableName());
+		map.put("comments", tableDO.getComments());
+		map.put("pk", tableDO.getPriKeyColumn());
+		map.put("className", tableDO.getClassNameUpFirst());
+		map.put("classname", tableDO.getClassName());
+		map.put("pathName", config.getString("package").substring(config.getString("package").lastIndexOf(".") + 1));
+		map.put("columns", tableDO.getColumns());
+		map.put("package", config.getString("package"));
+		map.put("author", config.getString("author"));
+		map.put("email", config.getString("email"));
+		map.put("datetime", DateUtil.formatDateTime(new Date()));
+
+		VelocityContext velocity = new VelocityContext(map);
+
+		List<String> templates = getTemplates();
+		templates.stream().forEach(template -> {
+			StringWriter ioWrite = new StringWriter();
+			Template tpl = Velocity.getTemplate(template, "UTF-8");
+			tpl.merge(velocity,ioWrite);
+			OutputStream outputStream = null;
+			try{
+				String fileName = getFileName(template, tableDO.getClassName(), tableDO.getClassName(), config.getString("package"));
+
+				String srcPath = config.getString("srcPath");
+				fileName = srcPath + File.separator + fileName;
+				File file = new File(fileName);
+				if (file.exists()) {
+					file = new File(fileName + 1);
+				}
+				File parentFile = file.getParentFile();
+				if (!parentFile.exists()) {
+					parentFile.mkdirs();
+				}
+				outputStream = new FileOutputStream(file);
+				IOUtils.write(ioWrite.toString(),outputStream,"UTF-8");
+			} catch(IOException e){
+			    log.error("模板渲染失败，表名:[{}]",tableDO.getTableName(),e);
+			}finally {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					log.error("",e);
+				}
+			}
+		});
 	}
 
 }

@@ -70,7 +70,7 @@ function update() {
     $.ajax({
         cache: true,
         type: "POST",
-        url: "/${pathName}/${classname}/update",
+        url: "/${pathName}/${className}/update",
         data: $('#signupForm').serialize(),// 你的formid
         async: false,
         error: function (request) {
@@ -97,8 +97,8 @@ function validateRule() {
         ignore: "",
         rules: {
     #foreach($column in $columns)
-        #if($column.columnName != $pk.columnName && $column.isRequired == 1)
-            ${column.attrname}:
+        #if($column.columnName != $priKeyColumn.columnName && $column.isRequired == 1)
+            ${column.attrName}:
             {
                 required: true
             }#if($velocityCount != $columns.size()), #end
@@ -107,8 +107,8 @@ function validateRule() {
 },
     messages: {
         #foreach($column in $columns)
-            #if($column.columnName != $pk.columnName && $column.isRequired == 1)
-                ${column.attrname}:
+            #if($column.columnName != $priKeyColumn.columnName && $column.isRequired == 1)
+                ${column.attrName}:
                 {
                     required: icon + "请选择${column.columnLabel}"
                 }#if($velocityCount != $columns.size()), #end

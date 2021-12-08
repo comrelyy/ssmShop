@@ -31,6 +31,7 @@ $("[id^='contentEditor']").each(function (index, ele) {
     }
     editor.customConfig.uploadImgShowBase64 = true;
     editor.create();
+    editor.txt.html($("#" + relName).val());
 
 })
 
@@ -56,25 +57,20 @@ $("[id^='picImage']").each(function (index, ele) {
 
 });
 
-
-
-
-
-
 $().ready(function () {
     validateRule();
 });
 
 $.validator.setDefaults({
     submitHandler: function () {
-        save();
+        update();
     }
 });
-function save() {
+function update() {
     $.ajax({
         cache: true,
         type: "POST",
-        url: "/${pathName}/${className}/save",
+        url: "/backend/dict/update",
         data: $('#signupForm').serialize(),// 你的formid
         async: false,
         error: function (request) {
@@ -97,25 +93,11 @@ function save() {
 }
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
-        $("#signupForm").validate({
-            ignore: "",
-            rules: {
-    #foreach($column in $columns)
-        #if($column.columnName != $priKeyColumn.columnName && $column.isRequired == 1)
-            ${column.attrName}: {
-                required: true
-            }#if($velocityCount != $columns.size()), #end
-        #end
-    #end
-    },
+    $("#signupForm").validate({
+        ignore: "",
+        rules: {
+                                                                                                                                                                },
     messages: {
-        #foreach($column in $columns)
-            #if($column.columnName != $priKeyColumn.columnName && $column.isRequired == 1)
-                ${column.attrName}: {
-                required: icon + "请选择${column.columnLabel}"
-            }#if($velocityCount != $columns.size()), #end
-            #end
-        #end
-    }
+                                                                                                                                                                                                                                                                                }
 })
 }

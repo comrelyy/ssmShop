@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+            <div class="ibox-content">
+            <form class="form-horizontal m-t" id="signupForm">
+                <input id="id" name="id" th:value="${dict.id}"
+                       type="hidden">
+                                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">标签名：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">数据值：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">类型：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">描述：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">排序（升序）：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">父级编号：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">创建者：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}==null?null:${#dates.format(dict.${column.attrname},'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">更新者：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">更新时间：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}==null?null:${#dates.format(dict.${column.attrname},'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">备注信息：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">删除标记：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dict.${column.attrname}}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>
