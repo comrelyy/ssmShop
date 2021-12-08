@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import io.swagger.annotations.ApiOperation;
 
 
-import ${package}.domain.${classNameUpFrist}DO;
+import ${package}.entity.${classNameUpFrist}DO;
 import ${package}.service.${classNameUpFrist}Service;
-import com.java2nb.common.utils.PageBean;
-import com.java2nb.common.utils.Query;
-import com.java2nb.common.utils.R;
+import ${package}.common.PageBean;
+import ${package}.common.Query
+import ${package}.common.ResponseResult;
 
 /**
  * ${comments}
@@ -32,13 +32,13 @@ import com.java2nb.common.utils.R;
 
 @Controller
 @RequestMapping("/${pathName}/${className}")
-public class ${className}Controller {
+public class ${classNameUpFrist}Controller {
     @Autowired
     private ${classNameUpFrist}Service ${className}Service;
 
     @GetMapping()
     @RequiresPermissions("${pathName}:${className}:${className}")
-    String ${classNameUpFrist}() {
+    String ${className}() {
         return "${pathName}/${className}/${className}";
     }
 
@@ -46,13 +46,13 @@ public class ${className}Controller {
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("${pathName}:${className}:${className}")
-    public R list(@RequestParam Map<String, Object> params) {
+    public ResponseResult list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<${className}DO> ${className}List = ${className}Service.list(query);
+        List<${classNameUpFrist}DO> ${className}List = ${className}Service.list(query);
         int total = ${className}Service.count(query);
         PageBean pageBean = new PageBean(${className}List, total);
-        return R.ok().put("data", pageBean);
+        return ResponseResult.ok().put("data", pageBean);
     }
 
     @ApiOperation(value = "新增${comments}页面", notes = "新增${comments}页面")
@@ -87,11 +87,11 @@ public class ${className}Controller {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("${pathName}:${className}:add")
-    public R save( ${classNameUpFrist}DO ${className}) {
+    public ResponseResult save( ${classNameUpFrist}DO ${className}) {
         if (${className}Service.save(${className}) > 0) {
-            return R.ok();
+            return ResponseResult.ok();
         }
-        return R.error();
+        return ResponseResult.error();
     }
 
     /**
@@ -101,9 +101,9 @@ public class ${className}Controller {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("${pathName}:${className}:edit")
-    public R update( ${className}DO ${className}) {
+    public ResponseResult update( ${className}DO ${className}) {
             ${className}Service.update(${className});
-        return R.ok();
+        return ResponseResult.ok();
     }
 
     /**
@@ -113,11 +113,11 @@ public class ${className}Controller {
     @PostMapping("/remove")
     @ResponseBody
     @RequiresPermissions("${pathName}:${className}:remove")
-    public R remove( ${priKeyColumn.javaType} ${priKeyColumn.attrName}) {
+    public ResponseResult remove( ${priKeyColumn.javaType} ${priKeyColumn.attrName}) {
         if (${className}Service.remove(${priKeyColumn.attrName}) > 0) {
-            return R.ok();
+            return ResponseResult.ok();
         }
-        return R.error();
+        return ResponseResult.error();
     }
 
     /**
@@ -127,9 +127,9 @@ public class ${className}Controller {
     @PostMapping("/batchRemove")
     @ResponseBody
     @RequiresPermissions("${pathName}:${className}:batchRemove")
-    public R remove(@RequestParam("ids[]") ${priKeyColumn.javaType}[] ${priKeyColumn.attrName}s) {
+    public ResponseResult remove(@RequestParam("ids[]") ${priKeyColumn.javaType}[] ${priKeyColumn.attrName}s) {
             ${className}Service.batchRemove(${priKeyColumn.attrName}s);
-        return R.ok();
+        return ResponseResult.ok();
     }
 
 }

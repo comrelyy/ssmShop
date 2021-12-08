@@ -30,7 +30,7 @@ public interface ${classNameUpFirst}Mapper extends BaseMapper<${classNameUpFirst
 	"select * from ${tableName} " + 
 			"<where>" + 
 		  #foreach($column in $columns)
-		  "<if test=\"$column.attrname != null and $column.attrname.trim() != ''\">"+ "and $column.columnName = #{$column.attrname} " + "</if>" + 
+		  "<if test=\"$column.attrName != null and $column.attrName.trim() != ''\">"+ "and $column.columnName = #{$column.attrName} " + "</if>" +
 		  #end
 			"</where>"+ 
 			" <choose>" + 
@@ -51,7 +51,7 @@ public interface ${classNameUpFirst}Mapper extends BaseMapper<${classNameUpFirst
 	"select count(*) from ${tableName} " + 
 			"<where>" + 
 		  #foreach($column in $columns)
-		  "<if test=\"$column.attrname != null and $column.attrname.trim() != ''\">"+ "and $column.columnName = #{$column.attrname} " + "</if>" + 
+		  "<if test=\"$column.attrName != null and $column.attrName.trim() != ''\">"+ "and $column.columnName = #{$column.attrName} " + "</if>" +
 		  #end
 			"</where>"+ 
 			"</script>")
@@ -63,7 +63,7 @@ public interface ${classNameUpFirst}Mapper extends BaseMapper<${classNameUpFirst
 #end			
 #end)"
 	+ "values (#foreach($column in $columns)
-#if($column.columnName != $priKeyColumn.columnName || $pk.extra != 'auto_increment')
+#if($column.columnName != $priKeyColumn.columnName || $priKeyColumn.extra != 'auto_increment')
 #{$column.attrName}#if($velocityCount != $columns.size()), #end
 #end			
 #end)")
@@ -75,14 +75,14 @@ public interface ${classNameUpFirst}Mapper extends BaseMapper<${classNameUpFirst
 			"update ${tableName} " + 
 					"<set>" + 
 		  #foreach($column in $columns)
-          "<if test=\"$column.attrname != null\">`$column.columnName` = #{$column.attrname}, </if>" + 
+          "<if test=\"$column.attrName != null\">`$column.columnName` = #{$column.attrName}, </if>" +
           #end
 					"</set>" + 
-					"where ${pk.columnName} = #{${pk.attrname}}"+
+					"where ${priKeyColumn.columnName} = #{${priKeyColumn.attrName}}"+
 			"</script>")
 	int update(${classNameUpFirst}DO ${className});
 	
-	@Delete("delete from ${tableName} where ${pk.columnName} =#{${pk.attrname}}")
+	@Delete("delete from ${tableName} where ${priKeyColumn.columnName} =#{${priKeyColumn.attrName}}")
 	int remove(${priKeyColumn.javaType} ${priKeyColumn.columnName});
 	
 	@Delete("<script>"+ 

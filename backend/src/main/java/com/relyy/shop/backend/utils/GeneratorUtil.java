@@ -1,7 +1,6 @@
 package com.relyy.shop.backend.utils;
 
 
-import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Maps;
 import com.relyy.shop.backend.common.Constant;
@@ -32,12 +31,12 @@ public class GeneratorUtil {
 
 	public static List<String> getTemplates(){
 		List<String> templates = new ArrayList<String>();
-		templates.add("templates/common/generator/domain.java.vm");
-		templates.add("templates/common/generator/Dao.java.vm");
-		//templates.add("templates/common/generator/Mapper.java.vm");
-		templates.add("templates/common/generator/Mapper.xml.vm");
+		templates.add("templates/common/generator/entity.java.vm");
+		//templates.add("templates/common/generator/Dao.java.vm");
+		templates.add("templates/common/generator/Mapper.java.vm");
+		//templates.add("templates/common/generator/Mapper.xml.vm");
 		templates.add("templates/common/generator/Service.java.vm");
-		templates.add("templates/common/generator/ServiceImpl.java.vm");
+//		templates.add("templates/common/generator/ServiceImpl.java.vm");
 		templates.add("templates/common/generator/Controller.java.vm");
 		templates.add("templates/common/generator/list.html.vm");
 		templates.add("templates/common/generator/add.html.vm");
@@ -47,7 +46,6 @@ public class GeneratorUtil {
 		templates.add("templates/common/generator/add.js.vm");
 		templates.add("templates/common/generator/edit.js.vm");
 		templates.add("templates/common/generator/menu.sql.vm");
-		//templates.add("templates/common/generator/menu.sql.vm");
 		return templates;
 	}
 
@@ -95,7 +93,7 @@ public class GeneratorUtil {
 			javaPackagePath += packageName.replace(".", File.separator) + File.separator;
 		}
 
-		if (template.contains("domain.java.vm")) {
+		if (template.contains("entity.java.vm")) {
 			return javaPackagePath + "entity" + File.separator + className + "DO.java";
 		}
 
@@ -111,9 +109,9 @@ public class GeneratorUtil {
 			return javaPackagePath + "service" + File.separator + className + "Service.java";
 		}
 
-		if (template.contains("ServiceImpl.java.vm")) {
-			return javaPackagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
-		}
+//		if (template.contains("ServiceImpl.java.vm")) {
+//			return javaPackagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
+//		}
 
 		if (template.contains("Controller.java.vm")) {
 			return javaPackagePath + "controller" + File.separator + className + "Controller.java";
@@ -221,9 +219,9 @@ public class GeneratorUtil {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("tableName", tableDO.getTableName());
 		map.put("comments", tableDO.getComments());
-		map.put("pk", tableDO.getPriKeyColumn());
-		map.put("className", tableDO.getClassNameUpFirst());
-		map.put("classname", tableDO.getClassName());
+		map.put("priKeyColumn", tableDO.getPriKeyColumn());
+		map.put("classNameUpFirst", tableDO.getClassNameUpFirst());
+		map.put("className", tableDO.getClassName());
 		map.put("pathName", config.getString("package").substring(config.getString("package").lastIndexOf(".") + 1));
 		map.put("columns", tableDO.getColumns());
 		map.put("package", config.getString("package"));
