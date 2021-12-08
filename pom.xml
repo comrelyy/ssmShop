@@ -135,11 +135,11 @@
             <scope>true</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-core</artifactId>-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
 <!--            <version>5.2.4</version>-->
-<!--        </dependency>-->
+        </dependency>
 
 <!--        slf4j-->
         <dependency>

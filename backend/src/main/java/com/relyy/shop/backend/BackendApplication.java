@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BackendApplication {
 	public static void main(String[] args) {
-		log.info("开始启动");
+		//log.info("开始启动");
 		SpringApplication.run(BackendApplication.class,args);
 	}
 }

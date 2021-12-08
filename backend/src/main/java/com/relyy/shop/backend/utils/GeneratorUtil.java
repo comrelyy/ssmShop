@@ -155,4 +155,8 @@ public class GeneratorUtil {
 		return null;
 	}
 
+	public static void generatorCode(){
+
+	}
+
 }
