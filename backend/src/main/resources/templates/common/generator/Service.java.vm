@@ -1,9 +1,11 @@
 package ${package}.services;
 
-import ${package}.entity.${classNameUpFrist}DO;
-import org.springframework.stereotype.Service
+
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
+import ${package}.mapper.${classNameUpFirst}Mapper;
+import ${package}.domain.${classNameUpFirst}DO;
 
 /**
  * ${comments}
@@ -13,6 +15,42 @@ import java.util.Map;
  * @date ${datetime}
  */
 @Service
-public class ${classNameUpFrist}Service {
+public class ${classNameUpFirst}Service {
+	@Autowired
+	private ${classNameUpFirst}Mapper ${className}Mapper;
 
+	@Override
+	public ${classNameUpFirst}DO get(${pk.javaType} ${priKeyColumn.attrName}){
+		return ${className}Mapper.get(${priKeyColumn.attrName});
+	}
+
+	@Override
+	public List<${classNameUpFirst}DO> list(Map<String, Object> map){
+		return ${className}Mapper.list(map);
+	}
+
+	@Override
+	public int count(Map<String, Object> map){
+		return ${className}Mapper.count(map);
+	}
+
+	@Override
+	public int save(${classNameUpFirst}DO ${className}){
+		return ${className}Mapper.save(${className});
+	}
+
+	@Override
+	public int update(${classNameUpFirst}DO ${className}){
+		return ${className}Mapper.update(${className});
+	}
+
+	@Override
+	public int remove(${priKeyColumn.javaType} ${priKeyColumn.attrName}){
+		return ${className}Mapper.remove(${priKeyColumn.attrName});
+	}
+
+	@Override
+	public int batchRemove(${priKeyColumn.javaType}[] ${priKeyColumn.attrName}s){
+		return ${className}Mapper.batchRemove(${priKeyColumn.attrName}s);
+	}
 }

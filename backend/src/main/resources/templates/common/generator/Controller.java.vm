@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import io.swagger.annotations.ApiOperation;
 
 
-import ${package}.entity.${classNameUpFrist}DO;
-import ${package}.service.${classNameUpFrist}Service;
+import ${package}.entity.${classNameUpFirst}DO;
+import ${package}.service.${classNameUpFirst}Service;
 import ${package}.common.PageBean;
-import ${package}.common.Query
+import ${package}.common.Query;
 import ${package}.common.ResponseResult;
 
 /**
@@ -32,9 +32,9 @@ import ${package}.common.ResponseResult;
 
 @Controller
 @RequestMapping("/${pathName}/${className}")
-public class ${classNameUpFrist}Controller {
+public class ${classNameUpFirst}Controller {
     @Autowired
-    private ${classNameUpFrist}Service ${className}Service;
+    private ${classNameUpFirst}Service ${className}Service;
 
     @GetMapping()
     @RequiresPermissions("${pathName}:${className}:${className}")
@@ -49,7 +49,7 @@ public class ${classNameUpFrist}Controller {
     public ResponseResult list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<${classNameUpFrist}DO> ${className}List = ${className}Service.list(query);
+        List<${classNameUpFirst}DO> ${className}List = ${className}Service.list(query);
         int total = ${className}Service.count(query);
         PageBean pageBean = new PageBean(${className}List, total);
         return ResponseResult.ok().put("data", pageBean);
@@ -66,7 +66,7 @@ public class ${classNameUpFrist}Controller {
     @GetMapping("/edit/{${priKeyColumn.attrName}}")
     @RequiresPermissions("${pathName}:${className}:edit")
     String edit(@PathVariable("${priKeyColumn.attrName}") ${priKeyColumn.javaType} ${priKeyColumn.attrName}, Model model) {
-            ${classNameUpFrist}DO ${className} = ${className}Service.get(${priKeyColumn.attrName});
+            ${classNameUpFirst}DO ${className} = ${className}Service.get(${priKeyColumn.attrName});
         model.addAttribute("${className}", ${className});
         return "${pathName}/${className}/edit";
     }
@@ -75,7 +75,7 @@ public class ${classNameUpFrist}Controller {
     @GetMapping("/detail/{${priKeyColumn.attrName}}")
     @RequiresPermissions("${pathName}:${className}:detail")
     String detail(@PathVariable("${priKeyColumn.attrName}") ${priKeyColumn.javaType} ${priKeyColumn.attrName}, Model model) {
-			${classNameUpFrist}DO ${className} = ${className}Service.get(${priKeyColumn.attrName});
+			${classNameUpFirst}DO ${className} = ${className}Service.get(${priKeyColumn.attrName});
         model.addAttribute("${className}", ${className});
         return "${pathName}/${className}/detail";
     }
@@ -87,7 +87,7 @@ public class ${classNameUpFrist}Controller {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("${pathName}:${className}:add")
-    public ResponseResult save( ${classNameUpFrist}DO ${className}) {
+    public ResponseResult save( ${classNameUpFirst}DO ${className}) {
         if (${className}Service.save(${className}) > 0) {
             return ResponseResult.ok();
         }
@@ -101,7 +101,7 @@ public class ${classNameUpFrist}Controller {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("${pathName}:${className}:edit")
-    public ResponseResult update( ${className}DO ${className}) {
+    public ResponseResult update( ${classNameUpFirst}DO ${className}) {
             ${className}Service.update(${className});
         return ResponseResult.ok();
     }

@@ -84,7 +84,7 @@ public class GeneratorUtil {
 	/**
 	 * 获取文件名
 	 */
-	public static String getFileName(String template, String classname, String className, String packageName) {
+	public static String getFileName(String template, String className, String classNameUpFirst, String packageName) {
 		String moduleName = packageName.substring(packageName.lastIndexOf(".") + 1);
 
 		String javaPackagePath = "main" + File.separator + "java" + File.separator;
@@ -94,7 +94,7 @@ public class GeneratorUtil {
 		}
 
 		if (template.contains("entity.java.vm")) {
-			return javaPackagePath + "entity" + File.separator + className + "DO.java";
+			return javaPackagePath + "entity" + File.separator + classNameUpFirst + "DO.java";
 		}
 
 //		if (template.contains("Dao.java.vm")) {
@@ -102,11 +102,11 @@ public class GeneratorUtil {
 //		}
 
 		if(template.contains("Mapper.java.vm")){
-			return javaPackagePath + "mapper" + File.separator + className + "Mapper.java";
+			return javaPackagePath + "mapper" + File.separator + classNameUpFirst + "Mapper.java";
 		}
 
 		if (template.contains("Service.java.vm")) {
-			return javaPackagePath + "service" + File.separator + className + "Service.java";
+			return javaPackagePath + "services" + File.separator + classNameUpFirst + "Service.java";
 		}
 
 //		if (template.contains("ServiceImpl.java.vm")) {
@@ -114,7 +114,7 @@ public class GeneratorUtil {
 //		}
 
 		if (template.contains("Controller.java.vm")) {
-			return javaPackagePath + "controller" + File.separator + className + "Controller.java";
+			return javaPackagePath + "controller" + File.separator + classNameUpFirst + "Controller.java";
 		}
 
 //		if (template.contains("Mapper.xml.vm")) {
@@ -123,38 +123,38 @@ public class GeneratorUtil {
 
 		if (template.contains("list.html.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
-					+ moduleName + File.separator + classname + File.separator + classname + ".html";
+					+ moduleName + File.separator + className + File.separator + className + ".html";
 			//				+ "modules" + File.separator + "generator" + File.separator + className.toLowerCase() + ".html";
 		}
 		if (template.contains("add.html.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
-					+ moduleName + File.separator + classname + File.separator + "add.html";
+					+ moduleName + File.separator + className + File.separator + "add.html";
 		}
 		if (template.contains("edit.html.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
-					+ moduleName + File.separator + classname + File.separator + "edit.html";
+					+ moduleName + File.separator + className + File.separator + "edit.html";
 		}
 		if (template.contains("detail.html.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
-					+ moduleName + File.separator + classname + File.separator + "detail.html";
+					+ moduleName + File.separator + className + File.separator + "detail.html";
 		}
 
 		if (template.contains("list.js.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
-					+ "appjs" + File.separator + moduleName + File.separator + classname + File.separator + classname + ".js";
+					+ "appjs" + File.separator + moduleName + File.separator + className + File.separator + className + ".js";
 			//		+ "modules" + File.separator + "generator" + File.separator + className.toLowerCase() + ".js";
 		}
 		if (template.contains("add.js.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
-					+ "appjs" + File.separator + moduleName + File.separator + classname + File.separator + "add.js";
+					+ "appjs" + File.separator + moduleName + File.separator + className + File.separator + "add.js";
 		}
 		if (template.contains("edit.js.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
-					+ "appjs" + File.separator + moduleName + File.separator + classname + File.separator + "edit.js";
+					+ "appjs" + File.separator + moduleName + File.separator + className + File.separator + "edit.js";
 		}
 		if (template.contains("menu.sql.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "sql"
-					+ File.separator + moduleName + File.separator + classname + File.separator + "menu.js";
+					+ File.separator + moduleName + File.separator + className + File.separator + "menu.js";
 		}
 
 //		if(template.contains("menu.sql.vm")){
@@ -238,7 +238,7 @@ public class GeneratorUtil {
 			tpl.merge(velocity,ioWrite);
 			OutputStream outputStream = null;
 			try{
-				String fileName = getFileName(template, tableDO.getClassName(), tableDO.getClassName(), config.getString("package"));
+				String fileName = getFileName(template, tableDO.getClassName(), tableDO.getClassNameUpFirst(), config.getString("package"));
 
 				String srcPath = config.getString("srcPath");
 				fileName = srcPath + File.separator + fileName;
