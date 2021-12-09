@@ -43,6 +43,19 @@ public class GeneratorService {
 		}
 	}
 
+	public List<GenColumnsDO> listColumnsByTableName(String tableName) {
+		//查询列信息
+		List<Map<String, Object>> maps = generatorMapper.listColumns(tableName);
+		Map<String, Object> priColum = generatorMapper.getPriColum(tableName);
+		List<GenColumnsDO> genColumnsDOS = transMap(tableName, maps);
+		genColumnsDOS.add(GeneratorUtil.transGenColumnDO(tableName,priColum,0));
+		return genColumnsDOS;
+	}
+
+	public void genColumnsSave(List<GenColumnsDO> list) {
+
+	}
+
 	private List<GenColumnsDO> transMap(String tableName,List<Map<String, Object>> columnMapList){
 		int columnSort = 0;
 		List<GenColumnsDO> columnList = Lists.newArrayList();
@@ -53,5 +66,4 @@ public class GeneratorService {
 		}
 		return columnList;
 	}
-
 }

@@ -3,6 +3,7 @@ package com.relyy.shop.backend.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -132,4 +133,10 @@ public class DictController {
         return ResponseResult.ok();
     }
 
+    @ResponseBody
+    @GetMapping("/type")
+    //@RequiresPermissions("backend:dict:dict")
+    public List<DictDO> type() {
+        return Lists.newArrayList();
+    }
 }

@@ -36,7 +36,7 @@ public class Swagger2Config {
 				.title("功能测试")
 				.contact(new Contact("Reeve Cai","relyy2014@163.com","crr2008@sina.cn"))
 				.version("1.0")
-				.description("API 描述(待添加)")
+				.description("API 描述:后台相关接口")
 				.build();
 	}
 }

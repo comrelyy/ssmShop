@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+            <div class="ibox-content">
+            <form class="form-horizontal m-t" id="signupForm">
+                <input id="user_id" name="user_id" th:value="${user.user_id}"
+                       type="hidden">
+                                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">用户名：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.username}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.name}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">密码：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.password}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.deptId}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">邮箱：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.email}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">手机号：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.mobile}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">状态 0:禁用，1:正常：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.status}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">创建用户id：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.userIdCreate}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.gmtCreate}==null?null:${#dates.format(user.gmtCreate,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">修改时间：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.gmtModified}==null?null:${#dates.format(user.gmtModified,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">性别：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.sex}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">出身日期：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.birth}==null?null:${#dates.format(user.birth,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.picId}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">现居住地：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.liveAddress}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">爱好：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.hobby}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">省份：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.province}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">所在城市：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.city}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">所在地区：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${user.district}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>

@@ -51,7 +51,7 @@ function load() {
                     loadDict();
 
                     $.ajax({
-                        url : '/common/dict/type',
+                        url : '/backend/dict/type',
                         success : function(data) {
                             $("select[name=dictType]").each(function (index, domEle) {
                                 var html = "";
