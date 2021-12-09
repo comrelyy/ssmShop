@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 
 
 import ${package}.entity.${classNameUpFirst}DO;
-import ${package}.service.${classNameUpFirst}Service;
+import ${package}.services.${classNameUpFirst}Service;
 import ${package}.common.PageBean;
 import ${package}.common.Query;
 import ${package}.common.ResponseResult;
