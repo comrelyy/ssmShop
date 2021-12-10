@@ -1,11 +1,14 @@
 package com.relyy.shop.backend.controller;
 
 import cn.hutool.core.lang.Tuple;
+import com.relyy.shop.backend.common.ResponseResult;
 import com.relyy.shop.backend.utils.RandomValidateCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -47,5 +50,24 @@ public class LoginController {
 		} catch(Exception e){
 		    log.error("",e);
 		}
+	}
+
+	@ResponseBody
+	@PostMapping("/login")
+	public ResponseResult<String> signIn(String username, String password,String verify,HttpServletRequest request){
+		log.info("USER:[{}],login success",username);
+		//todo
+		return ResponseResult.ok();
+	}
+
+	@GetMapping({"","/","/index"})
+	public String index(){
+		//todo
+		return "/index";
+	}
+
+	@GetMapping("/main")
+	String main() {
+		return "main";
 	}
 }

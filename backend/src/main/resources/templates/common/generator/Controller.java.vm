@@ -46,13 +46,13 @@ public class ${classNameUpFirst}Controller {
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("${pathName}:${className}:${className}")
-    public ResponseResult list(@RequestParam Map<String, Object> params) {
+    public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
         List<${classNameUpFirst}DO> ${className}List = ${className}Service.list(query);
         int total = ${className}Service.count(query);
         PageBean pageBean = new PageBean(${className}List, total);
-        return ResponseResult.ok().put("data", pageBean);
+        return new ResponseResult<PageBean>(true, pageBean);
     }
 
     @ApiOperation(value = "新增${comments}页面", notes = "新增${comments}页面")

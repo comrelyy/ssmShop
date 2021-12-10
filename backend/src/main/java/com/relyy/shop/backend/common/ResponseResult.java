@@ -42,7 +42,7 @@ public class ResponseResult<T> {
 	}
 
 	public static ResponseResult ok() {
-		return new ResponseResult(true);
+		return new ResponseResult(true,null,"0","ok");
 	}
 
 	public static ResponseResult error() {

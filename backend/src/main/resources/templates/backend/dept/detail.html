@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+            <div class="ibox-content">
+            <form class="form-horizontal m-t" id="signupForm">
+                <input id="dept_id" name="dept_id" th:value="${dept.dept_id}"
+                       type="hidden">
+                                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">上级部门ID，一级部门为0：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dept.parentId}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">部门名称：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dept.name}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">排序：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dept.orderNum}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">是否删除  -1：已删除  0：正常：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${dept.delFlag}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>

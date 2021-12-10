@@ -140,7 +140,7 @@
                     seamless></iframe>
         </div>
         <div class="footer" style="text-align: center">
-            柒柒精品屋后台管理系统
+            柒柒小屋后台管理系统
         </div>
     </div>
     <!--右侧部分结束-->
@@ -269,7 +269,7 @@
 <script type="text/javascript">
     var dictList = [];//全局页面操作对象,请将常用数据挂载在这个对象
     $.ajax({
-        url : '/common/dict/list',
+        url : '/backend/dict/list',
         data: {'limit':1000,'offset':0},
         success : function(data) {
             dictList = data.rows;

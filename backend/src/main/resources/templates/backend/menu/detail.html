@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+            <div class="ibox-content">
+            <form class="form-horizontal m-t" id="signupForm">
+                <input id="menu_id" name="menu_id" th:value="${menu.menu_id}"
+                       type="hidden">
+                                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">父菜单ID，一级菜单为0：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.parentId}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">菜单名称：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.name}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">菜单URL：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.url}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">授权(多个用逗号分隔，如：user:list,user:create)：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.perms}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">类型   0：目录   1：菜单   2：按钮：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.type}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">菜单图标：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.icon}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">排序：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.orderNum}">
+                            </div>
+                        
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.gmtCreate}==null?null:${#dates.format(menu.gmtCreate,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">修改时间：</label>
+
+                                                    <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${menu.gmtModified}==null?null:${#dates.format(menu.gmtModified,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+                        
+
+                    </div>
+                                                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>
