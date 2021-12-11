@@ -61,7 +61,9 @@ public class LoginController {
 	}
 
 	@GetMapping({"","/","/index"})
-	public String index(){
+	public String index(Model model){
+		model.addAttribute("name","admin");
+		model.addAttribute("picUrl","/img/a8.jpg");
 		//todo
 		return "/index";
 	}

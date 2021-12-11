@@ -1,26 +1,19 @@
 package com.relyy.shop.backend.controller;
 
-import java.util.List;
-import java.util.Map;
-
+import com.relyy.shop.backend.common.PageBean;
+import com.relyy.shop.backend.common.Query;
+import com.relyy.shop.backend.common.ResponseResult;
+import com.relyy.shop.backend.entity.UserDO;
+import com.relyy.shop.backend.services.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
-
-import com.relyy.shop.backend.entity.UserDO;
-import com.relyy.shop.backend.services.UserService;
-import com.relyy.shop.backend.common.PageBean;
-import com.relyy.shop.backend.common.Query;
-import com.relyy.shop.backend.common.ResponseResult;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -69,15 +62,6 @@ public class UserController extends BaseController{
             UserDO user = userService.get(userId);
         model.addAttribute("user", user);
         return "backend/user/edit";
-    }
-
-    @ApiOperation(value = "查看页面", notes = "查看页面")
-    @GetMapping("/detail/{userId}")
-    @RequiresPermissions("backend:user:detail")
-    String detail(@PathVariable("userId") Long userId, Model model) {
-			UserDO user = userService.get(userId);
-        model.addAttribute("user", user);
-        return "backend/user/detail";
     }
 
     /**
