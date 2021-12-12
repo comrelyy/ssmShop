@@ -1,11 +1,13 @@
 package com.relyy.shop.backend.services;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.relyy.shop.backend.entity.UserDO;
+import com.relyy.shop.backend.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
-import com.relyy.shop.backend.mapper.UserMapper;
-import com.relyy.shop.backend.entity.UserDO;
 
 /**
  * 
@@ -20,7 +22,14 @@ public class UserService {
 	private UserMapper userMapper;
 
 	public UserDO get(Long userId){
-		return userMapper.get(userId);
+		return userMapper.selectById(userId);
+	}
+
+	public UserDO getUserByName(String username,String password){
+		QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("username",username);
+		queryWrapper.eq("password",password);
+		return userMapper.selectOne(queryWrapper);
 	}
 
 	public List<UserDO> list(Map<String, Object> map){

@@ -1,16 +1,11 @@
 package com.relyy.shop.backend.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.relyy.shop.backend.entity.UserDO;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 /**
  * 
  * 
@@ -21,9 +16,9 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface UserMapper extends BaseMapper<UserDO> {
 
-	@Select("select `user_id`, `username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `gmt_create`, `gmt_modified`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district` from sys_user where user_id = #{id}")
-	UserDO get(Long userId);
-	
+//	@Select("select `user_id`, `username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `gmt_create`, `gmt_modified`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district` from sys_user where user_id = #{id}")
+//	UserDO get(Long userId);
+
 	@Select("<script>" +
 	"select * from sys_user " + 
 			"<where>" + 
@@ -131,3 +126,4 @@ public interface UserMapper extends BaseMapper<UserDO> {
 			"</script>")
 	int batchRemove(Long[] userIds);
 }
+

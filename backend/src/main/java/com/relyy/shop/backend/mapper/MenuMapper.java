@@ -1,16 +1,11 @@
 package com.relyy.shop.backend.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.relyy.shop.backend.entity.MenuDO;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 /**
  * 菜单管理
  * 
@@ -103,4 +98,17 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 					"</foreach>"+
 			"</script>")
 	int batchRemove(Long[] menuIds);
+
+	@Select("select distinct m.menu_id , parent_id, name, url,\n" +
+			"\t\tperms,`type`,icon,order_num,gmt_create, gmt_modified\n" +
+			"\t\tfrom sys_menu m\n" +
+			"\t\tleft\n" +
+			"\t\tjoin sys_role_menu rm on m.menu_id = rm.menu_id left join\n" +
+			"\t\tsys_user_role ur\n" +
+			"\t\ton rm.role_id =ur.role_id where ur.user_id = #{id}\n" +
+			"\t\tand\n" +
+			"\t\tm.type in(0,1)\n" +
+			"\t\torder by\n" +
+			"\t\tm.order_num")
+	List<MenuDO> listMenuByUserId(Long userId);
 }

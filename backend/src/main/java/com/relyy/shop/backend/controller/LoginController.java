@@ -2,8 +2,15 @@ package com.relyy.shop.backend.controller;
 
 import cn.hutool.core.lang.Tuple;
 import com.relyy.shop.backend.common.ResponseResult;
+import com.relyy.shop.backend.common.Tree;
+import com.relyy.shop.backend.entity.MenuDO;
+import com.relyy.shop.backend.entity.UserDO;
+import com.relyy.shop.backend.services.MenuService;
+import com.relyy.shop.backend.services.UserService;
 import com.relyy.shop.backend.utils.RandomValidateCodeUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +21,8 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @Description
@@ -23,6 +32,11 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class LoginController {
+
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private MenuService menuService;
 
 	@GetMapping("/login")
 	public String login(Model model){
@@ -55,15 +69,37 @@ public class LoginController {
 	@ResponseBody
 	@PostMapping("/login")
 	public ResponseResult<String> signIn(String username, String password,String verify,HttpServletRequest request){
-		log.info("USER:[{}],login success",username);
-		//todo
+		log.info("USER:[{}],verify:[{}],request login",username,verify);
+		final HttpSession session = request.getSession();
+		try {
+			if (!StringUtils.equals(verify,(String)session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY))) {
+				return ResponseResult.error("请输入正确的验证码");
+			}
+			UserDO userByName = userService.getUserByName(username, password);
+			if (Objects.isNull(userByName)){
+				return ResponseResult.error("用户不存在");
+			}
+			session.setAttribute("userId",userByName.getUserId());
+		}catch (Exception e){
+			e.printStackTrace();
+			return ResponseResult.error("登录异常");
+		}
 		return ResponseResult.ok();
 	}
 
 	@GetMapping({"","/","/index"})
-	public String index(Model model){
-		model.addAttribute("name","admin");
+	public String index(Model model,HttpServletRequest request){
+		Object userId = request.getSession().getAttribute("userId");
+		if (Objects.isNull(userId)){
+			return "/login";
+		}
+		UserDO userDO = userService.get((Long) userId);
+		model.addAttribute("name",userDO.getName());
+		//todo
 		model.addAttribute("picUrl","/img/a8.jpg");
+		List<Tree<MenuDO>> menus = menuService.listMenuByUserId(userDO.getUserId());
+		model.addAttribute("menus", menus);
+		model.addAttribute("username", userDO.getUsername());
 		//todo
 		return "/index";
 	}
@@ -71,5 +107,11 @@ public class LoginController {
 	@GetMapping("/main")
 	String main() {
 		return "main";
+	}
+
+	@GetMapping("/logout")
+	String logout() {
+		//ShiroUtils.logout();
+		return "redirect:/login";
 	}
 }
