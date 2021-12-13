@@ -27,6 +27,6 @@ public class MD5Util {
 	}
 	public static void main(String[] args) {
 
-		//System.out.println(MD5Utils.encrypt("admin", "1"));
+		System.out.println(encrypt("atimis", "123456"));
 	}
 }

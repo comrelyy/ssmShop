@@ -66,9 +66,9 @@ public class UserController extends BaseController{
 
     @ApiOperation(value = "修改页面", notes = "修改页面")
     @GetMapping("/edit/{userId}")
-    @RequiresPermissions("backend:user:edit")
+    //@RequiresPermissions("backend:user:edit")
     String edit(@PathVariable("userId") Long userId, Model model) {
-            UserDO user = userService.get(userId);
+        UserDO user = userService.get(userId);
         model.addAttribute("user", user);
         return "backend/user/edit";
     }
@@ -81,6 +81,7 @@ public class UserController extends BaseController{
     @PostMapping("/save")
     @RequiresPermissions("backend:user:add")
     public ResponseResult save( UserDO user) {
+        user.setPassword(MD5Util.encrypt(user.getUsername(),user.getPassword()));
         if (userService.save(user) > 0) {
             return ResponseResult.ok();
         }
