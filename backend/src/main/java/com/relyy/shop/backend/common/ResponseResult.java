@@ -56,4 +56,9 @@ public class ResponseResult<T> {
 	public static ResponseResult error(String s) {
 		return new ResponseResult(false,s);
 	}
+
+	public ResponseResult<T> put(T data) {
+		this.data = data;
+		return this;
+	}
 }

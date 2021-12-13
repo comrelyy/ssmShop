@@ -52,7 +52,7 @@ public class DataPermController {
         List<DataPermDO> dataPermList = dataPermService.list(query);
         int total = dataPermService.count(query);
         PageBean pageBean = new PageBean(dataPermList, total);
-        return new ResponseResult<PageBean>(true, pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增数据权限管理页面", notes = "新增数据权限管理页面")

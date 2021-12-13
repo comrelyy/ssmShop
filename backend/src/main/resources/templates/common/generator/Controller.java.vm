@@ -52,7 +52,7 @@ public class ${classNameUpFirst}Controller {
         List<${classNameUpFirst}DO> ${className}List = ${className}Service.list(query);
         int total = ${className}Service.count(query);
         PageBean pageBean = new PageBean(${className}List, total);
-        return new ResponseResult<PageBean>(true, pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增${comments}页面", notes = "新增${comments}页面")

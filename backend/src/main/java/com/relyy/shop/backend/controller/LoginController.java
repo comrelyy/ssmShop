@@ -7,6 +7,7 @@ import com.relyy.shop.backend.entity.MenuDO;
 import com.relyy.shop.backend.entity.UserDO;
 import com.relyy.shop.backend.services.MenuService;
 import com.relyy.shop.backend.services.UserService;
+import com.relyy.shop.backend.utils.MD5Util;
 import com.relyy.shop.backend.utils.RandomValidateCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -75,7 +76,7 @@ public class LoginController {
 			if (!StringUtils.equals(verify,(String)session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY))) {
 				return ResponseResult.error("请输入正确的验证码");
 			}
-			UserDO userByName = userService.getUserByName(username, password);
+			UserDO userByName = userService.getUserByName(username, MD5Util.encrypt(username,password));
 			if (Objects.isNull(userByName)){
 				return ResponseResult.error("用户不存在");
 			}
@@ -110,8 +111,8 @@ public class LoginController {
 	}
 
 	@GetMapping("/logout")
-	String logout() {
-		//ShiroUtils.logout();
+	String logout(HttpServletRequest request) {
+		request.getSession().removeAttribute("userId");
 		return "redirect:/login";
 	}
 }

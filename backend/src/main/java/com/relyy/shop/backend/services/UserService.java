@@ -45,7 +45,7 @@ public class UserService {
 	}
 
 	public int update(UserDO user){
-		return userMapper.update(user);
+		return userMapper.updateById(user);
 	}
 
 	public int remove(Long userId){

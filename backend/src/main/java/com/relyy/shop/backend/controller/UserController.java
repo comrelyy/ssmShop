@@ -4,7 +4,10 @@ import com.relyy.shop.backend.common.PageBean;
 import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.common.ResponseResult;
 import com.relyy.shop.backend.entity.UserDO;
+import com.relyy.shop.backend.services.DictService;
 import com.relyy.shop.backend.services.UserService;
+import com.relyy.shop.backend.utils.MD5Util;
+import com.relyy.shop.backend.vo.UserVO;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +30,13 @@ import java.util.Map;
 @Controller
 @RequestMapping("/backend/user")
 public class UserController extends BaseController{
+
+    private static final String prefix = "/backend/user";
+
     @Autowired
     private UserService userService;
+    @Autowired
+    private DictService dictService;
 
     @GetMapping()
     @RequiresPermissions("backend:user:user")
@@ -45,7 +54,7 @@ public class UserController extends BaseController{
         List<UserDO> userList = userService.list(query);
         int total = userService.count(query);
         PageBean pageBean = new PageBean(userList, total);
-        return new ResponseResult<PageBean>(true, pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增页面", notes = "新增页面")
@@ -116,4 +125,39 @@ public class UserController extends BaseController{
         return ResponseResult.ok();
     }
 
+    @GetMapping("/personal")
+    String personal(Model model, HttpServletRequest request) {
+        Long userId = getUserId(request);
+        if (null == userId) return "/login";
+        UserDO userDO  = userService.get(userId);
+        model.addAttribute("user",userDO);
+        model.addAttribute("hobbyList",dictService.getHobbyList(userDO.getHobby()));
+        model.addAttribute("sexList",dictService.getSexList());
+        return prefix + "/personal";
+    }
+
+    @ResponseBody
+    @PostMapping("/resetPwd")
+    ResponseResult<String> resetPwd(UserVO userVO, HttpServletRequest request){
+        Long userId = getUserId(request);
+        if (userId == null) {
+            return ResponseResult.error().put("用户未登录");
+        }
+        UserDO userDO = userService.get(userId);
+        //todo 校验输入的旧密码是否正确 暂时可以无条件更新，因为不知道admin的密码
+        String encrypt = MD5Util.encrypt(userDO.getUsername(), userVO.getPwdNew());
+        userDO.setPassword(encrypt);
+        userService.update(userDO);
+        return ResponseResult.ok().put("密码修改成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/updatePeronal")
+    ResponseResult<String> updatePeronal(UserDO userDO){
+        int update = userService.update(userDO);
+        if (update > 0){
+           return ResponseResult.ok().put("个人信息修改成功");
+        }
+        return ResponseResult.error("个人信息修改成功");
+    }
 }

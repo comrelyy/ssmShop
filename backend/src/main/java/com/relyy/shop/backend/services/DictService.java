@@ -1,9 +1,17 @@
 package com.relyy.shop.backend.services;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.relyy.shop.backend.entity.UserDO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.relyy.shop.backend.mapper.DictMapper;
 import com.relyy.shop.backend.entity.DictDO;
 
@@ -45,5 +53,27 @@ public class DictService {
 
 	public int batchRemove(Long[] ids){
 		return dictMapper.batchRemove(ids);
+	}
+
+	public List<DictDO> getHobbyList(String hobbyStr) {
+		if (StringUtils.isNotBlank(hobbyStr)) {
+			List<Long> idList = Arrays.stream(hobbyStr.split(";"))
+					.map(Long::valueOf)
+					.collect(Collectors.toList());
+			QueryWrapper<DictDO> queryWrapper = new QueryWrapper<>();
+			queryWrapper.eq("type", "hobby");
+			queryWrapper.in("id", idList);
+			return dictMapper.selectList(queryWrapper);
+		}
+		return Collections.EMPTY_LIST;
+	}
+
+	public List<DictDO> getSexList() {
+		return getListByType("sex");
+	}
+	public List<DictDO> getListByType(String dictType) {
+		QueryWrapper<DictDO> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("type", dictType);
+		return dictMapper.selectList(queryWrapper);
 	}
 }

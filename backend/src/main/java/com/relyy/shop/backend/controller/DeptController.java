@@ -52,7 +52,7 @@ public class DeptController {
         List<DeptDO> deptList = deptService.list(query);
         int total = deptService.count(query);
         PageBean pageBean = new PageBean(deptList, total);
-        return new ResponseResult<PageBean>(true, pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增部门管理页面", notes = "新增部门管理页面")

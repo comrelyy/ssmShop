@@ -52,7 +52,7 @@ public class MenuController {
         List<MenuDO> menuList = menuService.list(query);
         int total = menuService.count(query);
         PageBean pageBean = new PageBean(menuList, total);
-        return new ResponseResult<PageBean>(true, pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增菜单管理页面", notes = "新增菜单管理页面")

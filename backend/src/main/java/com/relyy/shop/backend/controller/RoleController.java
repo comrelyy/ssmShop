@@ -52,7 +52,7 @@ public class RoleController {
         List<RoleDO> roleList = roleService.list(query);
         int total = roleService.count(query);
         PageBean pageBean = new PageBean(roleList, total);
-        return new ResponseResult<PageBean>(true,pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增角色页面", notes = "新增角色页面")

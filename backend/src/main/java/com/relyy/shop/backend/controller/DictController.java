@@ -53,7 +53,7 @@ public class DictController {
         List<DictDO> dictList = dictService.list(query);
         int total = dictService.count(query);
         PageBean pageBean = new PageBean(dictList, total);
-        return new ResponseResult<PageBean>(true,pageBean);
+        return ResponseResult.ok().put(pageBean);
     }
 
     @ApiOperation(value = "新增字典表页面", notes = "新增字典表页面")
