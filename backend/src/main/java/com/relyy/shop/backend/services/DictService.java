@@ -76,4 +76,8 @@ public class DictService {
 		queryWrapper.eq("type", dictType);
 		return dictMapper.selectList(queryWrapper);
 	}
+
+	public List<DictDO> listType() {
+		return dictMapper.getAllType();
+	}
 }

@@ -1,8 +1,10 @@
 package com.relyy.shop.backend.services;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.relyy.shop.backend.entity.UserDO;
 import com.relyy.shop.backend.mapper.UserMapper;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,10 @@ public class UserService {
 	private UserMapper userMapper;
 
 	public UserDO get(Long userId){
-		return userMapper.selectById(userId);
+		QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("user_id",userId);
+		return userMapper.selectOne(queryWrapper);
+
 	}
 
 	public UserDO getUserByName(String username,String password){
@@ -46,6 +51,10 @@ public class UserService {
 
 	public int update(UserDO user){
 		return userMapper.updateById(user);
+	}
+
+	public int updateByUserId(UserDO user){
+		return userMapper.update(user);
 	}
 
 	public int remove(Long userId){

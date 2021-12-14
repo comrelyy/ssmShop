@@ -20,7 +20,7 @@ import java.util.Date;
  * @date 2021-12-09 14:29:14
  */
 @Data
-@TableName("sys_dict")
+@TableName("tb_dict")
 public class DictDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -47,7 +47,8 @@ public class DictDO implements Serializable {
 	@JsonSerialize(using = Long2StringSerializer.class)
 	private Long parentId;
 	//创建者
-	private Integer createBy;
+	@JsonSerialize(using = Long2StringSerializer.class)
+	private Long createBy;
 	//创建时间
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createDate;
@@ -62,5 +63,5 @@ public class DictDO implements Serializable {
 	//备注信息
 	private String remarks;
 	//删除标记
-	private String delFlag;
+	private String delFlag = "1";
 }

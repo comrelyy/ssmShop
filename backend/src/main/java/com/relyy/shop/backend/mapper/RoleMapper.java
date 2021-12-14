@@ -25,7 +25,7 @@ public interface RoleMapper extends BaseMapper<RoleDO> {
 	RoleDO get(Long roleId);
 	
 	@Select("<script>" +
-	"select * from sys_role " + 
+	"select * from tb_role " + 
 			"<where>" + 
 		  		  "<if test=\"roleId != null and roleId != ''\">"+ "and role_id = #{roleId} " + "</if>" +
 		  		  "<if test=\"roleName != null and roleName != ''\">"+ "and role_name = #{roleName} " + "</if>" +
@@ -50,7 +50,7 @@ public interface RoleMapper extends BaseMapper<RoleDO> {
 	List<RoleDO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
-	"select count(*) from sys_role " + 
+	"select count(*) from tb_role " +
 			"<where>" + 
 		  		  "<if test=\"roleId != null and roleId != ''\">"+ "and role_id = #{roleId} " + "</if>" +
 		  		  "<if test=\"roleName != null and roleName != ''\">"+ "and role_name = #{roleName} " + "</if>" +
@@ -63,32 +63,30 @@ public interface RoleMapper extends BaseMapper<RoleDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into sys_role (`role_name`, `role_sign`, `remark`, `user_id_create`, `gmt_create`, `gmt_modified`)"
-	+ "values (#{roleName}, #{roleSign}, #{remark}, #{userIdCreate}, #{gmtCreate}, #{gmtModified})")
+	@Insert("insert into tb_role (`role_name`, `role_sign`, `remark`, `user_id_create`)"
+	+ "values (#{roleName}, #{roleSign}, #{remark}, #{userIdCreate})")
 	int save(RoleDO role);
 
     int saveSelective(RoleDO role);
 	
 	@Update("<script>"+ 
-			"update sys_role " + 
+			"update tb_role " + 
 					"<set>" + 
 		            "<if test=\"roleId != null\">`role_id` = #{roleId}, </if>" +
                     "<if test=\"roleName != null\">`role_name` = #{roleName}, </if>" +
                     "<if test=\"roleSign != null\">`role_sign` = #{roleSign}, </if>" +
                     "<if test=\"remark != null\">`remark` = #{remark}, </if>" +
                     "<if test=\"userIdCreate != null\">`user_id_create` = #{userIdCreate}, </if>" +
-                    "<if test=\"gmtCreate != null\">`gmt_create` = #{gmtCreate}, </if>" +
-                    "<if test=\"gmtModified != null\">`gmt_modified` = #{gmtModified}, </if>" +
           					"</set>" + 
 					"where role_id = #{roleId}"+
 			"</script>")
 	int update(RoleDO role);
 	
-	@Delete("delete from sys_role where role_id =#{roleId}")
+	@Delete("delete from tb_role where role_id =#{roleId}")
 	int remove(Long role_id);
 	
 	@Delete("<script>"+ 
-			"delete from sys_role where role_id in " +
+			"delete from tb_role where role_id in " +
 					"<foreach item=\"roleId\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{roleId}" +
 					"</foreach>"+

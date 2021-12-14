@@ -66,7 +66,7 @@ public class UserController extends BaseController{
 
     @ApiOperation(value = "修改页面", notes = "修改页面")
     @GetMapping("/edit/{userId}")
-    //@RequiresPermissions("backend:user:edit")
+    @RequiresPermissions("backend:user:edit")
     String edit(@PathVariable("userId") Long userId, Model model) {
         UserDO user = userService.get(userId);
         model.addAttribute("user", user);
@@ -82,6 +82,7 @@ public class UserController extends BaseController{
     @RequiresPermissions("backend:user:add")
     public ResponseResult save( UserDO user) {
         user.setPassword(MD5Util.encrypt(user.getUsername(),user.getPassword()));
+        user.setUserId(generatorUserId());
         if (userService.save(user) > 0) {
             return ResponseResult.ok();
         }
@@ -152,10 +153,36 @@ public class UserController extends BaseController{
         return ResponseResult.ok().put("密码修改成功");
     }
 
+    @RequiresPermissions("sys:user:resetPwd")
+    @GetMapping("/resetPwd/{id}")
+    String resetPwd(@PathVariable("id") Long userId, Model model) {
+
+        UserDO userDO = new UserDO();
+        userDO.setUserId(userId);
+        model.addAttribute("user", userDO);
+        return prefix + "/reset_pwd";
+    }
+
+    @RequiresPermissions("sys:user:resetPwd")
+    @PostMapping("/adminResetPwd")
+    @ResponseBody
+    ResponseResult<String> adminResetPwd(UserVO userVO) {
+        try{
+            Long userId = userVO.getUserDO().getUserId();
+            UserDO userDO = userService.get(userId);
+            String encrypt = MD5Util.encrypt(userDO.getUsername(), userVO.getPwdNew());
+            userDO.setPassword(encrypt);
+            userService.update(userDO);
+        }catch (Exception e){
+            return ResponseResult.error("重置密码失败");
+        }
+        return ResponseResult.ok().put("密码修改成功");
+    }
+
     @ResponseBody
     @PostMapping("/updatePeronal")
     ResponseResult<String> updatePeronal(UserDO userDO){
-        int update = userService.update(userDO);
+        int update = userService.updateByUserId(userDO);
         if (update > 0){
            return ResponseResult.ok().put("个人信息修改成功");
         }

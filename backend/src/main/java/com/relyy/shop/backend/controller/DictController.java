@@ -23,6 +23,8 @@ import com.relyy.shop.backend.common.PageBean;
 import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.common.ResponseResult;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 字典表
  *
@@ -33,7 +35,7 @@ import com.relyy.shop.backend.common.ResponseResult;
 
 @Controller
 @RequestMapping("/backend/dict")
-public class DictController {
+public class DictController extends BaseController{
     @Autowired
     private DictService dictService;
 
@@ -88,7 +90,9 @@ public class DictController {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("backend:dict:add")
-    public ResponseResult save( DictDO dict) {
+    public ResponseResult save(DictDO dict,HttpServletRequest request) {
+        Long userId = getUserId(request);
+        dict.setCreateBy(userId);
         if (dictService.save(dict) > 0) {
             return ResponseResult.ok();
         }
@@ -102,8 +106,10 @@ public class DictController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("backend:dict:edit")
-    public ResponseResult update( DictDO dict) {
-            dictService.update(dict);
+    public ResponseResult update(DictDO dict, HttpServletRequest request) {
+        Long userId = getUserId(request);
+        dict.setUpdateBy(userId);
+        dictService.update(dict);
         return ResponseResult.ok();
     }
 
@@ -136,7 +142,7 @@ public class DictController {
     @ResponseBody
     @GetMapping("/type")
     //@RequiresPermissions("backend:dict:dict")
-    public List<DictDO> type() {
-        return Lists.newArrayList();
+    public ResponseResult<List<DictDO>> type() {
+        return ResponseResult.ok().put(dictService.listType());
     }
 }

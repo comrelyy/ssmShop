@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class BaseController {
 
+	public Long generatorUserId(){
+
+		return System.currentTimeMillis();
+	}
 	public UserDO getUser() {
 		return ShiroUtils.getUser();
 	}

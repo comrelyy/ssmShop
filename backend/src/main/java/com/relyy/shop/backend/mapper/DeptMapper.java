@@ -21,11 +21,11 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface DeptMapper extends BaseMapper<DeptDO> {
 
-	@Select("select `dept_id`, `parent_id`, `name`, `order_num`, `del_flag` from sys_dept where dept_id = #{id}")
+	@Select("select `dept_id`, `parent_id`, `name`, `order_num`, `del_flag` from tb_dept where dept_id = #{id}")
 	DeptDO get(Long deptId);
 	
 	@Select("<script>" +
-	"select * from sys_dept " + 
+	"select * from tb_dept " + 
 			"<where>" + 
 		  		  "<if test=\"deptId != null and deptId != ''\">"+ "and dept_id = #{deptId} " + "</if>" +
 		  		  "<if test=\"parentId != null and parentId != ''\">"+ "and parent_id = #{parentId} " + "</if>" +
@@ -48,7 +48,7 @@ public interface DeptMapper extends BaseMapper<DeptDO> {
 	List<DeptDO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
-	"select count(*) from sys_dept " + 
+	"select count(*) from tb_dept " + 
 			"<where>" + 
 		  		  "<if test=\"deptId != null and deptId != ''\">"+ "and dept_id = #{deptId} " + "</if>" +
 		  		  "<if test=\"parentId != null and parentId != ''\">"+ "and parent_id = #{parentId} " + "</if>" +
@@ -59,14 +59,14 @@ public interface DeptMapper extends BaseMapper<DeptDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into sys_dept (`parent_id`, `name`, `order_num`, `del_flag`)"
+	@Insert("insert into tb_dept (`parent_id`, `name`, `order_num`, `del_flag`)"
 	+ "values (#{parentId}, #{name}, #{orderNum}, #{delFlag})")
 	int save(DeptDO dept);
 
     int saveSelective(DeptDO dept);
 	
 	@Update("<script>"+ 
-			"update sys_dept " + 
+			"update tb_dept " + 
 					"<set>" + 
 		            "<if test=\"deptId != null\">`dept_id` = #{deptId}, </if>" +
                     "<if test=\"parentId != null\">`parent_id` = #{parentId}, </if>" +
@@ -78,11 +78,11 @@ public interface DeptMapper extends BaseMapper<DeptDO> {
 			"</script>")
 	int update(DeptDO dept);
 	
-	@Delete("delete from sys_dept where dept_id =#{deptId}")
+	@Delete("delete from tb_dept where dept_id =#{deptId}")
 	int remove(Long dept_id);
 	
 	@Delete("<script>"+ 
-			"delete from sys_dept where dept_id in " +
+			"delete from tb_dept where dept_id in " +
 					"<foreach item=\"deptId\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{deptId}" +
 					"</foreach>"+

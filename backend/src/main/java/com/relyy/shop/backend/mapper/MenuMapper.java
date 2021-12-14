@@ -16,11 +16,11 @@ import java.util.Map;
 @Mapper
 public interface MenuMapper extends BaseMapper<MenuDO> {
 
-	@Select("select `menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`, `gmt_create`, `gmt_modified` from sys_menu where menu_id = #{id}")
+	@Select("select `menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`, `gmt_create`, `gmt_modified` from tb_menu where menu_id = #{id}")
 	MenuDO get(Long menuId);
 	
 	@Select("<script>" +
-	"select * from sys_menu " + 
+	"select * from tb_menu " + 
 			"<where>" + 
 		  		  "<if test=\"menuId != null and menuId != ''\">"+ "and menu_id = #{menuId} " + "</if>" +
 		  		  "<if test=\"parentId != null and parentId != ''\">"+ "and parent_id = #{parentId} " + "</if>" +
@@ -48,7 +48,7 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 	List<MenuDO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
-	"select count(*) from sys_menu " + 
+	"select count(*) from tb_menu " + 
 			"<where>" + 
 		  		  "<if test=\"menuId != null and menuId != ''\">"+ "and menu_id = #{menuId} " + "</if>" +
 		  		  "<if test=\"parentId != null and parentId != ''\">"+ "and parent_id = #{parentId} " + "</if>" +
@@ -64,14 +64,14 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into sys_menu (`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`, `gmt_create`, `gmt_modified`)"
-	+ "values (#{parentId}, #{name}, #{url}, #{perms}, #{type}, #{icon}, #{orderNum}, #{gmtCreate}, #{gmtModified})")
+	@Insert("insert into tb_menu (`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)"
+	+ "values (#{parentId}, #{name}, #{url}, #{perms}, #{type}, #{icon}, #{orderNum})")
 	int save(MenuDO menu);
 
     int saveSelective(MenuDO menu);
 	
 	@Update("<script>"+ 
-			"update sys_menu " + 
+			"update tb_menu " + 
 					"<set>" + 
 		            "<if test=\"menuId != null\">`menu_id` = #{menuId}, </if>" +
                     "<if test=\"parentId != null\">`parent_id` = #{parentId}, </if>" +
@@ -81,18 +81,16 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
                     "<if test=\"type != null\">`type` = #{type}, </if>" +
                     "<if test=\"icon != null\">`icon` = #{icon}, </if>" +
                     "<if test=\"orderNum != null\">`order_num` = #{orderNum}, </if>" +
-                    "<if test=\"gmtCreate != null\">`gmt_create` = #{gmtCreate}, </if>" +
-                    "<if test=\"gmtModified != null\">`gmt_modified` = #{gmtModified}, </if>" +
           					"</set>" + 
 					"where menu_id = #{menuId}"+
 			"</script>")
 	int update(MenuDO menu);
 	
-	@Delete("delete from sys_menu where menu_id =#{menuId}")
+	@Delete("delete from tb_menu where menu_id =#{menuId}")
 	int remove(Long menu_id);
 	
 	@Delete("<script>"+ 
-			"delete from sys_menu where menu_id in " +
+			"delete from tb_menu where menu_id in " +
 					"<foreach item=\"menuId\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{menuId}" +
 					"</foreach>"+
@@ -101,10 +99,10 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 
 	@Select("select distinct m.menu_id , parent_id, name, url,\n" +
 			"\t\tperms,`type`,icon,order_num,gmt_create, gmt_modified\n" +
-			"\t\tfrom sys_menu m\n" +
+			"\t\tfrom tb_menu m\n" +
 			"\t\tleft\n" +
-			"\t\tjoin sys_role_menu rm on m.menu_id = rm.menu_id left join\n" +
-			"\t\tsys_user_role ur\n" +
+			"\t\tjoin tb_role_menu rm on m.menu_id = rm.menu_id left join\n" +
+			"\t\ttb_user_role ur\n" +
 			"\t\ton rm.role_id =ur.role_id where ur.user_id = #{id}\n" +
 			"\t\tand\n" +
 			"\t\tm.type in(0,1)\n" +

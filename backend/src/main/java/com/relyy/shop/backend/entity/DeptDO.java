@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @date 2021-12-10 14:55:05
  */
 @Data
-@TableName("sys_dept")
+@TableName("tb_dept")
 public class DeptDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

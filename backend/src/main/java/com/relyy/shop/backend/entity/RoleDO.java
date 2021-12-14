@@ -19,7 +19,7 @@ import java.util.Date;
  * @date 2021-12-10 14:48:40
  */
 @Data
-@TableName("sys_role")
+@TableName("tb_role")
 public class RoleDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -17,17 +17,18 @@ import java.util.Date;
  * @date 2021-12-09 17:04:48
  */
 @Data
-@TableName("sys_user")
+@TableName("tb_user")
 public class UserDO implements Serializable {
 
 	private static final long serialVersionUID = 8297786351231628095L;
+	@TableId
+	private Long id;
 	/**
 	 * 用户id
 	 */
 	//java中的long能表示的范围比js中number大,也就意味着部分数值在js中存不下(变成不准确的值)
 	//所以通过序列化成字符串来解决
 	@JsonSerialize(using = Long2StringSerializer.class)
-	@TableId
 	private Long userId;
 	/**
 	 * 用户名

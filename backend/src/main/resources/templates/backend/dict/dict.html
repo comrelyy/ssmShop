@@ -22,14 +22,12 @@
                     <div class="columns pull-right">
                         <button class="btn btn-success" onclick="reLoad()">查询</button>
                     </div>
-
-                    <form id="searchForm">
-                        <div class="columns pull-right col-md-2">
-                            <input id="id" name="id" type="text" class="form-control"
-                                   placeholder="主键">
-                        </div>
-                    </form>
-
+                    <div class="columns pull-right col-md-2">
+                        <select data-placeholder="选择类别" class="form-control chosen-select"
+                                tabindex="2" style="width: 100%">
+                            <option value="">选择类别</option>
+                        </select>
+                    </div>
                 </div>
                 <table id="exampleTable" data-mobile-responsive="true">
                 </table>
@@ -57,7 +55,7 @@
 </div>
 <div shiro:hasPermission="backend:dict:remove">
     <script type="text/javascript">
-        var s_remove_h = '';
+        s_remove_h = '';
     </script>
 </div>
 <div th:include="include :: footer"></div>

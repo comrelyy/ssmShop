@@ -21,11 +21,11 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface DictMapper extends BaseMapper<DictDO> {
 
-	@Select("select `id`, `name`, `value`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag` from sys_dict where id = #{id}")
+	@Select("select `id`, `name`, `value`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag` from tb_dict where id = #{id}")
 	DictDO get(Long id);
 	
 	@Select("<script>" +
-	"select * from sys_dict " + 
+	"select * from tb_dict " + 
 			"<where>" + 
 		  		  "<if test=\"id != null and id != ''\">"+ "and id = #{id} " + "</if>" +
 		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
@@ -56,7 +56,7 @@ public interface DictMapper extends BaseMapper<DictDO> {
 	List<DictDO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
-	"select count(*) from sys_dict " + 
+	"select count(*) from tb_dict " + 
 			"<where>" + 
 		  		  "<if test=\"id != null and id != ''\">"+ "and id = #{id} " + "</if>" +
 		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
@@ -75,14 +75,14 @@ public interface DictMapper extends BaseMapper<DictDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into sys_dict (`name`, `value`, `type`, `description`, `sort`, `parent_id`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`)"
-	+ "values (#{name}, #{value}, #{type}, #{description}, #{sort}, #{parentId}, #{createBy}, #{createDate}, #{updateBy}, #{updateDate}, #{remarks}, #{delFlag})")
+	@Insert("insert into tb_dict (`name`, `value`, `type`, `description`, `sort`, `parent_id`, `create_by`,  `update_by`,  `remarks`, `del_flag`)"
+	+ "values (#{name}, #{value}, #{type}, #{description}, #{sort}, #{parentId}, #{createBy},  #{updateBy},  #{remarks}, #{delFlag})")
 	int save(DictDO dict);
 
     int saveSelective(DictDO dict);
 	
 	@Update("<script>"+ 
-			"update sys_dict " + 
+			"update tb_dict " + 
 					"<set>" + 
 		            "<if test=\"id != null\">`id` = #{id}, </if>" +
                     "<if test=\"name != null\">`name` = #{name}, </if>" +
@@ -92,9 +92,7 @@ public interface DictMapper extends BaseMapper<DictDO> {
                     "<if test=\"sort != null\">`sort` = #{sort}, </if>" +
                     "<if test=\"parentId != null\">`parent_id` = #{parentId}, </if>" +
                     "<if test=\"createBy != null\">`create_by` = #{createBy}, </if>" +
-                    "<if test=\"createDate != null\">`create_date` = #{createDate}, </if>" +
                     "<if test=\"updateBy != null\">`update_by` = #{updateBy}, </if>" +
-                    "<if test=\"updateDate != null\">`update_date` = #{updateDate}, </if>" +
                     "<if test=\"remarks != null\">`remarks` = #{remarks}, </if>" +
                     "<if test=\"delFlag != null\">`del_flag` = #{delFlag}, </if>" +
           					"</set>" + 
@@ -102,14 +100,17 @@ public interface DictMapper extends BaseMapper<DictDO> {
 			"</script>")
 	int update(DictDO dict);
 	
-	@Delete("delete from sys_dict where id =#{id}")
+	@Delete("delete from tb_dict where id =#{id}")
 	int remove(Long id);
 	
 	@Delete("<script>"+ 
-			"delete from sys_dict where id in " +
+			"delete from tb_dict where id in " +
 					"<foreach item=\"id\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{id}" +
 					"</foreach>"+
 			"</script>")
 	int batchRemove(Long[] ids);
+
+	@Select("select distinct type,description from tb_dict")
+	List<DictDO> getAllType();
 }

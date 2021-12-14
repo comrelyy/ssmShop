@@ -19,7 +19,7 @@ import java.util.Date;
  * @date 2021-12-10 14:52:17
  */
 @Data
-@TableName("sys_menu")
+@TableName("tb_menu")
 public class MenuDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

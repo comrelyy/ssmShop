@@ -19,7 +19,7 @@ import java.util.Date;
  * @date 2021-12-10 14:57:22
  */
 @Data
-@TableName("sys_data_perm")
+@TableName("tb_data_perm")
 public class DataPermDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

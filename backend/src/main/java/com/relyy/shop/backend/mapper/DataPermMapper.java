@@ -21,11 +21,11 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface DataPermMapper extends BaseMapper<DataPermDO> {
 
-	@Select("select `id`, `name`, `table_name`, `module_name`, `crl_attr_name`, `crl_column_name`, `perm_code`, `order_num`, `gmt_create`, `gmt_modified` from sys_data_perm where id = #{id}")
+	@Select("select `id`, `name`, `table_name`, `module_name`, `crl_attr_name`, `crl_column_name`, `perm_code`, `order_num`, `gmt_create`, `gmt_modified` from tb_data_perm where id = #{id}")
 	DataPermDO get(Long id);
 	
 	@Select("<script>" +
-	"select * from sys_data_perm " + 
+	"select * from tb_data_perm " + 
 			"<where>" + 
 		  		  "<if test=\"id != null and id != ''\">"+ "and id = #{id} " + "</if>" +
 		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
@@ -53,7 +53,7 @@ public interface DataPermMapper extends BaseMapper<DataPermDO> {
 	List<DataPermDO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
-	"select count(*) from sys_data_perm " + 
+	"select count(*) from tb_data_perm " + 
 			"<where>" + 
 		  		  "<if test=\"id != null and id != ''\">"+ "and id = #{id} " + "</if>" +
 		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
@@ -69,14 +69,14 @@ public interface DataPermMapper extends BaseMapper<DataPermDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into sys_data_perm (`name`, `table_name`, `module_name`, `crl_attr_name`, `crl_column_name`, `perm_code`, `order_num`, `gmt_create`, `gmt_modified`)"
-	+ "values (#{name}, #{tableName}, #{moduleName}, #{crlAttrName}, #{crlColumnName}, #{permCode}, #{orderNum}, #{gmtCreate}, #{gmtModified})")
+	@Insert("insert into tb_data_perm (`name`, `table_name`, `module_name`, `crl_attr_name`, `crl_column_name`, `perm_code`, `order_num`)"
+	+ "values (#{name}, #{tableName}, #{moduleName}, #{crlAttrName}, #{crlColumnName}, #{permCode}, #{orderNum})")
 	int save(DataPermDO dataPerm);
 
     int saveSelective(DataPermDO dataPerm);
 	
 	@Update("<script>"+ 
-			"update sys_data_perm " + 
+			"update tb_data_perm " + 
 					"<set>" + 
 		            "<if test=\"id != null\">`id` = #{id}, </if>" +
                     "<if test=\"name != null\">`name` = #{name}, </if>" +
@@ -86,18 +86,16 @@ public interface DataPermMapper extends BaseMapper<DataPermDO> {
                     "<if test=\"crlColumnName != null\">`crl_column_name` = #{crlColumnName}, </if>" +
                     "<if test=\"permCode != null\">`perm_code` = #{permCode}, </if>" +
                     "<if test=\"orderNum != null\">`order_num` = #{orderNum}, </if>" +
-                    "<if test=\"gmtCreate != null\">`gmt_create` = #{gmtCreate}, </if>" +
-                    "<if test=\"gmtModified != null\">`gmt_modified` = #{gmtModified}, </if>" +
           					"</set>" + 
 					"where id = #{id}"+
 			"</script>")
 	int update(DataPermDO dataPerm);
 	
-	@Delete("delete from sys_data_perm where id =#{id}")
+	@Delete("delete from tb_data_perm where id =#{id}")
 	int remove(Long id);
 	
 	@Delete("<script>"+ 
-			"delete from sys_data_perm where id in " +
+			"delete from tb_data_perm where id in " +
 					"<foreach item=\"id\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{id}" +
 					"</foreach>"+

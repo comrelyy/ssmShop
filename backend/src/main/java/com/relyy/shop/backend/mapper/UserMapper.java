@@ -16,11 +16,11 @@ import java.util.Map;
 @Mapper
 public interface UserMapper extends BaseMapper<UserDO> {
 
-//	@Select("select `user_id`, `username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `gmt_create`, `gmt_modified`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district` from sys_user where user_id = #{id}")
+//	@Select("select `user_id`, `username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `gmt_create`, `gmt_modified`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district` from tb_user where user_id = #{id}")
 //	UserDO get(Long userId);
 
 	@Select("<script>" +
-	"select * from sys_user " + 
+	"select * from tb_user " + 
 			"<where>" + 
 		  		  "<if test=\"userId != null and userId != ''\">"+ "and user_id = #{userId} " + "</if>" +
 		  		  "<if test=\"username != null and username != ''\">"+ "and username = #{username} " + "</if>" +
@@ -57,7 +57,7 @@ public interface UserMapper extends BaseMapper<UserDO> {
 	List<UserDO> list(Map<String,Object> map);
 	
 	@Select("<script>" +
-	"select count(*) from sys_user " + 
+	"select count(*) from tb_user " + 
 			"<where>" + 
 		  		  "<if test=\"userId != null and userId != ''\">"+ "and user_id = #{userId} " + "</if>" +
 		  		  "<if test=\"username != null and username != ''\">"+ "and username = #{username} " + "</if>" +
@@ -82,16 +82,15 @@ public interface UserMapper extends BaseMapper<UserDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into sys_user (`username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `gmt_create`, `gmt_modified`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district`)"
-	+ "values (#{username}, #{name}, #{password}, #{deptId}, #{email}, #{mobile}, #{status}, #{userIdCreate}, #{gmtCreate}, #{gmtModified}, #{sex}, #{birth}, #{picId}, #{liveAddress}, #{hobby}, #{province}, #{city}, #{district})")
+	@Insert("insert into tb_user (`user_id`,`username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district`)"
+	+ "values (#{userId},#{username}, #{name}, #{password}, #{deptId}, #{email}, #{mobile}, #{status}, #{userIdCreate}, #{sex}, #{birth}, #{picId}, #{liveAddress}, #{hobby}, #{province}, #{city}, #{district})")
 	int save(UserDO user);
 
     int saveSelective(UserDO user);
 	
 	@Update("<script>"+ 
-			"update sys_user " + 
-					"<set>" + 
-		            "<if test=\"userId != null\">`user_id` = #{userId}, </if>" +
+			"update tb_user " + 
+					"<set>" +
                     "<if test=\"username != null\">`username` = #{username}, </if>" +
                     "<if test=\"name != null\">`name` = #{name}, </if>" +
                     "<if test=\"password != null\">`password` = #{password}, </if>" +
@@ -100,8 +99,6 @@ public interface UserMapper extends BaseMapper<UserDO> {
                     "<if test=\"mobile != null\">`mobile` = #{mobile}, </if>" +
                     "<if test=\"status != null\">`status` = #{status}, </if>" +
                     "<if test=\"userIdCreate != null\">`user_id_create` = #{userIdCreate}, </if>" +
-                    "<if test=\"gmtCreate != null\">`gmt_create` = #{gmtCreate}, </if>" +
-                    "<if test=\"gmtModified != null\">`gmt_modified` = #{gmtModified}, </if>" +
                     "<if test=\"sex != null\">`sex` = #{sex}, </if>" +
                     "<if test=\"birth != null\">`birth` = #{birth}, </if>" +
                     "<if test=\"picId != null\">`pic_id` = #{picId}, </if>" +
@@ -115,11 +112,11 @@ public interface UserMapper extends BaseMapper<UserDO> {
 			"</script>")
 	int update(UserDO user);
 	
-	@Delete("delete from sys_user where user_id =#{userId}")
+	@Delete("delete from tb_user where user_id =#{userId}")
 	int remove(Long user_id);
 	
 	@Delete("<script>"+ 
-			"delete from sys_user where user_id in " +
+			"delete from tb_user where user_id in " +
 					"<foreach item=\"userId\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{userId}" +
 					"</foreach>"+
