@@ -70,6 +70,18 @@ function load(deptId) {
                         title : '用户名'
                     },
                     {
+                        field : 'sex',
+                        title : '性别',
+                        align : 'center',
+                        formatter : function(value, row, index) {
+                            if (value == '1') {
+                                return '<span class="label label-info">男</span>';
+                            } else if (value == '2') {
+                                return '<span class="label label-info">女</span>';
+                            }
+                        }
+                    },
+                    {
                         field : 'email',
                         title : '邮箱'
                     },
