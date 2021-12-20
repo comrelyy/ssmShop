@@ -50,6 +50,8 @@
             var s_edit_h = 'hidden';
             var s_remove_h = 'hidden';
             var s_resetPwd_h = 'hidden';
+            var s_active_h = 'hidden';
+            var s_forbidden_h = 'hidden';
         </script>
     </div>
     <div shiro:hasPermission="sys:user:edit">
@@ -65,6 +67,16 @@
     <div shiro:hasPermission="sys:user:resetPwd">
         <script type="text/javascript">
             var s_resetPwd_h = '';
+        </script>
+    </div>
+    <div shiro:hasPermission="sys:user:recover">
+        <script type="text/javascript">
+            var s_active_h = '';
+        </script>
+    </div>
+    <div shiro:hasPermission="sys:user:forbidden">
+        <script type="text/javascript">
+            var s_forbidden_h = '';
         </script>
     </div>
 </div>

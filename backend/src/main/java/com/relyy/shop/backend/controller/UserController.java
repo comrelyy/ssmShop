@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 
@@ -44,7 +45,7 @@ public class UserController extends BaseController{
         return "backend/user/user";
     }
 
-    @ApiOperation(value = "获取列表", notes = "获取列表")
+    @ApiOperation(value = "获取所有用户列表", notes = "获取列表")
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("backend:user:user")
@@ -74,15 +75,38 @@ public class UserController extends BaseController{
     }
 
     /**
+     * 用户名校验
+     */
+    @ApiOperation(value = "用户名校验", notes = "用户名校验")
+    @ResponseBody
+    @PostMapping("/checkUserName")
+    @RequiresPermissions("backend:user:checkUserName")
+    public boolean checkUserName(@RequestParam("username") String username) {
+        UserDO userByName = userService.getUserByName(username,null);
+        if (userByName != null) {
+            return false;
+        }
+        return true;
+    }
+    /**
      * 保存
      */
     @ApiOperation(value = "新增", notes = "新增")
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("backend:user:add")
-    public ResponseResult save( UserDO user) {
+    public ResponseResult save(UserDO user,HttpServletRequest request) {
+        if (Objects.isNull(user) || Objects.isNull(user.getUsername())){
+            return ResponseResult.error("请补充完整用户信息");
+        }
+        UserDO userByName = userService.getUserByName(user.getUsername(),null);
+        if (userByName != null) {
+            return ResponseResult.error("用户名已被占用");
+        }
         user.setPassword(MD5Util.encrypt(user.getUsername(),user.getPassword()));
         user.setUserId(generatorUserId());
+        Long createUserId = getUserId(request);
+        user.setUserIdCreate(createUserId);
         if (userService.save(user) > 0) {
             return ResponseResult.ok();
         }
@@ -96,8 +120,17 @@ public class UserController extends BaseController{
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("backend:user:edit")
-    public ResponseResult update( UserDO user) {
+    public ResponseResult update(UserDO user) {
+        if (Objects.isNull(user) && Objects.isNull(user.getUserId())) {
+            return ResponseResult.error("用户信息错误");
+        }
+        UserDO userDO = userService.get(user.getUserId());
+        if (userDO != null) {
+            user.setId(userDO.getId());
             userService.update(user);
+        }else {
+            return ResponseResult.error("无法获取用户有效信息");
+        }
         return ResponseResult.ok();
     }
 
@@ -108,13 +141,40 @@ public class UserController extends BaseController{
     @PostMapping("/remove")
     @ResponseBody
     @RequiresPermissions("backend:user:remove")
-    public ResponseResult remove( Long userId) {
+    public ResponseResult remove(@RequestParam("userId") Long userId) {
         if (userService.remove(userId) > 0) {
             return ResponseResult.ok();
         }
         return ResponseResult.error();
     }
 
+    /**
+     * 用户禁用
+     */
+    @ApiOperation(value = "用户禁用", notes = "用户禁用")
+    @PostMapping("/forbidden")
+    @ResponseBody
+    @RequiresPermissions("backend:user:forbidden")
+    public ResponseResult forbidden(@RequestParam("userId") Long userId) {
+        if (userService.forbidden(userId) > 0) {
+            return ResponseResult.ok();
+        }
+        return ResponseResult.error();
+    }
+
+    /**
+     * 用户恢复
+     */
+    @ApiOperation(value = "用户恢复", notes = "用户恢复")
+    @PostMapping("/active")
+    @ResponseBody
+    @RequiresPermissions("backend:user:active")
+    public ResponseResult active(@RequestParam("userId") Long userId) {
+        if (userService.active(userId) > 0) {
+            return ResponseResult.ok();
+        }
+        return ResponseResult.error();
+    }
     /**
      * 删除
      */

@@ -2,8 +2,10 @@ package com.relyy.shop.backend.services;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.relyy.shop.backend.common.Constant;
 import com.relyy.shop.backend.entity.UserDO;
 import com.relyy.shop.backend.mapper.UserMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +35,9 @@ public class UserService {
 	public UserDO getUserByName(String username,String password){
 		QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("username",username);
-		queryWrapper.eq("password",password);
+		if (StringUtils.isNotBlank(password)){
+			queryWrapper.eq("password",password);
+		}
 		return userMapper.selectOne(queryWrapper);
 	}
 
@@ -58,10 +62,18 @@ public class UserService {
 	}
 
 	public int remove(Long userId){
-		return userMapper.remove(userId);
+		return userMapper.updateStatus(userId, Constant.USER_STATU_DEL);
 	}
 
 	public int batchRemove(Long[] userIds){
 		return userMapper.batchRemove(userIds);
+	}
+
+	public int forbidden(Long userId) {
+		return userMapper.updateStatus(userId, Constant.USER_STATU_FORBIDDEN);
+	}
+
+	public int active(Long userId) {
+		return userMapper.updateStatus(userId, Constant.USER_STATU_NOR);
 	}
 }

@@ -50,20 +50,23 @@ function validateRule() {
         rules : {
             name : {
                 required : true
+                //todo 实名验证，一个名字只能注册一个账号
             },
             username : {
-                required : true,
-                // minlength : 2,
-                // remote : {
-                //     url : "/backend/user/exit", // 后台处理程序
-                //     type : "post", // 数据发送方式
-                //     dataType : "json", // 接受数据格式
-                //     data : { // 要传递的数据
-                //         username : function() {
-                //             return $("#username").val();
-                //         }
-                //     }
-                // }
+                required : {
+
+                },
+                minlength : 2,
+                remote : {
+                    url : "/backend/user/checkUserName", // 后台处理程序
+                    type : "post", // 数据发送方式
+                    dataType : "json", // 接受数据格式
+                    data : { // 要传递的数据
+                        username : function() {
+                            return $("#username").val();
+                        }
+                    }
+                }
             },
             password : {
                 required : true,

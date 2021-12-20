@@ -112,11 +112,14 @@ public interface UserMapper extends BaseMapper<UserDO> {
 			"</script>")
 	int update(UserDO user);
 	
-	@Delete("delete from tb_user where user_id =#{userId}")
-	int remove(Long user_id);
+	@Update("UPDATE tb_user set status = 2 where user_id =#{userId}")
+	int remove(@Param("userId") Long userId);
+
+	@Update("UPDATE tb_user set status = #{status} where user_id =#{userId}")
+	int updateStatus(@Param("userId")Long userId,@Param("status")Integer status);
 	
 	@Delete("<script>"+ 
-			"delete from tb_user where user_id in " +
+			"UPDATE tb_user set status = 2 where user_id in " +
 					"<foreach item=\"userId\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
 						"#{userId}" +
 					"</foreach>"+

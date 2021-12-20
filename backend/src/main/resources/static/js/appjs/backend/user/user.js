@@ -79,9 +79,11 @@ function load(deptId) {
                         align : 'center',
                         formatter : function(value, row, index) {
                             if (value == '0') {
-                                return '<span class="label label-danger">禁用</span>';
+                                return '<span class="label label-warning">禁用</span>';
                             } else if (value == '1') {
                                 return '<span class="label label-primary">正常</span>';
+                            } else if (value == '2') {
+                                return '<span class="label label-danger">删除</span>';
                             }
                         }
                     },
@@ -90,16 +92,29 @@ function load(deptId) {
                         field : 'id',
                         align : 'center',
                         formatter : function(value, row, index) {
-                            var e = '<a  class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
-                                + row.userId
-                                + '\')"><i class="fa fa-edit "></i></a> ';
-                            var d = '<a class="btn btn-warning btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
-                                + row.userId
-                                + '\')"><i class="fa fa-remove"></i></a> ';
-                            var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
-                                + row.userId
-                                + '\')"><i class="fa fa-key"></i></a> ';
-                            return e + d + f;
+                            var state = row.status;
+                            var s;
+                            if (state == '2' || state == '0'){
+                                s = '<a  class="btn btn-primary btn-sm ' + s_active_h + '" href="#" mce_href="#" title="恢复" onclick="active(\''
+                                    + row.userId
+                                    + '\')"><i class="fa fa-refresh "></i></a> ';
+                            }else if (state == '1'){
+                                var e = '<a  class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
+                                    + row.userId
+                                    + '\')"><i class="fa fa-edit "></i></a> ';
+                                var b = '<a class="btn btn-warning btn-sm ' + s_forbidden_h + '" href="#" title="禁用"  mce_href="#" onclick="forbidden(\''
+                                    + row.userId
+                                    + '\')"><i class="fa fa-warning"></i></a> ';
+                                var d = '<a class="btn btn-danger btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                                    + row.userId
+                                    + '\')"><i class="fa fa-remove"></i></a> ';
+                                var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
+                                    + row.userId
+                                    + '\')"><i class="fa fa-key"></i></a> ';
+
+                                s = e + b + d + f;
+                            }
+                            return s;
                         }
                     } ],
                 // onLoadSuccess: function(res){  //加载成功时执行
@@ -133,7 +148,7 @@ function remove(id) {
             url : "/backend/user/remove",
             type : "post",
             data : {
-                'id' : id
+                'userId' : id
             },
             success : function(r) {
                 if (r.code == 0) {
@@ -146,6 +161,51 @@ function remove(id) {
         });
     })
 }
+
+function active(id) {
+    layer.confirm('确定要恢复选中的记录？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        $.ajax({
+            url : "/backend/user/active",
+            type : "post",
+            data : {
+                'userId' : id
+            },
+            success : function(r) {
+                if (r.code == 0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    })
+}
+
+function forbidden(id) {
+    layer.confirm('确定要禁用选中的记录？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        $.ajax({
+            url : "/backend/user/forbidden",
+            type : "post",
+            data : {
+                'userId' : id
+            },
+            success : function(r) {
+                if (r.code == 0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    })
+}
+
 function edit(id) {
     layer.open({
         type : 2,
