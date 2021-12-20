@@ -23,8 +23,8 @@ public interface UserMapper extends BaseMapper<UserDO> {
 	"select * from tb_user " + 
 			"<where>" + 
 		  		  "<if test=\"userId != null and userId != ''\">"+ "and user_id = #{userId} " + "</if>" +
-		  		  "<if test=\"username != null and username != ''\">"+ "and username = #{username} " + "</if>" +
-		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
+		  		  "<if test=\"username != null and username != ''\">"+ "and username like concat('%',#{username},'%') " + "</if>" +
+		  		  "<if test=\"name != null and name != ''\">"+ "and name like concat('%',#{name},'%') " + "</if>" +
 		  		  "<if test=\"password != null and password != ''\">"+ "and password = #{password} " + "</if>" +
 		  		  "<if test=\"deptId != null and deptId != ''\">"+ "and dept_id = #{deptId} " + "</if>" +
 		  		  "<if test=\"email != null and email != ''\">"+ "and email = #{email} " + "</if>" +
@@ -60,8 +60,8 @@ public interface UserMapper extends BaseMapper<UserDO> {
 	"select count(*) from tb_user " + 
 			"<where>" + 
 		  		  "<if test=\"userId != null and userId != ''\">"+ "and user_id = #{userId} " + "</if>" +
-		  		  "<if test=\"username != null and username != ''\">"+ "and username = #{username} " + "</if>" +
-		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
+		  		  "<if test=\"username != null and username != ''\">"+ "and username like concat('%',#{username},'%') " + "</if>" +
+		  		  "<if test=\"name != null and name != ''\">"+ "and name like concat('%',#{name},'%') " + "</if>" +
 		  		  "<if test=\"password != null and password != ''\">"+ "and password = #{password} " + "</if>" +
 		  		  "<if test=\"deptId != null and deptId != ''\">"+ "and dept_id = #{deptId} " + "</if>" +
 		  		  "<if test=\"email != null and email != ''\">"+ "and email = #{email} " + "</if>" +
