@@ -66,7 +66,7 @@ public class RoleController {
     @GetMapping("/edit/{roleId}")
     @RequiresPermissions("backend:role:edit")
     String edit(@PathVariable("roleId") Long roleId, Model model) {
-            RoleDO role = roleService.get(roleId);
+        RoleDO role = roleService.get(roleId);
         model.addAttribute("role", role);
         return "backend/role/edit";
     }

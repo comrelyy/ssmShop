@@ -39,10 +39,18 @@
                                     <span>性别:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <div class="radio i-checks">
-                                        <label class="radio-inline" th:each="sex:${sexList}"> <input
-                                                th:field="*{user.sex}" type="radio" name="sex" th:value="${sex.id}" th:text="${sex.name}"/>
-                                        </label>
+<!--                                    <div class="radio i-checks">-->
+<!--                                        <label class="radio-inline" th:each="sex:${sexList}"> <input-->
+<!--                                                th:field="*{user.sex}" type="radio" name="sex" th:value="${sex.id}" th:text="${sex.name}"/>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+                                    <div id="sex" class="radio i-checks">
+<!--                                        <div class="radio-inline">-->
+                                            <label class="radio-inline"><input name="sex" value="1" type="radio" th:field="${user.sex}" >男</label>
+<!--                                        </div>-->
+<!--                                        <div class="radio-inline">-->
+                                            <label class="radio-inline"><input name="sex" value="2" type="radio" th:field="${user.sex}" >女</label>
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>

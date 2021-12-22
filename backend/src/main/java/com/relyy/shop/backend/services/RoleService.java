@@ -20,7 +20,7 @@ public class RoleService {
 	private RoleMapper roleMapper;
 
 	public RoleDO get(Long roleId){
-		return roleMapper.get(roleId);
+		return roleMapper.selectById(roleId);
 	}
 
 	public List<RoleDO> list(Map<String, Object> map){

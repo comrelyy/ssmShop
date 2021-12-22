@@ -2,6 +2,7 @@ package com.relyy.shop.backend.services;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.relyy.shop.backend.entity.UserDO;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,16 +57,15 @@ public class DictService {
 	}
 
 	public List<DictDO> getHobbyList(String hobbyStr) {
+		QueryWrapper<DictDO> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("type", "hobby");
 		if (StringUtils.isNotBlank(hobbyStr)) {
 			List<Long> idList = Arrays.stream(hobbyStr.split(";"))
 					.map(Long::valueOf)
 					.collect(Collectors.toList());
-			QueryWrapper<DictDO> queryWrapper = new QueryWrapper<>();
-			queryWrapper.eq("type", "hobby");
 			queryWrapper.in("id", idList);
-			return dictMapper.selectList(queryWrapper);
 		}
-		return Collections.EMPTY_LIST;
+		return dictMapper.selectList(queryWrapper);
 	}
 
 	public List<DictDO> getSexList() {

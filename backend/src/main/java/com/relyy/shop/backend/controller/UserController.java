@@ -194,7 +194,7 @@ public class UserController extends BaseController{
         UserDO userDO  = userService.get(userId);
         model.addAttribute("user",userDO);
         model.addAttribute("hobbyList",dictService.getHobbyList(userDO.getHobby()));
-        model.addAttribute("sexList",dictService.getSexList());
+        //model.addAttribute("sexList",dictService.getSexList());
         return prefix + "/personal";
     }
 

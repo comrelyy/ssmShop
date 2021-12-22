@@ -110,6 +110,11 @@ public class LoginController {
 		return "main";
 	}
 
+	@GetMapping("/error")
+	String error() {
+		return "error";
+	}
+
 	@GetMapping("/logout")
 	String logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("userId");
