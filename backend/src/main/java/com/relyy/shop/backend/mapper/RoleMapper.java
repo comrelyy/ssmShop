@@ -1,16 +1,11 @@
 package com.relyy.shop.backend.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.relyy.shop.backend.entity.RoleDO;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 /**
  * 角色
  * 
@@ -21,7 +16,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface RoleMapper extends BaseMapper<RoleDO> {
 
-	@Select("select `role_id`, `role_name`, `role_sign`, `remark`, `user_id_create`, `gmt_create`, `gmt_modified` from sys_role where role_id = #{id}")
+	@Select("select `role_id`, `role_name`, `role_sign`, `remark`, `user_id_create`, `gmt_create`, `gmt_modified` from tb_role where role_id = #{roleId}")
 	RoleDO get(Long roleId);
 	
 	@Select("<script>" +

@@ -41,7 +41,6 @@ function load() {
                 // sortOrder.
                 // 返回false将会终止请求
                 responseHandler: function (rs) {
-
                     if (rs.code == 0) {
                         return rs.data;
                     } else {
@@ -53,55 +52,34 @@ function load() {
                     {
                         checkbox: true
                     },
+
                     {
-                        title: '序号',
-                        formatter: function () {
-                            return arguments[2] + 1;
-                        }
+                        field: 'roleId',
+                        title: '序号'
                     },
-                                                                        {
-                                field: 'roleId',
-                                title: ''
-                            },
 
-                        
-                                                                        {
-                                field: 'roleName',
-                                title: '角色名称'
-                            },
 
-                        
-                                                                        {
-                                field: 'roleSign',
-                                title: '角色标识'
-                            },
+                    {
+                        field: 'roleName',
+                        title: '角色名称'
+                    },
 
-                        
-                                                                        {
-                                field: 'remark',
-                                title: '备注'
-                            },
 
-                        
-                                                                        {
-                                field: 'userIdCreate',
-                                title: '创建用户id'
-                            },
+                    {
+                        field: 'roleSign',
+                        title: '角色标识'
+                    },
 
-                        
-                                                                        {
-                                field: 'gmtCreate',
-                                title: '创建时间'
-                            },
 
-                        
-                                                                        {
-                                field: 'gmtModified',
-                                title: '创建时间'
-                            },
-
-                        
-                                        {
+                    {
+                        field: 'remark',
+                        title: '备注'
+                    },
+                    {
+                        field: '',
+                        title: '权限'
+                    },
+                    {
                         title: '操作',
                         field: 'id',
                         align: 'center',
@@ -120,9 +98,11 @@ function load() {
                     }]
             });
 }
+
 function reLoad() {
     $('#exampleTable').bootstrapTable('refresh');
 }
+
 function add() {
     layer.open({
         type: 2,
@@ -133,6 +113,7 @@ function add() {
         content: prefix + '/add' // iframe的url
     });
 }
+
 function detail(id) {
     layer.open({
         type: 2,
@@ -143,6 +124,7 @@ function detail(id) {
         content: prefix + '/detail/' + id // iframe的url
     });
 }
+
 function edit(id) {
     layer.open({
         type: 2,
@@ -153,6 +135,7 @@ function edit(id) {
         content: prefix + '/edit/' + id // iframe的url
     });
 }
+
 function remove(id) {
     layer.confirm('确定要删除选中的记录？', {
         btn: ['确定', '取消']
@@ -173,9 +156,6 @@ function remove(id) {
             }
         });
     })
-}
-
-function resetPwd(id) {
 }
 function batchRemove() {
     var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
