@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @Date 2021/12/22
  */
 @Slf4j
-@Component
+//@Component
 public class OpenLogin implements CommandLineRunner {
 	private static boolean isopen = false;
 	@Override

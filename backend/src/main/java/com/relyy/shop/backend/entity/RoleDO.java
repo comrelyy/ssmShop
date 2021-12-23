@@ -1,5 +1,6 @@
 package com.relyy.shop.backend.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -9,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -61,4 +63,16 @@ public class RoleDO implements Serializable {
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date gmtModified;
+
+	/**
+	 * 角色对应的可查看菜单id
+	 */
+	@TableField(exist = false)
+	private List<Long> menuIds;
+
+	/**
+	 * 角色可查看的数据权限id
+	 */
+	@TableField(exist = false)
+	private List<Long> premIds;
 }

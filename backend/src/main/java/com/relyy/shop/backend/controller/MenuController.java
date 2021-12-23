@@ -3,6 +3,7 @@ package com.relyy.shop.backend.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.relyy.shop.backend.common.Tree;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -132,4 +133,25 @@ public class MenuController {
         return ResponseResult.ok();
     }
 
+    /**
+     * 获取所有菜单
+     */
+    @ApiOperation(value = "获取所有菜单", notes = "获取所有菜单")
+    @GetMapping("/getMenuTree")
+    @ResponseBody
+    public ResponseResult<Tree<MenuDO>> getMenuTree() {
+        Tree<MenuDO> menuDOTree = menuService.listAllMenu();
+        return ResponseResult.ok().put(menuDOTree);
+    }
+
+    /**
+     * 根据角色获取菜单
+     */
+    @ApiOperation(value = "根据角色获取菜单", notes = "根据角色获取菜单")
+    @GetMapping("/getMenuTree/{roleId}")
+    @ResponseBody
+    public ResponseResult<Tree<MenuDO>> getMenuTreeByRole(@PathVariable("roleId") Long roleId) {
+        Tree<MenuDO> menuDOTree = menuService.listMenuByRoleId(roleId);
+        return ResponseResult.ok().put(menuDOTree);
+    }
 }

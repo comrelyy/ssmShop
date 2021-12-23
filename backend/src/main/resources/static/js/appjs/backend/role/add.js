@@ -1,107 +1,123 @@
-var E = window.wangEditor;
-$("[id^='contentEditor']").each(function (index, ele) {
-    var relName = $(ele).attr("id").substring(13);
-    var editor = new E('#contentEditor' + relName);
-// 自定义菜单配置
-    editor.customConfig.menus = [
-        'head',  // 标题
-        'bold',  // 粗体
-        'fontSize',  // 字号
-        'fontName',  // 字体
-        'italic',  // 斜体
-        'underline',  // 下划线
-        'strikeThrough',  // 删除线
-        'foreColor',  // 文字颜色
-        //'backColor',  // 背景颜色
-        //'link',  // 插入链接
-        'list',  // 列表
-        'justify',  // 对齐方式
-        'quote',  // 引用
-        'emoticon',  // 表情
-        'image',  // 插入图片
-        //'table',  // 表格
-        //'video',  // 插入视频
-        //'code',  // 插入代码
-        'undo',  // 撤销
-        'redo'  // 重复
-    ];
-    editor.customConfig.onchange = function (html) {
-        // html 即变化之后的内容
-        $("#" + relName).val(html);
-    }
-    editor.customConfig.uploadImgShowBase64 = true;
-    editor.create();
-
-})
-
-$("[id^='picImage']").each(function (index, ele) {
-    var relName = $(ele).attr("id").substring(8);
-    layui.use('upload', function () {
-        var upload = layui.upload;
-        //执行实例
-        var uploadInst = upload.render({
-            elem: '#picImage' + relName, //绑定元素
-            url: '/common/sysFile/upload', //上传接口
-            size: 1000,
-            accept: 'file',
-            done: function (r) {
-                $("#picImage" + relName).attr("src", r.fileName);
-                $("#" + relName).val(r.fileName);
-            },
-            error: function (r) {
-                layer.msg(r.msg);
-            }
-        });
-    });
-
-});
-
-
-
-
-
-
-$().ready(function () {
+var menuIds;
+var permIds;
+$(function() {
+    getMenuTreeData();
+    //getPermTreeData();
     validateRule();
 });
-
 $.validator.setDefaults({
-    submitHandler: function () {
+    submitHandler : function() {
+        getAllSelectNodes();
         save();
     }
 });
-function save() {
+
+function getAllSelectNodes() {
+    var ref = $('#menuTree').jstree(true); // 获得整个树
+
+    menuIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
+
+    $("#menuTree").find(".jstree-undetermined").each(function(i, element) {
+        menuIds.push($(element).closest('.jstree-node').attr("id"));
+    });
+
+   // ref = $('#dataPermTree').jstree(true); // 获得整个树
+
+   // permIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
+
+    // $("#dataPermTree").find(".jstree-undetermined").each(function(i, element) {
+    //     permIds.push($(element).closest('.jstree-node').attr("id"));
+    // });
+}
+function getMenuTreeData() {
     $.ajax({
-        cache: true,
-        type: "POST",
-        url: "/backend/role/save",
-        data: $('#signupForm').serialize(),// 你的formid
-        async: false,
-        error: function (request) {
-            parent.layer.alert("Connection error");
+        type : "GET",
+        url : "/backend/menu/getMenuTree",
+        success : function(menuTree) {
+            if (menuTree.code == 0) {
+                loadMenuTree(menuTree.data);
+            }else {
+                parent.layer.msg(menuTree.msg);
+            }
+        }
+    });
+}
+function getPermTreeData() {
+    $.ajax({
+        type : "GET",
+        url : "/system/dataPerm/tree",
+        success : function(permTree) {
+            loadPermTree(permTree);
+        }
+    });
+}
+function loadPermTree(permTree) {
+    $('#dataPermTree').jstree({
+        'core' : {
+            'data' : permTree
         },
-        success: function (data) {
+        "checkbox" : {
+            "three_state" : true,
+        },
+        "plugins" : [ "wholerow", "checkbox" ]
+    });
+    //$('#menuTree').jstree("open_all");
+
+}
+function loadMenuTree(menuTree) {
+    $('#menuTree').jstree({
+        'core' : {
+            'data' : menuTree
+        },
+        "checkbox" : {
+            "three_state" : true,
+        },
+        "plugins" : [ "wholerow", "checkbox" ]
+    });
+    //$('#menuTree').jstree("open_all");
+
+}
+
+function save() {
+    $('#menuIds').val(menuIds);
+    $('#permIds').val(permIds);
+    var role = $('#signupForm').serialize();
+    $.ajax({
+        cache : true,
+        type : "POST",
+        url : "/backend/role/save",
+        data : role, // 你的formid
+        async : false,
+        error : function(request) {
+            alert("Connection error");
+        },
+        success : function(data) {
             if (data.code == 0) {
                 parent.layer.msg("操作成功");
                 parent.reLoad();
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+
                 parent.layer.close(index);
 
             } else {
-                parent.layer.alert(data.msg)
+                parent.layer.msg(data.msg);
             }
-
         }
     });
-
 }
+
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
-        $("#signupForm").validate({
-            ignore: "",
-            rules: {
-                                                                                            },
-    messages: {
-                                                                                                                                                        }
-})
+    $("#signupForm").validate({
+        rules : {
+            roleName : {
+                required : true
+            }
+        },
+        messages : {
+            roleName : {
+                required : icon + "请输入角色名"
+            }
+        }
+    });
 }

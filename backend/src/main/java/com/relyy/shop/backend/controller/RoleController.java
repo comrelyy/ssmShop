@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 角色
@@ -25,7 +27,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/backend/role")
-public class RoleController {
+public class RoleController extends BaseController{
     @Autowired
     private RoleService roleService;
 
@@ -50,7 +52,7 @@ public class RoleController {
 
     @ApiOperation(value = "新增角色页面", notes = "新增角色页面")
     @GetMapping("/add")
-    @RequiresPermissions("backend:role:add")
+    //@RequiresPermissions("backend:role:add")
     String add() {
         return "backend/role/add";
     }
@@ -80,8 +82,13 @@ public class RoleController {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("backend:role:add")
-    public ResponseResult save( RoleDO role) {
-        if (roleService.save(role) > 0) {
+    public ResponseResult save(RoleDO role, HttpServletRequest request) {
+        Long userId = getUserId(request);
+        if (Objects.isNull(userId)){
+            return ResponseResult.error("需要先登录");
+        }
+        role.setUserIdCreate(userId);
+        if (roleService.save(role)) {
             return ResponseResult.ok();
         }
         return ResponseResult.error();
@@ -94,8 +101,8 @@ public class RoleController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("backend:role:edit")
-    public ResponseResult update( RoleDO role) {
-            roleService.update(role);
+    public ResponseResult update(RoleDO role) {
+        roleService.update(role);
         return ResponseResult.ok();
     }
 

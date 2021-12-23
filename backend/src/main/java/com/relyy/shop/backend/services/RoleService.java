@@ -1,5 +1,7 @@
 package com.relyy.shop.backend.services;
 
+import com.relyy.shop.backend.mapper.RoleMenuMapper;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -18,6 +20,8 @@ import com.relyy.shop.backend.entity.RoleDO;
 public class RoleService {
 	@Autowired
 	private RoleMapper roleMapper;
+	@Autowired
+	private RoleMenuMapper roleMenuMapper;
 
 	public RoleDO get(Long roleId){
 		return roleMapper.selectById(roleId);
@@ -31,12 +35,20 @@ public class RoleService {
 		return roleMapper.count(map);
 	}
 
-	public int save(RoleDO role){
-		return roleMapper.save(role);
+	public boolean save(RoleDO role){
+		if (roleMapper.save(role) > 0) {
+			List<Long> menuIds = role.getMenuIds();
+			roleMenuMapper.batchInsert(menuIds,role.getRoleId());
+		}
+		return true;
 	}
 
 	public int update(RoleDO role){
-		return roleMapper.update(role);
+		roleMenuMapper.delByRoleId(role.getRoleId());
+		if (CollectionUtils.isNotEmpty(role.getMenuIds())){
+			roleMenuMapper.batchInsert(role.getMenuIds(),role.getRoleId());
+		}
+		return roleMapper.updateById(role);
 	}
 
 	public int remove(Long roleId){

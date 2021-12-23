@@ -112,7 +112,7 @@ public class LoginController {
 
 	@GetMapping("/error")
 	String error() {
-		return "error";
+		return "/error";
 	}
 
 	@GetMapping("/logout")
