@@ -27,6 +27,7 @@ public interface UserMapper extends BaseMapper<UserDO> {
 		  		  "<if test=\"name != null and name != ''\">"+ "and name like concat('%',#{name},'%') " + "</if>" +
 		  		  "<if test=\"password != null and password != ''\">"+ "and password = #{password} " + "</if>" +
 		  		  "<if test=\"deptId != null and deptId != ''\">"+ "and dept_id = #{deptId} " + "</if>" +
+		  		  "<if test=\"roleId != null and roleId != ''\">"+ "and role_id = #{roleId} " + "</if>" +
 		  		  "<if test=\"email != null and email != ''\">"+ "and email = #{email} " + "</if>" +
 		  		  "<if test=\"mobile != null and mobile != ''\">"+ "and mobile = #{mobile} " + "</if>" +
 		  		  "<if test=\"status != null and status != ''\">"+ "and status = #{status} " + "</if>" +
@@ -64,6 +65,7 @@ public interface UserMapper extends BaseMapper<UserDO> {
 		  		  "<if test=\"name != null and name != ''\">"+ "and name like concat('%',#{name},'%') " + "</if>" +
 		  		  "<if test=\"password != null and password != ''\">"+ "and password = #{password} " + "</if>" +
 		  		  "<if test=\"deptId != null and deptId != ''\">"+ "and dept_id = #{deptId} " + "</if>" +
+			      "<if test=\"roleId != null and roleId != ''\">"+ "and role_id = #{roleId} " + "</if>" +
 		  		  "<if test=\"email != null and email != ''\">"+ "and email = #{email} " + "</if>" +
 		  		  "<if test=\"mobile != null and mobile != ''\">"+ "and mobile = #{mobile} " + "</if>" +
 		  		  "<if test=\"status != null and status != ''\">"+ "and status = #{status} " + "</if>" +
@@ -82,8 +84,8 @@ public interface UserMapper extends BaseMapper<UserDO> {
 			"</script>")
 	int count(Map<String,Object> map);
 	
-	@Insert("insert into tb_user (`user_id`,`username`, `name`, `password`, `dept_id`, `email`, `mobile`, `status`, `user_id_create`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district`)"
-	+ "values (#{userId},#{username}, #{name}, #{password}, #{deptId}, #{email}, #{mobile}, #{status}, #{userIdCreate}, #{sex}, #{birth}, #{picId}, #{liveAddress}, #{hobby}, #{province}, #{city}, #{district})")
+	@Insert("insert into tb_user (`user_id`,`username`, `name`, `password`, `dept_id`,`role_id`,`email`, `mobile`, `status`, `user_id_create`, `sex`, `birth`, `pic_id`, `live_address`, `hobby`, `province`, `city`, `district`)"
+	+ "values (#{userId},#{username}, #{name}, #{password}, #{deptId},#{roleId}, #{email}, #{mobile}, #{status}, #{userIdCreate}, #{sex}, #{birth}, #{picId}, #{liveAddress}, #{hobby}, #{province}, #{city}, #{district})")
 	int save(UserDO user);
 
     int saveSelective(UserDO user);
@@ -95,6 +97,7 @@ public interface UserMapper extends BaseMapper<UserDO> {
                     "<if test=\"name != null\">`name` = #{name}, </if>" +
                     "<if test=\"password != null\">`password` = #{password}, </if>" +
                     "<if test=\"deptId != null\">`dept_id` = #{deptId}, </if>" +
+					"<if test=\"roleId != null\">`role_id` = #{roleId}, </if>" +
                     "<if test=\"email != null\">`email` = #{email}, </if>" +
                     "<if test=\"mobile != null\">`mobile` = #{mobile}, </if>" +
                     "<if test=\"status != null\">`status` = #{status}, </if>" +

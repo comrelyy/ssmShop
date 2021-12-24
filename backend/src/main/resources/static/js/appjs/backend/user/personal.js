@@ -10,7 +10,7 @@ $(function () {
 $("#base_save").click(function () {
     var hobbyStr = getHobbyStr();
     $("#hobby").val(hobbyStr);
-    if($("#basicInfoForm").valid()){
+    //if($("#basicInfoForm").valid()){  好像用了juery的校验，限制只能是中文名，但是add，edit没有限制
             $.ajax({
                 cache : true,
                 type : "POST",
@@ -28,7 +28,7 @@ $("#base_save").click(function () {
                     }
                 }
             });
-        }
+        //}
 
 });
 $("#pwd_save").click(function () {

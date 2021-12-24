@@ -1,10 +1,13 @@
 package com.relyy.shop.backend.controller;
 
+import com.google.common.collect.Maps;
 import com.relyy.shop.backend.common.PageBean;
 import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.common.ResponseResult;
+import com.relyy.shop.backend.entity.RoleDO;
 import com.relyy.shop.backend.entity.UserDO;
 import com.relyy.shop.backend.services.DictService;
+import com.relyy.shop.backend.services.RoleService;
 import com.relyy.shop.backend.services.UserService;
 import com.relyy.shop.backend.utils.MD5Util;
 import com.relyy.shop.backend.vo.UserVO;
@@ -38,6 +41,8 @@ public class UserController extends BaseController{
     private UserService userService;
     @Autowired
     private DictService dictService;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping()
     @RequiresPermissions("backend:user:user")
@@ -61,7 +66,9 @@ public class UserController extends BaseController{
     @ApiOperation(value = "新增页面", notes = "新增页面")
     @GetMapping("/add")
     @RequiresPermissions("backend:user:add")
-    String add() {
+    String add(Model model) {
+        List<RoleDO> roleDOS = roleService.list(Maps.newHashMap());
+        model.addAttribute("roles", roleDOS);
         return "backend/user/add";
     }
 
@@ -70,7 +77,9 @@ public class UserController extends BaseController{
     @RequiresPermissions("backend:user:edit")
     String edit(@PathVariable("userId") Long userId, Model model) {
         UserDO user = userService.get(userId);
+        List<RoleDO> roleDOS = roleService.list(Maps.newHashMap());
         model.addAttribute("user", user);
+        model.addAttribute("roles", roleDOS);
         return "backend/user/edit";
     }
 

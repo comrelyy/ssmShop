@@ -66,7 +66,19 @@ $.validator.setDefaults({
         update();
     }
 });
+function getCheckedRoles() {
+    var adIds = "";
+    $("input:checkbox[name=role]:checked").each(function(i) {
+        if (0 == i) {
+            adIds = $(this).val();
+        } else {
+            adIds += ("," + $(this).val());
+        }
+    });
+    return adIds;
+}
 function update() {
+    $("#roleId").val(getCheckedRoles());
     $.ajax({
         cache: true,
         type: "POST",
