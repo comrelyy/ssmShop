@@ -113,7 +113,7 @@ public class MenuService {
 			List<MenuDO> menuDOS = menuMapper.selectList(new QueryWrapper<MenuDO>());
 			List<Long> allMenuParentIds = menuDOS.stream().map(MenuDO::getParentId).collect(Collectors.toList());
 			List<Long> tempMenuIds = menuIds.stream()
-					.filter(menuId -> allMenuParentIds.contains(menuId))
+					.filter(menuId -> !allMenuParentIds.contains(menuId))
 					.collect(Collectors.toList());
 			for (MenuDO sysMenuDO : menuDOS) {
 				Tree<MenuDO> tree = new Tree<MenuDO>();

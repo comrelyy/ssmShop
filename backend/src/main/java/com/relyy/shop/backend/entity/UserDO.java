@@ -1,10 +1,12 @@
 package com.relyy.shop.backend.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.relyy.shop.backend.utils.Long2StringSerializer;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -17,11 +19,12 @@ import java.util.Date;
  * @date 2021-12-09 17:04:48
  */
 @Data
+@Accessors(chain = true)
 @TableName("tb_user")
 public class UserDO implements Serializable {
 
 	private static final long serialVersionUID = 8297786351231628095L;
-	@TableId
+	@TableId(type = IdType.AUTO)
 	private Long id;
 	/**
 	 * 用户id

@@ -30,10 +30,10 @@ public interface RoleMenuMapper {
 	int delByRoleId(Long roleId);
 
 	@Delete("<script>" +
-			"delete from tb_role_menu where role_id = #{roleId} and menu_id in" +
-			"<foreach item=\"menuId\" collection=\"menuIds\"  open=\"(\" separator=\",\" close=\")\">" +
-			"#{menuId}" +
+			"delete from tb_role_menu where role_id in" +
+			"<foreach item=\"roleId\" collection=\"roleIds\"  open=\"(\" separator=\",\" close=\")\">" +
+			"#{roleId}" +
 			"</foreach>" +
 			"</script>")
-	int batchDel(@Param("menuIds")List<Long> menuIds,@Param("roleId")Long roleId);
+	int batchDelByRole(@Param("roleIds")List<Long> roleIds);
 }

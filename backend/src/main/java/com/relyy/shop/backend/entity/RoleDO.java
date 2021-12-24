@@ -1,5 +1,6 @@
 package com.relyy.shop.backend.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -31,8 +32,8 @@ public class RoleDO implements Serializable {
 	 */
 	//java中的long能表示的范围比js中number大,也就意味着部分数值在js中存不下(变成不准确的值)
 	//所以通过序列化成字符串来解决
-	@JsonSerialize(using = Long2StringSerializer.class)
-	@TableId
+	//@JsonSerialize(using = Long2StringSerializer.class)
+	@TableId(type = IdType.AUTO)
 	private Long roleId;
 	/**
 	 * 角色名称
