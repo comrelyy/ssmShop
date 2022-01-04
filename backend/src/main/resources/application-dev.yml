@@ -2,14 +2,14 @@ server:
   port: 8071
 
 spring:
-#  profiles:
-#    active: dev
+  profiles:
+    active: dev
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://101.35.124.40:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    password: 123456@aB
+    password: root
   flyway:
     # 启用flyway
     enabled: true

@@ -22,7 +22,7 @@ function load() {
                 singleSelect: false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize: 10, // 如果设置了分页，每页数据条数
+                pageSize: 25, // 如果设置了分页，每页数据条数
                 pageNumber: 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
                 showColumns: false, // 是否显示内容下拉框（选择显示的列）
@@ -54,113 +54,97 @@ function load() {
                         checkbox: true
                     },
                     {
-                        title: '序号',
-                        formatter: function () {
-                            return arguments[2] + 1;
+                        title: '编号',
+                        field: 'menuId',
+                        visible: false,
+                        align: 'center',
+                        valign: 'center',
+                        width: '5%'
+                    },
+                    {
+                        title: '名称',
+                        valign: 'center',
+                        field: 'name',
+                        width: '20%'
+                    },
+                    {
+                        title: '图标',
+                        field: 'icon',
+                        align: 'center',
+                        valign: 'center',
+                        width : '5%',
+                        formatter: function (value, index) {
+                            return value == null ? ''
+                                : '<i class="' + value + ' fa-lg"></i>';
                         }
                     },
-                                                                        {
-                                field: 'menuId',
-                                title: ''
-                            },
-
-                        
-                                                                        {
-                                field: 'parentId',
-                                title: '父菜单ID，一级菜单为0'
-                            },
-
-                        
-                                                                        {
-                                field: 'name',
-                                title: '菜单名称'
-                            },
-
-                        
-                                                                        {
-                                field: 'url',
-                                title: '菜单URL'
-                            },
-
-                        
-                                                                        {
-                                field: 'perms',
-                                title: '授权(多个用逗号分隔，如：user:list,user:create)'
-                            },
-
-                        
-                                                                        {
-                                field: 'type',
-                                title: '类型   0：目录   1：菜单   2：按钮'
-                            },
-
-                        
-                                                                        {
-                                field: 'icon',
-                                title: '菜单图标'
-                            },
-
-                        
-                                                                        {
-                                field: 'orderNum',
-                                title: '排序'
-                            },
-
-                        
-                                                                        {
-                                field: 'gmtCreate',
-                                title: '创建时间'
-                            },
-
-                        
-                                                                        {
-                                field: 'gmtModified',
-                                title: '修改时间'
-                            },
-
-                        
-                                        {
+                    {
+                        title: '类型',
+                        field: 'type',
+                        align: 'center',
+                        valign: 'center',
+                        width : '10%',
+                        formatter: function (value, index) {
+                            if (value === 0) {
+                                return '<span class="label label-primary">目录</span>';
+                            }
+                            if (value === 1) {
+                                return '<span class="label label-success">菜单</span>';
+                            }
+                            if (value === 2) {
+                                return '<span class="label label-warning">按钮</span>';
+                            }
+                        }
+                    },
+                    {
+                        title: '地址',
+                        valign: 'center',
+                        width : '20%',
+                        field: 'url'
+                    },
+                    {
+                        title: '权限标识',
+                        valign: 'center',
+                        width : '20%',
+                        field: 'perms'
+                    },
+                    {
                         title: '操作',
                         field: 'id',
                         align: 'center',
+                        valign: 'center',
                         formatter: function (value, row, index) {
-                            var d = '<a class="btn btn-primary btn-sm ' + s_detail_h + '" href="#" mce_href="#" title="详情" onclick="detail(\''
-                                + row.menuId
-                                + '\')"><i class="fa fa-file"></i></a> ';
                             var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
                                 + row.menuId
                                 + '\')"><i class="fa fa-edit"></i></a> ';
+                            var p = '<a class="btn btn-primary btn-sm ' + s_add_h + '" href="#" mce_href="#" title="添加下级" onclick="add(\''
+                                + row.menuId
+                                + '\')"><i class="fa fa-plus"></i></a> ';
                             var r = '<a class="btn btn-warning btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
                                 + row.menuId
                                 + '\')"><i class="fa fa-remove"></i></a> ';
-                            return d + e + r;
+                            return e + p + r;
                         }
                     }]
             });
 }
+
 function reLoad() {
     $('#exampleTable').bootstrapTable('refresh');
 }
-function add() {
-    layer.open({
-        type: 2,
-        title: '增加',
-        maxmin: true,
-        shadeClose: false, // 点击遮罩关闭层
-        area: ['800px', '520px'],
-        content: prefix + '/add' // iframe的url
-    });
-}
-function detail(id) {
+
+
+function add(menuId) {
     layer.open({
         type: 2,
         title: '详情',
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: prefix + '/detail/' + id // iframe的url
+        content: prefix + '/add/' + menuId // iframe的url
     });
 }
+
 function edit(id) {
     layer.open({
         type: 2,
@@ -171,6 +155,7 @@ function edit(id) {
         content: prefix + '/edit/' + id // iframe的url
     });
 }
+
 function remove(id) {
     layer.confirm('确定要删除选中的记录？', {
         btn: ['确定', '取消']
@@ -193,8 +178,6 @@ function remove(id) {
     })
 }
 
-function resetPwd(id) {
-}
 function batchRemove() {
     var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
     if (rows.length == 0) {

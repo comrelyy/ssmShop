@@ -23,7 +23,6 @@ import java.util.Date;
 public class MenuDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
 	/**
 	 *
 	 */

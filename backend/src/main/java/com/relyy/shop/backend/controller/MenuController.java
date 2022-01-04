@@ -2,8 +2,9 @@ package com.relyy.shop.backend.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-import com.relyy.shop.backend.common.Tree;
+import com.relyy.shop.backend.common.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +20,6 @@ import io.swagger.annotations.ApiOperation;
 
 import com.relyy.shop.backend.entity.MenuDO;
 import com.relyy.shop.backend.services.MenuService;
-import com.relyy.shop.backend.common.PageBean;
-import com.relyy.shop.backend.common.Query;
-import com.relyy.shop.backend.common.ResponseResult;
 
 /**
  * 菜单管理
@@ -57,9 +55,18 @@ public class MenuController {
     }
 
     @ApiOperation(value = "新增菜单管理页面", notes = "新增菜单管理页面")
-    @GetMapping("/add")
+    @GetMapping("/add/{menuId}")
     @RequiresPermissions("backend:menu:add")
-    String add() {
+    public String add(@PathVariable("menuId") Long menuId, Model model) {
+        if (Objects.isNull(menuId)) return "/error";
+        model.addAttribute("parentId",menuId);
+        if (Objects.equals(menuId, Constant.ROOT_MENU_ID)){
+            model.addAttribute("pName", Constant.ROOT_MENU_NAME);
+        }else {
+            MenuDO menu = menuService.get(menuId);
+            if (Objects.isNull(menu)) return "/error";
+            model.addAttribute("pName",menu.getName());
+        }
         return "backend/menu/add";
     }
 
@@ -67,18 +74,16 @@ public class MenuController {
     @GetMapping("/edit/{menuId}")
     @RequiresPermissions("backend:menu:edit")
     String edit(@PathVariable("menuId") Long menuId, Model model) {
-            MenuDO menu = menuService.get(menuId);
+        MenuDO menu = menuService.get(menuId);
+        Long parentId = menu.getParentId();
+        if (Objects.equals(parentId, Constant.ROOT_MENU_ID)){
+            model.addAttribute("pName", Constant.ROOT_MENU_NAME);
+        }else {
+            MenuDO pMenu = menuService.get(parentId);
+            model.addAttribute("pName", pMenu.getName());
+        }
         model.addAttribute("menu", menu);
         return "backend/menu/edit";
-    }
-
-    @ApiOperation(value = "查看菜单管理页面", notes = "查看菜单管理页面")
-    @GetMapping("/detail/{menuId}")
-    @RequiresPermissions("backend:menu:detail")
-    String detail(@PathVariable("menuId") Long menuId, Model model) {
-			MenuDO menu = menuService.get(menuId);
-        model.addAttribute("menu", menu);
-        return "backend/menu/detail";
     }
 
     /**

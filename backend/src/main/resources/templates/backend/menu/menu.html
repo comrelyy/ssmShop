@@ -8,14 +8,13 @@
         <div class="ibox">
             <div class="ibox-body">
                 <div class="fixed-table-toolbar">
-                    <div class="columns pull-left">
-                        <button shiro:hasPermission="backend:menu:add" type="button"
-                                class="btn  btn-primary" onclick="add()">
+                    <div id="exampleToolbar" role="group" class="t-bar">
+                        <button shiro:hasPermission="sys:menu:add" type="button"
+                                class="btn btn-primary" title="在根节点下添加菜单" onclick="add('0')">
                             <i class="fa fa-plus" aria-hidden="true"></i>添加
                         </button>
-                        <button shiro:hasPermission="backend:menu:batchRemove" type="button"
-                                class="btn  btn-danger"
-                                onclick="batchRemove()">
+                        <button shiro:hasPermission="sys:menu:batchRemove" type="button"
+                                class="btn btn-danger" onclick="batchRemove()">
                             <i class="fa fa-trash" aria-hidden="true"></i>删除
                         </button>
                     </div>
@@ -25,11 +24,10 @@
 
                     <form id="searchForm">
                         <div class="columns pull-right col-md-2">
-                            <input id="id" name="id" type="text" class="form-control"
-                                   placeholder="主键">
+                            <input id="name" name="name" type="text" class="form-control"
+                                   placeholder="菜单名称">
                         </div>
                     </form>
-
                 </div>
                 <table id="exampleTable" data-mobile-responsive="true">
                 </table>
@@ -40,14 +38,14 @@
 <!--shiro控制bootstraptable行内按钮看见性 -->
 <div>
     <script type="text/javascript">
-        var s_detail_h = 'hidden';
+        var s_add_h = 'hidden';
         var s_edit_h = 'hidden';
         var s_remove_h = 'hidden';
     </script>
 </div>
-<div shiro:hasPermission="test:order:detail">
+<div shiro:hasPermission="backend:menu:add">
     <script type="text/javascript">
-        s_detail_h = '';
+        s_add_h = '';
     </script>
 </div>
 <div shiro:hasPermission="backend:menu:edit">

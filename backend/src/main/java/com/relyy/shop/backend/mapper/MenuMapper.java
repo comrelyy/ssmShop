@@ -24,7 +24,7 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 			"<where>" + 
 		  		  "<if test=\"menuId != null and menuId != ''\">"+ "and menu_id = #{menuId} " + "</if>" +
 		  		  "<if test=\"parentId != null and parentId != ''\">"+ "and parent_id = #{parentId} " + "</if>" +
-		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
+		  		  "<if test=\"name != null and name != ''\">"+ "and name like concat('%',#{name},'%') " + "</if>" +
 		  		  "<if test=\"url != null and url != ''\">"+ "and url = #{url} " + "</if>" +
 		  		  "<if test=\"perms != null and perms != ''\">"+ "and perms = #{perms} " + "</if>" +
 		  		  "<if test=\"type != null and type != ''\">"+ "and type = #{type} " + "</if>" +
@@ -32,15 +32,8 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 		  		  "<if test=\"orderNum != null and orderNum != ''\">"+ "and order_num = #{orderNum} " + "</if>" +
 		  		  "<if test=\"gmtCreate != null and gmtCreate != ''\">"+ "and gmt_create = #{gmtCreate} " + "</if>" +
 		  		  "<if test=\"gmtModified != null and gmtModified != ''\">"+ "and gmt_modified = #{gmtModified} " + "</if>" +
-		  			"</where>"+ 
-			" <choose>" + 
-	            "<when test=\"sort != null and sort.trim() != ''\">" + 
-	                "order by ${sort} ${order}" + 
-	            "</when>" + 
-				"<otherwise>" + 
-	                "order by menu_id desc" +
-				"</otherwise>" + 
-	        "</choose>"+
+		  			"</where>"+
+			"order by parent_id,order_num" +
 			"<if test=\"offset != null and limit != null\">"+
 			"limit #{offset}, #{limit}" + 
 			"</if>"+
@@ -52,7 +45,7 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 			"<where>" + 
 		  		  "<if test=\"menuId != null and menuId != ''\">"+ "and menu_id = #{menuId} " + "</if>" +
 		  		  "<if test=\"parentId != null and parentId != ''\">"+ "and parent_id = #{parentId} " + "</if>" +
-		  		  "<if test=\"name != null and name != ''\">"+ "and name = #{name} " + "</if>" +
+		  		  "<if test=\"name != null and name != ''\">"+ "and name like concat('%',#{name},'%') " + "</if>" +
 		  		  "<if test=\"url != null and url != ''\">"+ "and url = #{url} " + "</if>" +
 		  		  "<if test=\"perms != null and perms != ''\">"+ "and perms = #{perms} " + "</if>" +
 		  		  "<if test=\"type != null and type != ''\">"+ "and type = #{type} " + "</if>" +
