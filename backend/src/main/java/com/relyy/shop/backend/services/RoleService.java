@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import com.relyy.shop.backend.mapper.RoleMapper;
 import com.relyy.shop.backend.entity.RoleDO;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 角色
@@ -37,6 +38,7 @@ public class RoleService {
 		return roleMapper.count(map);
 	}
 
+	@Transactional
 	public boolean save(RoleDO role){
 		if (roleMapper.insert(role) > 0) {
 			List<Long> menuIds = role.getMenuIds();
@@ -47,6 +49,7 @@ public class RoleService {
 		return true;
 	}
 
+	@Transactional
 	public int update(RoleDO role){
 		roleMenuMapper.delByRoleId(role.getRoleId());
 		if (CollectionUtils.isNotEmpty(role.getMenuIds())){
@@ -55,11 +58,12 @@ public class RoleService {
 		return roleMapper.updateById(role);
 	}
 
+	@Transactional
 	public int remove(Long roleId){
 		roleMenuMapper.delByRoleId(roleId);
 		return roleMapper.remove(roleId);
 	}
-
+	@Transactional
 	public int batchRemove(Long[] roleIds){
 		roleMenuMapper.batchDelByRole(Arrays.asList(roleIds));
 		return roleMapper.deleteBatchIds(Arrays.asList(roleIds));
