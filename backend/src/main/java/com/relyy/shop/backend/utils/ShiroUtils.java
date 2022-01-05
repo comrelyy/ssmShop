@@ -1,5 +1,7 @@
 package com.relyy.shop.backend.utils;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.relyy.shop.backend.entity.UserDO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.rmi.CORBA.Util;
 import java.security.Principal;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description
@@ -20,7 +23,11 @@ public class ShiroUtils {
 	@Autowired
 	private static SessionDAO sessionDAO;
 
-	private static Map<String, Set<String>> userPermsCache = new HashMap<>();
+	//使用Caffeine构建本地缓存
+	private static Cache<Long, Set<String>> userPermsLocalCache = Caffeine.newBuilder()
+			.expireAfterWrite(1L, TimeUnit.HOURS)
+			.maximumSize(100)
+			.build();
 
 	public static Subject getSubjct() {
 		return SecurityUtils.getSubject();
@@ -39,19 +46,15 @@ public class ShiroUtils {
 	}
 
 	public static void addUserPerms(Long userId,Set<String> perms){
-		String s = String.valueOf(userId);
-		userPermsCache.merge(s,perms,(a,b) -> {
-			a.addAll(b);
-			return a;
-		});
+		userPermsLocalCache.put(userId,perms);
 	}
 
 	public static void removePermsByUserId(Long userId) {
-		userPermsCache.remove(String.valueOf(userId));
+		userPermsLocalCache.invalidate(userId);
 	}
 
 	public static Set<String> getPermsByUserId(Long userId){
-		return userPermsCache.get(String.valueOf(userId));
+		return userPermsLocalCache.getIfPresent(userId);
 	}
 	public static List<Principal> getPrinciples() {
 		List<Principal> principals = null;
