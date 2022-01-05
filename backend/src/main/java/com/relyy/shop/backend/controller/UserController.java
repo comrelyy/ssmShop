@@ -45,7 +45,7 @@ public class UserController extends BaseController{
     private RoleService roleService;
 
     @GetMapping()
-    @RequiresPermissions("backend:user:user")
+    @RequiresPermissions("sys:user:user")
     String user() {
         return "backend/user/user";
     }
@@ -53,7 +53,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "获取所有用户列表", notes = "获取列表")
     @ResponseBody
     @GetMapping("/list")
-    @RequiresPermissions("backend:user:user")
+    @RequiresPermissions("sys:user:user")
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
@@ -65,7 +65,7 @@ public class UserController extends BaseController{
 
     @ApiOperation(value = "新增页面", notes = "新增页面")
     @GetMapping("/add")
-    @RequiresPermissions("backend:user:add")
+    @RequiresPermissions("sys:user:add")
     String add(Model model) {
         List<RoleDO> roleDOS = roleService.list(Maps.newHashMap());
         model.addAttribute("roles", roleDOS);
@@ -74,7 +74,7 @@ public class UserController extends BaseController{
 
     @ApiOperation(value = "修改页面", notes = "修改页面")
     @GetMapping("/edit/{userId}")
-    @RequiresPermissions("backend:user:edit")
+    @RequiresPermissions("sys:user:edit")
     String edit(@PathVariable("userId") Long userId, Model model) {
         UserDO user = userService.get(userId);
         List<RoleDO> roleDOS = roleService.list(Maps.newHashMap());
@@ -89,7 +89,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "用户名校验", notes = "用户名校验")
     @ResponseBody
     @PostMapping("/checkUserName")
-    @RequiresPermissions("backend:user:checkUserName")
+    @RequiresPermissions("sys:user:checkUserName")
     public boolean checkUserName(@RequestParam("username") String username) {
         UserDO userByName = userService.getUserByName(username,null);
         if (userByName != null) {
@@ -103,7 +103,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "新增", notes = "新增")
     @ResponseBody
     @PostMapping("/save")
-    @RequiresPermissions("backend:user:add")
+    @RequiresPermissions("sys:user:add")
     public ResponseResult save(UserDO user,HttpServletRequest request) {
         if (Objects.isNull(user) || Objects.isNull(user.getUsername())){
             return ResponseResult.error("请补充完整用户信息");
@@ -128,7 +128,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "修改", notes = "修改")
     @ResponseBody
     @RequestMapping("/update")
-    @RequiresPermissions("backend:user:edit")
+    @RequiresPermissions("sys:user:edit")
     public ResponseResult update(UserDO user) {
         if (Objects.isNull(user) && Objects.isNull(user.getUserId())) {
             return ResponseResult.error("用户信息错误");
@@ -149,7 +149,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "删除", notes = "删除")
     @PostMapping("/remove")
     @ResponseBody
-    @RequiresPermissions("backend:user:remove")
+    @RequiresPermissions("sys:user:remove")
     public ResponseResult remove(@RequestParam("userId") Long userId) {
         if (userService.remove(userId) > 0) {
             return ResponseResult.ok();
@@ -163,7 +163,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "用户禁用", notes = "用户禁用")
     @PostMapping("/forbidden")
     @ResponseBody
-    @RequiresPermissions("backend:user:forbidden")
+    @RequiresPermissions("sys:user:forbidden")
     public ResponseResult forbidden(@RequestParam("userId") Long userId) {
         if (userService.forbidden(userId) > 0) {
             return ResponseResult.ok();
@@ -177,7 +177,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "用户恢复", notes = "用户恢复")
     @PostMapping("/active")
     @ResponseBody
-    @RequiresPermissions("backend:user:active")
+    @RequiresPermissions("sys:user:active")
     public ResponseResult active(@RequestParam("userId") Long userId) {
         if (userService.active(userId) > 0) {
             return ResponseResult.ok();
@@ -190,7 +190,7 @@ public class UserController extends BaseController{
     @ApiOperation(value = "批量删除", notes = "批量删除")
     @PostMapping("/batchRemove")
     @ResponseBody
-    @RequiresPermissions("backend:user:batchRemove")
+    @RequiresPermissions("sys:user:batchRemove")
     public ResponseResult remove(@RequestParam("ids[]") Long[] userIds) {
             userService.batchRemove(userIds);
         return ResponseResult.ok();

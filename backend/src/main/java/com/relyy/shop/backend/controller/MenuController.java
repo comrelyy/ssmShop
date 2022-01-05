@@ -36,7 +36,7 @@ public class MenuController {
     private MenuService menuService;
 
     @GetMapping()
-    @RequiresPermissions("backend:menu:menu")
+    @RequiresPermissions("sys:menu:menu")
     String menu() {
         return "backend/menu/menu";
     }
@@ -44,7 +44,7 @@ public class MenuController {
     @ApiOperation(value = "获取菜单管理列表", notes = "获取菜单管理列表")
     @ResponseBody
     @GetMapping("/list")
-    @RequiresPermissions("backend:menu:menu")
+    @RequiresPermissions("sys:menu:menu")
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
@@ -56,7 +56,7 @@ public class MenuController {
 
     @ApiOperation(value = "新增菜单管理页面", notes = "新增菜单管理页面")
     @GetMapping("/add/{menuId}")
-    @RequiresPermissions("backend:menu:add")
+    @RequiresPermissions("sys:menu:add")
     public String add(@PathVariable("menuId") Long menuId, Model model) {
         if (Objects.isNull(menuId)) return "/error";
         model.addAttribute("parentId",menuId);
@@ -72,7 +72,7 @@ public class MenuController {
 
     @ApiOperation(value = "修改菜单管理页面", notes = "修改菜单管理页面")
     @GetMapping("/edit/{menuId}")
-    @RequiresPermissions("backend:menu:edit")
+    @RequiresPermissions("sys:menu:edit")
     String edit(@PathVariable("menuId") Long menuId, Model model) {
         MenuDO menu = menuService.get(menuId);
         Long parentId = menu.getParentId();
@@ -92,7 +92,7 @@ public class MenuController {
     @ApiOperation(value = "新增菜单管理", notes = "新增菜单管理")
     @ResponseBody
     @PostMapping("/save")
-    @RequiresPermissions("backend:menu:add")
+    @RequiresPermissions("sys:menu:add")
     public ResponseResult save( MenuDO menu) {
         if (menuService.save(menu) > 0) {
             return ResponseResult.ok();
@@ -106,7 +106,7 @@ public class MenuController {
     @ApiOperation(value = "修改菜单管理", notes = "修改菜单管理")
     @ResponseBody
     @RequestMapping("/update")
-    @RequiresPermissions("backend:menu:edit")
+    @RequiresPermissions("sys:menu:edit")
     public ResponseResult update( MenuDO menu) {
             menuService.update(menu);
         return ResponseResult.ok();
@@ -118,7 +118,7 @@ public class MenuController {
     @ApiOperation(value = "删除菜单管理", notes = "删除菜单管理")
     @PostMapping("/remove")
     @ResponseBody
-    @RequiresPermissions("backend:menu:remove")
+    @RequiresPermissions("sys:menu:remove")
     public ResponseResult remove( Long menuId) {
         if (menuService.remove(menuId) > 0) {
             return ResponseResult.ok();
@@ -132,7 +132,7 @@ public class MenuController {
     @ApiOperation(value = "批量删除菜单管理", notes = "批量删除菜单管理")
     @PostMapping("/batchRemove")
     @ResponseBody
-    @RequiresPermissions("backend:menu:batchRemove")
+    @RequiresPermissions("sys:menu:batchRemove")
     public ResponseResult remove(@RequestParam("ids[]") Long[] menuIds) {
             menuService.batchRemove(menuIds);
         return ResponseResult.ok();

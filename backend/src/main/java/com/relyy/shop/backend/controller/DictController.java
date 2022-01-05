@@ -40,7 +40,7 @@ public class DictController extends BaseController{
     private DictService dictService;
 
     @GetMapping()
-    @RequiresPermissions("backend:dict:dict")
+    @RequiresPermissions("sys:dict:dict")
     String dict() {
         return "backend/dict/dict";
     }
@@ -48,7 +48,7 @@ public class DictController extends BaseController{
     @ApiOperation(value = "获取字典表列表", notes = "获取字典表列表")
     @ResponseBody
     @GetMapping("/list")
-    @RequiresPermissions("backend:dict:dict")
+    @RequiresPermissions("sys:dict:dict")
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
@@ -60,14 +60,14 @@ public class DictController extends BaseController{
 
     @ApiOperation(value = "新增字典表页面", notes = "新增字典表页面")
     @GetMapping("/add")
-    @RequiresPermissions("backend:dict:add")
+    @RequiresPermissions("common:dict:add")
     String add() {
         return "backend/dict/add";
     }
 
     @ApiOperation(value = "修改字典表页面", notes = "修改字典表页面")
     @GetMapping("/edit/{id}")
-    @RequiresPermissions("backend:dict:edit")
+    @RequiresPermissions("common:dict:edit")
     String edit(@PathVariable("id") Long id, Model model) {
             DictDO dict = dictService.get(id);
         model.addAttribute("dict", dict);
@@ -76,7 +76,7 @@ public class DictController extends BaseController{
 
     @ApiOperation(value = "查看字典表页面", notes = "查看字典表页面")
     @GetMapping("/detail/{id}")
-    @RequiresPermissions("backend:dict:detail")
+    @RequiresPermissions("common:dict:detail")
     String detail(@PathVariable("id") Long id, Model model) {
 			DictDO dict = dictService.get(id);
         model.addAttribute("dict", dict);
@@ -89,7 +89,7 @@ public class DictController extends BaseController{
     @ApiOperation(value = "新增字典表", notes = "新增字典表")
     @ResponseBody
     @PostMapping("/save")
-    @RequiresPermissions("backend:dict:add")
+    @RequiresPermissions("common:dict:add")
     public ResponseResult save(DictDO dict,HttpServletRequest request) {
         Long userId = getUserId(request);
         dict.setCreateBy(userId);
@@ -105,7 +105,7 @@ public class DictController extends BaseController{
     @ApiOperation(value = "修改字典表", notes = "修改字典表")
     @ResponseBody
     @RequestMapping("/update")
-    @RequiresPermissions("backend:dict:edit")
+    @RequiresPermissions("common:dict:edit")
     public ResponseResult update(DictDO dict, HttpServletRequest request) {
         Long userId = getUserId(request);
         dict.setUpdateBy(userId);
@@ -119,7 +119,7 @@ public class DictController extends BaseController{
     @ApiOperation(value = "删除字典表", notes = "删除字典表")
     @PostMapping("/remove")
     @ResponseBody
-    @RequiresPermissions("backend:dict:remove")
+    @RequiresPermissions("common:dict:remove")
     public ResponseResult remove( Long id) {
         if (dictService.remove(id) > 0) {
             return ResponseResult.ok();
@@ -133,7 +133,7 @@ public class DictController extends BaseController{
     @ApiOperation(value = "批量删除字典表", notes = "批量删除字典表")
     @PostMapping("/batchRemove")
     @ResponseBody
-    @RequiresPermissions("backend:dict:batchRemove")
+    @RequiresPermissions("sys:dict:batchRemove")
     public ResponseResult remove(@RequestParam("ids[]") Long[] ids) {
             dictService.batchRemove(ids);
         return ResponseResult.ok();

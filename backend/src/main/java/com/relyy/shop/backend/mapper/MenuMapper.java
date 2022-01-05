@@ -102,6 +102,13 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 	@Select("select distinct m.menu_id , m.parent_id, m.name, m.url,m.perms,m.`type`,m.icon,m.order_num " +
 			"from tb_menu m " +
 			"left join tb_role_menu rm on m.menu_id = rm.menu_id " +
+			"left join tb_user u on rm.role_id =u.role_id " +
+			"where u.user_id = #{id} ")
+	List<MenuDO> listAllMenuByUserId(Long roleId);
+
+	@Select("select distinct m.menu_id , m.parent_id, m.name, m.url,m.perms,m.`type`,m.icon,m.order_num " +
+			"from tb_menu m " +
+			"left join tb_role_menu rm on m.menu_id = rm.menu_id " +
 			"where rm.role_id = #{roleId} " +
 			"and m.type in(0,1) " +
 			"order by m.order_num")

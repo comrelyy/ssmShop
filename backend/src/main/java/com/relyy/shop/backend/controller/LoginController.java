@@ -9,8 +9,13 @@ import com.relyy.shop.backend.services.MenuService;
 import com.relyy.shop.backend.services.UserService;
 import com.relyy.shop.backend.utils.MD5Util;
 import com.relyy.shop.backend.utils.RandomValidateCodeUtil;
+import com.relyy.shop.backend.utils.ShiroUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,13 +81,17 @@ public class LoginController {
 			if (!StringUtils.equals(verify,(String)session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY))) {
 				return ResponseResult.error("请输入正确的验证码");
 			}
-			UserDO userByName = userService.getUserByName(username, MD5Util.encrypt(username,password));
-			if (Objects.isNull(userByName)){
-				return ResponseResult.error("用户不存在");
-			}
-			session.setAttribute("userId",userByName.getUserId());
-		}catch (Exception e){
-			e.printStackTrace();
+//			UserDO userByName = userService.getUserByName(username, MD5Util.encrypt(username,password));
+//			if (Objects.isNull(userByName)){
+//				return ResponseResult.error("用户不存在");
+//			}
+			UsernamePasswordToken token = new UsernamePasswordToken(username, MD5Util.encrypt(username, password));
+			Subject subject = SecurityUtils.getSubject();
+			subject.login(token);
+			//session.setAttribute("userId",userByName.getUserId());
+		}catch (AuthenticationException authenticationException){
+			return ResponseResult.error("用户名密码错误");
+		} catch (Exception e){
 			return ResponseResult.error("登录异常");
 		}
 		return ResponseResult.ok();
@@ -90,7 +99,8 @@ public class LoginController {
 
 	@GetMapping({"","/","/index"})
 	public String index(Model model,HttpServletRequest request){
-		Object userId = request.getSession().getAttribute("userId");
+		//Object userId = request.getSession().getAttribute("userId");
+		Long userId = ShiroUtils.getUserId();
 		if (Objects.isNull(userId)){
 			return "/login";
 		}
@@ -117,7 +127,8 @@ public class LoginController {
 
 	@GetMapping("/logout")
 	String logout(HttpServletRequest request) {
-		request.getSession().removeAttribute("userId");
+		//request.getSession().removeAttribute("userId");
+		ShiroUtils.logout();
 		return "redirect:/login";
 	}
 }

@@ -14,7 +14,6 @@ import java.util.Objects;
 public class BaseController {
 
 	public Long generatorUserId(){
-
 		return System.currentTimeMillis();
 	}
 	public UserDO getUser() {
@@ -26,8 +25,9 @@ public class BaseController {
 	}
 
 	public Long getUserId(HttpServletRequest request) {
-		Object userId = request.getSession().getAttribute("userId");
-		return Objects.isNull(userId) ? null : (Long) userId;
+		return this.getUserId();
+//		Object userId = request.getSession().getAttribute("userId");
+//		return Objects.isNull(userId) ? null : (Long) userId;
 	}
 
 

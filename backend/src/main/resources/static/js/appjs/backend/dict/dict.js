@@ -6,8 +6,8 @@ $(function () {
 function selectLoad() {
     var html = "";
     $.ajax({
-        url : '/backend/dict/type',
-        success : function(res) {
+        url: '/backend/dict/type',
+        success: function (res) {
             //加载数据
             if (res.code == 0) {
                 var data = res.data;
@@ -60,14 +60,14 @@ function load() {
                 sidePagination: "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                 queryParams: function (params) {
                     //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
-                   return {
-                       limit : params.limit,
-                       offset : params.offset,
-                       type : $('#searchName').val(),
-                       // queryParams.limit = params.limit;
-                       // queryParams.offset = params.offset;
-                       // return queryParams;
-                   };
+                    return {
+                        limit: params.limit,
+                        offset: params.offset,
+                        type: $('#searchName').val(),
+                        // queryParams.limit = params.limit;
+                        // queryParams.offset = params.offset;
+                        // return queryParams;
+                    };
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
@@ -110,40 +110,40 @@ function load() {
                         title: '类型'
                     },
                     {
-                                field: 'description',
-                                title: '描述'
+                        field: 'description',
+                        title: '描述'
                     },
                     {
-                                field: 'sort',
-                                title: '排序（升序）'
+                        field: 'sort',
+                        title: '排序（升序）'
                     },
                     {
-                                field: 'parentId',
-                                title: '父级编号'
+                        field: 'parentId',
+                        title: '父级编号'
                     },
                     {
-                                field: 'createBy',
-                                title: '创建者'
+                        field: 'createBy',
+                        title: '创建者'
                     },
                     {
-                                field: 'createDate',
-                                title: '创建时间'
+                        field: 'createDate',
+                        title: '创建时间'
                     },
                     {
-                                field: 'updateBy',
-                                title: '更新者'
+                        field: 'updateBy',
+                        title: '更新者'
                     },
                     {
-                                field: 'updateDate',
-                                title: '更新时间'
+                        field: 'updateDate',
+                        title: '更新时间'
                     },
                     {
-                                field: 'remarks',
-                                title: '备注信息'
+                        field: 'remarks',
+                        title: '备注信息'
                     },
                     {
-                                field: 'delFlag',
-                                title: '删除标记'
+                        field: 'delFlag',
+                        title: '删除标记'
                     },
                     {
                         title: '操作',
@@ -164,14 +164,16 @@ function load() {
                     }]
             });
 }
+
 function reLoad() {
     var opt = {
-        query : {
-            type : $('.chosen-select').val(),
+        query: {
+            type: $('.chosen-select').val(),
         }
     }
     $('#exampleTable').bootstrapTable('refresh', opt);
 }
+
 function add() {
     layer.open({
         type: 2,
@@ -182,6 +184,7 @@ function add() {
         content: prefix + '/add' // iframe的url
     });
 }
+
 function detail(id) {
     layer.open({
         type: 2,
@@ -192,6 +195,7 @@ function detail(id) {
         content: prefix + '/detail/' + id // iframe的url
     });
 }
+
 function edit(id) {
     layer.open({
         type: 2,
@@ -202,6 +206,7 @@ function edit(id) {
         content: prefix + '/edit/' + id // iframe的url
     });
 }
+
 function remove(id) {
     layer.confirm('确定要删除选中的记录？', {
         btn: ['确定', '取消']

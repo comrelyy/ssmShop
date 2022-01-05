@@ -101,6 +101,9 @@ public class MenuService {
 		return list;
 	}
 
+	public  List<MenuDO> getAllMenuByUserId(Long userId) {
+		return menuMapper.listAllMenuByUserId(userId);
+	}
 	/**
 	 * 根据角色获取相应的菜单信息
 	 * @param roleId

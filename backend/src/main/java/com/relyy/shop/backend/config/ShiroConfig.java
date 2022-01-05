@@ -2,14 +2,11 @@ package com.relyy.shop.backend.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.relyy.shop.backend.services.shiro.UserRealm;
-import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.session.mgt.DefaultSessionManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.mapstruct.Qualifier;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -87,7 +84,7 @@ public class ShiroConfig {
 
 	@Bean
 	public SecurityManager securityManager(){
-		DefaultSecurityManager securityManager = new DefaultSecurityManager();
+		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setRealm(userRealm());
 		//todo 缓存管理
 		// todo 会话管理
