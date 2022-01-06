@@ -1,9 +1,13 @@
 package com.relyy.shop.backend.services;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.relyy.shop.backend.common.BulidTree;
+import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.common.Tree;
+import com.relyy.shop.backend.entity.DictDO;
 import com.relyy.shop.backend.entity.MenuDO;
 import com.relyy.shop.backend.mapper.MenuMapper;
 import com.relyy.shop.backend.mapper.RoleMenuMapper;
@@ -137,5 +141,11 @@ public class MenuService {
 		// 默认顶级菜单为０，根据数据库实际情况调整
 		Tree<MenuDO> t = BulidTree.build(trees);
 		return t;
+	}
+
+	public IPage<MenuDO> listByPage(Query<MenuDO> query) {
+		IPage page = new Page(query.getPage(),query.getLimit());
+		QueryWrapper<MenuDO> wrapper = new QueryWrapper<>(query.getCondition());
+		return menuMapper.selectPage(page,wrapper);
 	}
 }

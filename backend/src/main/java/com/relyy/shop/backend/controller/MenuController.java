@@ -1,25 +1,18 @@
 package com.relyy.shop.backend.controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.relyy.shop.backend.common.*;
+import com.relyy.shop.backend.entity.MenuDO;
+import com.relyy.shop.backend.services.MenuService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
-
-import com.relyy.shop.backend.entity.MenuDO;
-import com.relyy.shop.backend.services.MenuService;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * 菜单管理
@@ -48,9 +41,9 @@ public class MenuController {
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<MenuDO> menuList = menuService.list(query);
-        int total = menuService.count(query);
-        PageBean pageBean = new PageBean(menuList, total);
+        IPage<MenuDO> page = menuService.listByPage(query);
+        //int total = dictService.count(query);
+        PageBean pageBean = new PageBean(page);
         return ResponseResult.ok().put(pageBean);
     }
 

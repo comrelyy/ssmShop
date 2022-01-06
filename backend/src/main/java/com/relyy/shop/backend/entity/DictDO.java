@@ -63,5 +63,5 @@ public class DictDO implements Serializable {
 	//备注信息
 	private String remarks;
 	//删除标记
-	private String delFlag = "1";
+	private String delFlag = "0";
 }

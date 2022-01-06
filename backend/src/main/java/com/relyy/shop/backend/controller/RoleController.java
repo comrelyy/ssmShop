@@ -1,8 +1,10 @@
 package com.relyy.shop.backend.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.relyy.shop.backend.common.PageBean;
 import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.common.ResponseResult;
+import com.relyy.shop.backend.entity.DictDO;
 import com.relyy.shop.backend.entity.RoleDO;
 import com.relyy.shop.backend.services.RoleService;
 import io.swagger.annotations.ApiOperation;
@@ -44,9 +46,9 @@ public class RoleController extends BaseController{
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<RoleDO> roleList = roleService.list(query);
-        int total = roleService.count(query);
-        PageBean pageBean = new PageBean(roleList, total);
+        IPage<RoleDO> page = roleService.listByPage(query);
+        //int total = dictService.count(query);
+        PageBean pageBean = new PageBean(page);
         return ResponseResult.ok().put(pageBean);
     }
 

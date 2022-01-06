@@ -53,7 +53,7 @@ function load() {
                 singleSelect: false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize: 10, // 如果设置了分页，每页数据条数
+                pageSize: 25, // 如果设置了分页，每页数据条数
                 pageNumber: 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
                 showColumns: false, // 是否显示内容下拉框（选择显示的列）
@@ -87,19 +87,21 @@ function load() {
                     {
                         checkbox: true
                     },
-                    {
-                        title: '序号',
-                        formatter: function () {
-                            return arguments[2] + 1;
-                        }
-                    },
+                    // {
+                    //     title: '序号',
+                    //     formatter: function () {
+                    //         return arguments[2] + 1;
+                    //     }
+                    // },
                     {
                         field: 'id',
                         title: '编号'
                     },
                     {
                         field: 'name',
-                        title: '标签名'
+                        title: '标签名',
+                        sortable:"true",
+                        searchType:"text"
                     },
                     {
                         field: 'value',

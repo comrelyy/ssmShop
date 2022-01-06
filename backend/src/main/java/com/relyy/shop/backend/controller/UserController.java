@@ -1,5 +1,6 @@
 package com.relyy.shop.backend.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Maps;
 import com.relyy.shop.backend.common.PageBean;
 import com.relyy.shop.backend.common.Query;
@@ -57,9 +58,8 @@ public class UserController extends BaseController{
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<UserDO> userList = userService.list(query);
-        int total = userService.count(query);
-        PageBean pageBean = new PageBean(userList, total);
+        IPage<UserDO> page = userService.listByPage(query);
+        PageBean pageBean = new PageBean(page);
         return ResponseResult.ok().put(pageBean);
     }
 

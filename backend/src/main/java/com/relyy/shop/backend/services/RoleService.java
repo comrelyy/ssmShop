@@ -1,16 +1,20 @@
 package com.relyy.shop.backend.services;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.relyy.shop.backend.common.Query;
+import com.relyy.shop.backend.entity.RoleDO;
+import com.relyy.shop.backend.mapper.RoleMapper;
 import com.relyy.shop.backend.mapper.RoleMenuMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import com.relyy.shop.backend.mapper.RoleMapper;
-import com.relyy.shop.backend.entity.RoleDO;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 角色
@@ -67,5 +71,11 @@ public class RoleService {
 	public int batchRemove(Long[] roleIds){
 		roleMenuMapper.batchDelByRole(Arrays.asList(roleIds));
 		return roleMapper.deleteBatchIds(Arrays.asList(roleIds));
+	}
+
+	public IPage<RoleDO> listByPage(Query<RoleDO> query) {
+		IPage page = new Page(query.getPage(),query.getLimit());
+		QueryWrapper<RoleDO> wrapper = new QueryWrapper<>(query.getCondition());
+		return roleMapper.selectPage(page,wrapper);
 	}
 }

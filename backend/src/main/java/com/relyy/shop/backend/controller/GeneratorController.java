@@ -89,8 +89,8 @@ public class GeneratorController {
 	public ResponseResult<PageBean> genColumnsList(String tableName) {
 		List<GenColumnsDO> genColumns = generatorService.listColumnsByTableName(tableName);
 		int total = genColumns.size();
-		PageBean pageBean = new PageBean(genColumns, total);
-		return new ResponseResult<PageBean>(true,pageBean,"0","ok");
+		PageBean pageBean = new PageBean(genColumns, Long.valueOf(total));
+		return ResponseResult.ok().put(pageBean);
 	}
 
 	/**

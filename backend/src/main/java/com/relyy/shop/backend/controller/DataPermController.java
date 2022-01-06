@@ -48,11 +48,11 @@ public class DataPermController {
     @RequiresPermissions("backend:dataPerm:dataPerm")
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
-        Query query = new Query(params);
-        List<DataPermDO> dataPermList = dataPermService.list(query);
-        int total = dataPermService.count(query);
-        PageBean pageBean = new PageBean(dataPermList, total);
-        return ResponseResult.ok().put(pageBean);
+//        Query query = new Query(params);
+//        List<DataPermDO> dataPermList = dataPermService.list(query);
+//        int total = dataPermService.count(query);
+//        PageBean pageBean = new PageBean(dataPermList, total);
+         return ResponseResult.ok();//.put(pageBean);
     }
 
     @ApiOperation(value = "新增数据权限管理页面", notes = "新增数据权限管理页面")

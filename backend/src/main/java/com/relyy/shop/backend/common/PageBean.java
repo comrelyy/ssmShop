@@ -1,32 +1,24 @@
 package com.relyy.shop.backend.common;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Data
 public class PageBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int total;
+	private Long total;
 	private List<?> rows;
 
-	public PageBean(List<?> list, int total) {
+	public PageBean(List<?> list, Long total) {
 		this.rows = list;
 		this.total = total;
 	}
 
-	public int getTotal() {
-		return total;
+	public PageBean(IPage page) {
+		this.rows = page.getRecords();
+		this.total = page.getTotal();
 	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
-	public List<?> getRows() {
-		return rows;
-	}
-
-	public void setRows(List<?> rows) {
-		this.rows = rows;
-	}
-
 }

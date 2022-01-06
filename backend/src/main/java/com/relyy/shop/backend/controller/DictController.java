@@ -3,6 +3,7 @@ package com.relyy.shop.backend.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +50,12 @@ public class DictController extends BaseController{
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("sys:dict:dict")
-    public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
+    public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) throws Exception{
         //查询列表数据
-        Query query = new Query(params);
-        List<DictDO> dictList = dictService.list(query);
-        int total = dictService.count(query);
-        PageBean pageBean = new PageBean(dictList, total);
+        Query query = new Query(params,DictDO.class);
+        IPage<DictDO> page = dictService.listByPage(query);
+        //int total = dictService.count(query);
+        PageBean pageBean = new PageBean(page);
         return ResponseResult.ok().put(pageBean);
     }
 

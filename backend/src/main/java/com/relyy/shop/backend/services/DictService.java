@@ -1,6 +1,9 @@
 package com.relyy.shop.backend.services;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.entity.UserDO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +37,12 @@ public class DictService {
 
 	public List<DictDO> list(Map<String, Object> map){
 		return dictMapper.list(map);
+	}
+
+	public IPage<DictDO> listByPage(Query<DictDO> query){
+		IPage page = new Page(query.getPage(),query.getLimit());
+		QueryWrapper<DictDO> wrapper = new QueryWrapper<>(query.getCondition());
+		return dictMapper.selectPage(page,wrapper);
 	}
 
 	public int count(Map<String, Object> map){
