@@ -21,6 +21,7 @@ public class ApplicationContextRegister implements ApplicationContextAware {
 		APPLICATION_CONTEXT = applicationContext;
 	}
 
+
 	public static ApplicationContext getApplicationContext(){
 		return APPLICATION_CONTEXT;
 	}
