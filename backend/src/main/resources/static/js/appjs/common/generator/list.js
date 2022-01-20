@@ -53,7 +53,7 @@ function load() {
 								},
 								{
 									field : 'engine',
-									title : 'engine'
+									title : '表引擎'
 								},
 								{
 									field : 'tableComment',
@@ -82,6 +82,17 @@ function load() {
 }
 function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
+}
+
+function addTable() {
+	layer.open({
+		type : 2,
+		title : '生成配置',
+		maxmin : true,
+		shadeClose : false,
+		area : [ '800px', '520px' ],
+		content : prefix + '/addTable'
+	});
 }
 function downloadCode(tableName) {
 	location.href = prefix + "/downLoadCode/" + tableName;
@@ -152,15 +163,15 @@ function batchCode() {
 
 }
 
-function edit(){
-	console.log('打开配置页面');
+function editProperties(){
+	//console.log('打开配置页面');
 	layer.open({
 		type : 2,
 		title : '生成配置',
 		maxmin : true,
 		shadeClose : false, 
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit'
+		content : prefix + '/editProperties'
 	});
 }
 
@@ -170,7 +181,7 @@ function columnEdit(tableName){
 		title : '列配置',
 		maxmin : true,
 		shadeClose : false,
-		area : [ '800px', '520px' ],
+		area : [ '1200px', '560px' ],
 		content : prefix + '/genColumns?tableName='+tableName
 	});
 }

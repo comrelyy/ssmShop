@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -9,7 +9,7 @@
             <div class="ibox float-e-margins">
             <div class="ibox-content">
             <form class="form-horizontal m-t" id="signupForm">
-                <input id="${priKeyColumn.columnName}" name="${priKeyColumn.columnName}" th:value="${${className}.${priKeyColumn.columnName}}"
+                <input id="${priKeyColumn.attrName}" name="${priKeyColumn.attrName}" th:value="${${className}.${priKeyColumn.attrName}}"
                        type="hidden">
                 #foreach($column in $columns)
                     #if($column.columnName != $priKeyColumn.columnName)

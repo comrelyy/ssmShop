@@ -98,7 +98,7 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES (1,'1', 'admin', '超级管理员', 'd633268afedf209e1e4ea0f5f43228a8', '14', 'admin@example.com', '17699999999', '1', '1', now(), now(), '96', '2021-12-14 00:00:00', '148', 'ccc', '122;121;', '北京市', '北京市市辖区', '东城区');
+INSERT INTO `tb_user` VALUES (1,'1', 'admin', '超级管理员', '57df11455a8bfc767eae31f472a61d09', '14', 'admin@example.com', '17699999999', '1', '1', now(), now(), '96', '2021-12-14 00:00:00', '148', 'ccc', '122;121;', '北京市', '北京市市辖区', '东城区');
 
 -- ----------------------------
 -- Table structure for sys_role

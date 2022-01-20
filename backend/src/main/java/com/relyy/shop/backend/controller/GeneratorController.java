@@ -44,8 +44,13 @@ public class GeneratorController {
 		return generatorService.list(tableName);
 	}
 
-	@GetMapping("/edit")
-	public String edit(Model model){
+	@GetMapping("/addTable")
+	public String addTable(){
+		return perfix + "/addTable";
+	}
+
+	@GetMapping("/editProperties")
+	public String editProperties(Model model){
 		Configuration config = GeneratorUtil.getConfig();
 		Map<Object, Object> property = Maps.newHashMap();
 		property.put("author", config.getProperty("author"));
@@ -55,12 +60,12 @@ public class GeneratorController {
 		property.put("tablePrefix", config.getProperty("tablePrefix"));
 		property.put("srcPath", config.getProperty("srcPath"));
 		model.addAttribute("property", property);
-		return perfix + "/edit";
+		return perfix + "/editProperties";
 	}
 
 	@ResponseBody
-	@PostMapping("/update")
-	public ResponseResult update(@RequestParam Map<String, Object> map) {
+	@PostMapping("/updateProperties")
+	public ResponseResult updateProperties(@RequestParam Map<String, Object> map) {
 		try {
 			PropertiesConfiguration conf = new PropertiesConfiguration("generator.properties");
 			conf.setProperty("author", map.get("author"));
@@ -94,14 +99,24 @@ public class GeneratorController {
 	}
 
 	/**
-	 * 保存
+	 * 执行代码生成
 	 */
-	@ApiOperation(value = "新增", notes = "新增")
+	@ApiOperation(value = "执行代码生成", notes = "执行代码生成")
 	@ResponseBody
-	@PostMapping("/genColumns/save")
-	public ResponseResult save(@RequestBody List<GenColumnsDO> list) {
+	@PostMapping("/genColumns/execGen")
+	public ResponseResult execGen(@RequestBody List<GenColumnsDO> list) {
 		generatorService.genColumnsSave(list);
 		return ResponseResult.ok();
+	}
+
+	/**
+	 * 新增列
+	 */
+	@ApiOperation(value = "新增列", notes = "新增列")
+	@GetMapping("/genColumns/addColumn")
+	public String addColumn(String tableName, Model model) {
+		model.addAttribute("tableName", tableName);
+		return "common/genColumns/add";
 	}
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -13,8 +13,7 @@
                             <label class="col-sm-3 control-label">表名：</label>
                             <div class="col-sm-8">
                                 <input id="tableName" name="tableName" class="form-control"
-                                       type="text">
-
+                                       type="text" th:value="${tableName}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -22,7 +21,6 @@
                             <div class="col-sm-8">
                                 <input id="columnName" name="columnName" class="form-control"
                                        type="text">
-
                             </div>
                         </div>
                         <div class="form-group">
@@ -30,15 +28,15 @@
                             <div class="col-sm-8">
                                 <input id="columnType" name="columnType" class="form-control"
                                        type="text">
-
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">映射java类型：</label>
                             <div class="col-sm-8">
-                                <input id="javaType" name="javaType" class="form-control"
-                                       type="text">
-
+                                <select data-placeholder="--选择类型--" style='width: 100px' class="form-control chosen-select" tabindex="2"
+                                        dict-value="" dict-type="java_type" name="javaType" id="javaType"></select>
+<!--                                <input id="javaType" name="javaType" class="form-control"-->
+<!--                                       type="text">-->
                             </div>
                         </div>
                         <div class="form-group">
@@ -46,7 +44,6 @@
                             <div class="col-sm-8">
                                 <input id="columnComment" name="columnComment" class="form-control"
                                        type="text">
-
                             </div>
                         </div>
                         <div class="form-group">
@@ -54,7 +51,6 @@
                             <div class="col-sm-8">
                                 <input id="columnSort" name="columnSort" class="form-control"
                                        type="text">
-
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,32 +58,69 @@
                             <div class="col-sm-8">
                                 <input id="columnLabel" name="columnLabel" class="form-control"
                                        type="text">
-
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">页面显示类型：1、文本框 2、下拉框 3、数值4、日期 5、文本域6、富文本 7、上传图片【单文件】
-                                8、上传图片【多文件】9、上传文件【单文件】 10、上传文件【多文件】：</label>
+                            <label class="col-sm-3 control-label">页面显示类型：</label>
                             <div class="col-sm-8">
-                                <input id="pageType" name="pageType" class="form-control"
-                                       type="text">
-
+                                <select  data-placeholder="--选择类型--" style='width: 100px' class="form-control chosen-select"
+                                         tabindex="2" dict-value="" dict-type="page_type" id="pageType" name="pageType"></select>
+<!--                                <input id="pageType" name="pageType" class="form-control"-->
+<!--                                       type="text">-->
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">是否必填：</label>
                             <div class="col-sm-8">
-                                <input id="isRequired" name="isRequired" class="form-control"
-                                       type="text">
-
+                                <div class="col-sm-8">
+                                    <label>
+                                        <input style="margin-top: 11px;" type="checkbox" name="isRequired" value="1"/>
+                                    </label>
+                                </div>
+<!--                                <label class="radio-inline">-->
+<!--                                    <input type="radio" name="isRequired" value="1" /> 是-->
+<!--                                </label>-->
+<!--                                <label class="radio-inline">-->
+<!--                                    <input type="radio" name="isRequired" value="0" /> 否-->
+                            </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">页面显示为下拉时使用，字典类型从字典表中取出：</label>
+                            <label class="col-sm-3 control-label">索引类型：</label>
                             <div class="col-sm-8">
-                                <input id="dictType" name="dictType" class="form-control"
+                                <label class="radio-inline">
+                                    <input type="radio" name="columnKey" value="PRI" /> 主键
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="columnKey" value="UNI" /> 唯一
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否自增：</label>
+                            <div class="col-sm-8">
+                                <label>
+                                    <input style="margin-top: 11px;" type="checkbox" value="auto_increment"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">默认值：</label>
+                            <div class="col-sm-8">
+                                <input id="defaultValue" name="defaultValue" class="form-control"
                                        type="text">
-
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">字典表类型：</label>
+                            <div class="col-sm-8">
+                                <input id="dictType" name="dictType" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">其他：</label>
+                            <div class="col-sm-8">
+                                <input id="extra" name="extra" class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group">

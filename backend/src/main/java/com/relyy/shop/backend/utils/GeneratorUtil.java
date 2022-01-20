@@ -31,21 +31,21 @@ public class GeneratorUtil {
 
 	public static List<String> getTemplates(){
 		List<String> templates = new ArrayList<String>();
-		templates.add("templates/common/generator/entity.java.vm");
+		templates.add("templates/common/code_templates/entity.java.vm");
 		//templates.add("templates/common/generator/Dao.java.vm");
-		templates.add("templates/common/generator/Mapper.java.vm");
+		templates.add("templates/common/code_templates/Mapper.java.vm");
 		//templates.add("templates/common/generator/Mapper.xml.vm");
-		templates.add("templates/common/generator/Service.java.vm");
+		templates.add("templates/common/code_templates/Service.java.vm");
 //		templates.add("templates/common/generator/ServiceImpl.java.vm");
-		templates.add("templates/common/generator/Controller.java.vm");
-		templates.add("templates/common/generator/list.html.vm");
-		templates.add("templates/common/generator/add.html.vm");
-		templates.add("templates/common/generator/edit.html.vm");
-		templates.add("templates/common/generator/detail.html.vm");
-		templates.add("templates/common/generator/list.js.vm");
-		templates.add("templates/common/generator/add.js.vm");
-		templates.add("templates/common/generator/edit.js.vm");
-		templates.add("templates/common/generator/menu.sql.vm");
+		templates.add("templates/common/code_templates/Controller.java.vm");
+		templates.add("templates/common/code_templates/list.html.vm");
+		templates.add("templates/common/code_templates/add.html.vm");
+		templates.add("templates/common/code_templates/edit.html.vm");
+		templates.add("templates/common/code_templates/detail.html.vm");
+		templates.add("templates/common/code_templates/list.js.vm");
+		templates.add("templates/common/code_templates/add.js.vm");
+		templates.add("templates/common/code_templates/edit.js.vm");
+		templates.add("templates/common/code_templates/menu.sql.vm");
 		return templates;
 	}
 
@@ -173,16 +173,17 @@ public class GeneratorUtil {
 		genColumnsDO.setColumnComment(column.get("columnComment")+"");
 		PropertiesConfiguration conf = new PropertiesConfiguration("generator.properties");
 		genColumnsDO.setJavaType(conf.getString(column.get("dataType")+""));
-		genColumnsDO.setColumnSort(columnSort);
+		genColumnsDO.setColumnSort(Integer.valueOf(column.get("columnSort")+""));
 		genColumnsDO.setExtra(column.get("extra")+"");
-		genColumnsDO.setIsRequired(0);
+		genColumnsDO.setIsRequired(StringUtils.compare(column.get("isRequired")+"","YES") == 0 ? 1 : 0);
 		if ("Date".equals(conf.getString(column.get("dataType")+""))) {
 			genColumnsDO.setPageType(4);
-
 		} else {
 			genColumnsDO.setPageType(1);
 		}
 		genColumnsDO.setColumnLabel(column.get("columnComment")+"");
+		genColumnsDO.setDefaultValue(column.get("defaultValue")+"");
+		genColumnsDO.setColumnKey(column.get("columnKey")+"");
 		return genColumnsDO;
 	}
 

@@ -14,6 +14,9 @@ call addColum()$$
 drop procedure if exists addColum$$
 
 delimiter ;
+
+drop table if EXISTS store.tb_user_role;
+update store.tb_user set role_id = 1;
 -- drop procedure if exists addColum;
 -- create procedure addColum()
 -- begin

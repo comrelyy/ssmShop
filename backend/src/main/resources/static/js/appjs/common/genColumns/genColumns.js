@@ -24,7 +24,7 @@ function load() {
                 singleSelect: false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize: 10, // 如果设置了分页，每页数据条数
+                pageSize: 50, // 如果设置了分页，每页数据条数
                 pageNumber: 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
                 showColumns: false, // 是否显示内容下拉框（选择显示的列）
@@ -40,7 +40,7 @@ function load() {
                     if (rs.code == 0) {
                         columnsData[0]=rs.data.rows[0];
                         tableName=columnsData[0].tableName;
-                        rs.data.rows.splice(0,1);
+                       // rs.data.rows.splice(0,1);
                         return rs.data;
                     } else {
                         parent.layer.alert(rs.msg)
@@ -49,43 +49,42 @@ function load() {
                 },
                 onPostBody: function() {
                     loadDict();
-
-                    $.ajax({
-                        url : '/backend/dict/type',
-                        success : function(data) {
-                            $("select[name=dictType]").each(function (index, domEle) {
-                                var html = "";
-                                //加载数据
-                                for (var i = 0; i < data.length; i++) {
-                                    html += '<option value="' + data[i].type + '">' + data[i].description + '</option>'
-                                }
-                                $(domEle).append(html);
-                                $(domEle).chosen({
-                                    maxHeight: 200
-                                });
-                                $(domEle).val($(domEle).attr("select-value"));
-                                $(domEle).trigger("chosen:updated");
-
-                            });
-
-
-                        }
-                    });
+                    loadDictType();
                 },
                 columns: [
+                    // {
+                    //     title: '序号',
+                    //     formatter: function () {
+                    //         return arguments[2] + 1;
+                    //     }
+                    // },
                     {
-                        title: '序号',
-                        formatter: function () {
-                            return arguments[2] + 1;
+                        field: 'columnSort',
+                        title: '列排序（升序）',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
                         }
                     },
                     {
                         field: 'columnName',
-                        title: '列名'
+                        title: '列名',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                        }
                     },
                     {
                         field: 'columnType',
-                        title: '列类型'
+                        title: '列类型',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                        }
+                    },
+                    {
+                        field: 'columnKey',
+                        title: '索引类型',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                        }
                     },
                     {
                         field: 'javaType',
@@ -98,14 +97,16 @@ function load() {
                     },
                     {
                         field: 'columnComment',
-                        title: '列注释'
+                        title: '列注释',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                        }
                     },
                     {
                         field: 'columnLabel',
                         title: '列标签名',
                         formatter: function (value, row, index) {
-
-                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                            return "<input style='width: 100px' class=\"form-control,checkbox-inline\" type='text' value='"+value+"'/>";
                         }
                     },
                     { /*<select data-placeholder="--选择类别--" name="catid" id="catid"
@@ -136,8 +137,22 @@ function load() {
                         }
                     },
                     {
-                        field: 'columnSort',
-                        title: '列排序（升序）',
+                        field: 'defaultValue',
+                        title: '默认值',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                        }
+                    },
+                    {
+                        field: 'status',
+                        title: '状态',
+                        formatter: function (value, row, index) {
+                            return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
+                        }
+                    },
+                    {
+                        field: 'extra',
+                        title: '其他',
                         formatter: function (value, row, index) {
                             return "<input style='width: 100px' class=\"form-control\" type='text' value='"+value+"'/>";
                         }
@@ -152,11 +167,11 @@ function reLoad() {
 function add() {
     layer.open({
         type: 2,
-        title: '增加',
+        title: '增加列',
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: prefix + '/add' // iframe的url
+        content: prefix + '/addColumn' // iframe的url
     });
 }
 
@@ -246,64 +261,69 @@ function batchRemove() {
 }
 
 
-function save() {
-
+function exec() {
     $('#exampleTable').find("tbody").find("tr").each(function (index, trEle){
         var columnData = {};
         columnData.tableName = tableName;
         columnsData[index+1]=columnData;
-
         $(trEle).find("td").each(function (index, tdEle){
             switch (index) {
-                case 1:{
-                    columnData.columnName = $(tdEle).text();
-                    break;
-                }
-                case 2:{
-                    columnData.columnType = $(tdEle).text();
-                    break;
-                }
-                case 3:{
-                    columnData.javaType = $(tdEle).find("select").eq(0).val();
-                    break;
-                }
-                case 4:{
-                    columnData.columnComment = $(tdEle).text();
-                    break;
-                }
-                case 5:{
-                    columnData.columnLabel = $(tdEle).find("input").eq(0).val();
-                    break;
-                }
-                case 6:{
-                    columnData.pageType = $(tdEle).find("select").eq(0).val();
-                    break;
-                }
-                case 7:{
-                    columnData.dictType = $(tdEle).find("select").eq(0).val();
-                    break;
-                }
-                case 8:{
-                    columnData.isRequired = $(tdEle).find("input").eq(0).is(':checked')?1:0;
-                    break;
-                }
-                case 9:{
+                case 0:{
                     columnData.columnSort = $(tdEle).find("input").eq(0).val();
                     break;
                 }
-
-
-
+                case 1:{
+                    columnData.columnName = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 2:{
+                    columnData.columnType = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 3:{
+                    columnData.columnKey = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 4:{
+                    columnData.javaType = $(tdEle).find("select").eq(0).val();
+                    break;
+                }
+                case 5:{
+                    columnData.columnComment = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 6:{
+                    columnData.columnLabel = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 7:{
+                    columnData.pageType = $(tdEle).find("select").eq(0).val();
+                    break;
+                }
+                case 8:{
+                    columnData.dictType = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 9:{
+                    columnData.isRequired = $(tdEle).find("input").eq(0).is(':checked')?1:0;
+                    break;
+                }
+                case 10:{
+                    columnData.defaultValue = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
+                case 11:{
+                    columnData.extra = $(tdEle).find("input").eq(0).val();
+                    break;
+                }
             }
-
         });
     });
-
 console.log(columnsData)
     $.ajax({
         cache : true,
         type : "POST",
-        url : prefix+"/save",
+        url : prefix+"/execGen",
         headers : {
             "Content-Type": "application/json"
         },
@@ -318,7 +338,6 @@ console.log(columnsData)
                 parent.reLoad();
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
                 parent.layer.close(index);
-
             } else {
                 parent.layer.alert(data.msg)
             }

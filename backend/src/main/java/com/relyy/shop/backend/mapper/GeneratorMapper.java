@@ -1,7 +1,6 @@
 package com.relyy.shop.backend.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.Map;
 @Mapper
 public interface GeneratorMapper {
 
-	@Select("select table_name as tableName,engine,table_comment as tableComment,create_time as craeteTime " +
+	@Select("select table_name as tableName,ENGINE as engine,table_comment as tableComment,create_time as createTime " +
 			"from information_schema.tables " +
 			"where table_schema = (select database()) and table_name like concat('%','${tableName}','%')")
 	List<Map<String,Object>> list(String tableName);
@@ -29,12 +28,20 @@ public interface GeneratorMapper {
 			"where table_schema = (select database()) and table_name = '${tableName}'")
 	Map<String,String> get(String tableName);
 
-	@Select("select column_name as columnName,data_type as dataType,column_comment as columnComment,column_key as columnKey,extra " +
+	@Select("select column_name as columnName,data_type as dataType,column_comment as columnComment,column_key as columnKey," +
+			"ordinal_position as columnSort," +
+			"column_default as defaultValue," +
+			"is_nullable as isRequired," +
+			"EXTRA as extra " +
 			"from information_schema.columns " +
 			"where table_name ='${tableName}' and table_schema = (select database()) order by ordinal_position ")
 	List<Map<String,Object>> listColumns(String tableName);
 
-	@Select("select column_name as columnName,data_type as dataType,column_comment as columnComment,column_key as columnKey,extra " +
+	@Select("select column_name as columnName,data_type as dataType,column_comment as columnComment,column_key as columnKey," +
+			"ordinal_position as columnSort," +
+			"column_default as defaultValue," +
+			"is_nullable as isRequired," +
+			"EXTRA as extra " +
 			"from information_schema.columns " +
 			"where table_name ='${tableName}' and table_schema = (select database()) and column_key ='PRI' limit 1 ")
 	Map<String,Object> getPriColum(String tableName);

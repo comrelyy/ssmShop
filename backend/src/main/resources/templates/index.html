@@ -268,13 +268,15 @@
 <script src="/js/plugins/toastr/toastr.min.js"></script>
 <script type="text/javascript">
     var dictList = [];//全局页面操作对象,请将常用数据挂载在这个对象
-    $.ajax({
-        url : '/backend/dict/list',
-        data: {'limit':1000,'offset':0},
-        success : function(data) {
-            dictList = data.rows;
-        }
-    });
+    if (dictList.length == 0) {
+        $.ajax({
+            url: '/backend/dict/list',
+            data: {'limit': 1000, 'offset': 0},
+            success: function (result) {
+                dictList = result.data.rows;
+            }
+        });
+    }
 
     var wrapper = new Vue({
         el: '#wrapper',

@@ -8,7 +8,6 @@ import com.relyy.shop.backend.utils.GeneratorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +45,9 @@ public class GeneratorService {
 	public List<GenColumnsDO> listColumnsByTableName(String tableName) {
 		//查询列信息
 		List<Map<String, Object>> maps = generatorMapper.listColumns(tableName);
-		Map<String, Object> priColum = generatorMapper.getPriColum(tableName);
+		//Map<String, Object> priColum = generatorMapper.getPriColum(tableName);
 		List<GenColumnsDO> genColumnsDOS = transMap(tableName, maps);
-		genColumnsDOS.add(GeneratorUtil.transGenColumnDO(tableName,priColum,0));
+		//genColumnsDOS.add(GeneratorUtil.transGenColumnDO(tableName,priColum,0));
 		return genColumnsDOS;
 	}
 
@@ -60,7 +59,7 @@ public class GeneratorService {
 		int columnSort = 0;
 		List<GenColumnsDO> columnList = Lists.newArrayList();
 		for (Map<String, Object> column : columnMapList) {
-			if("PRI".equalsIgnoreCase(column.get("columnKey")+"")) continue;
+			//if("PRI".equalsIgnoreCase(column.get("columnKey")+"")) continue;
 			GenColumnsDO genColumnsDO =  GeneratorUtil.transGenColumnDO(tableName,column,++columnSort);
 			columnList.add(genColumnsDO);
 		}
