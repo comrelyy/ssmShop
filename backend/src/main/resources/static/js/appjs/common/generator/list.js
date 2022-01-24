@@ -52,7 +52,7 @@ function load() {
 									title : '表名称' // 列标题
 								},
 								{
-									field : 'engine',
+									field : 'tableEngine',
 									title : '表引擎'
 								},
 								{
@@ -60,7 +60,7 @@ function load() {
 									title : '表描述'
 								},
 								{
-									field : 'createTime',
+									field : 'gmtCreate',
 									title : '创建时间'
 								},
 								{
@@ -87,7 +87,7 @@ function reLoad() {
 function addTable() {
 	layer.open({
 		type : 2,
-		title : '生成配置',
+		title : '新增数据库表信息',
 		maxmin : true,
 		shadeClose : false,
 		area : [ '800px', '520px' ],

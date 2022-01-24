@@ -3,6 +3,7 @@ var columnsData = [];
 var tableName = "";
 $(function () {
     load();
+    tableName = $('#tableName').val();
 });
 
 function load() {
@@ -38,9 +39,9 @@ function load() {
                 responseHandler: function (rs) {
 
                     if (rs.code == 0) {
-                        columnsData[0]=rs.data.rows[0];
-                        tableName=columnsData[0].tableName;
-                       // rs.data.rows.splice(0,1);
+                        //columnsData[0]=rs.data.rows[0];
+                        //tableName=columnsData[0].tableName;
+                       // // rs.data.rows.splice(0,1);
                         return rs.data;
                     } else {
                         parent.layer.alert(rs.msg)
@@ -171,7 +172,7 @@ function add() {
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: prefix + '/addColumn' // iframe的url
+        content: prefix + '/addColumn/' + tableName // iframe的url
     });
 }
 

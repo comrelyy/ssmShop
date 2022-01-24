@@ -21,7 +21,7 @@ public class GenTableDO {
 
     private String className;
 
-    private String tableComments;
+    private String tableComment;
 
     private String tableEngine;
 
@@ -36,7 +36,7 @@ public class GenTableDO {
     /**
      * '要执行的操作，add 新增； del 删除； update 更新；done 完成；unable 未使用 默认'
      */
-    private Integer status;
+    private String status;
 
     private Long createUser;
     private Long updateUser;

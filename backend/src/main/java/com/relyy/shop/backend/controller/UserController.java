@@ -114,7 +114,7 @@ public class UserController extends BaseController{
         }
         user.setPassword(MD5Util.encrypt(user.getUsername(),user.getPassword()));
         user.setUserId(generatorUserId());
-        Long createUserId = getUserId(request);
+        Long createUserId = getUserId();
         user.setUserIdCreate(createUserId);
         if (userService.save(user) > 0) {
             return ResponseResult.ok();

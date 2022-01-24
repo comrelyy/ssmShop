@@ -1,5 +1,6 @@
 package com.relyy.shop.backend.mapper;
 
+import com.relyy.shop.backend.entity.GenTableDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -14,10 +15,10 @@ import java.util.Map;
 @Mapper
 public interface GeneratorMapper {
 
-	@Select("select table_name as tableName,ENGINE as engine,table_comment as tableComment,create_time as createTime " +
+	@Select("select table_name as tableName,ENGINE as tableEngine,table_comment as tableComment,create_time as gmtCreate " +
 			"from information_schema.tables " +
 			"where table_schema = (select database()) and table_name like concat('%','${tableName}','%')")
-	List<Map<String,Object>> list(String tableName);
+	List<GenTableDO> list(String tableName);
 
 	@Select("select count(*) from information_schema.tables where table_schema = (select database()) " +
 			" and table_name <> 'flyway_schema_history'")

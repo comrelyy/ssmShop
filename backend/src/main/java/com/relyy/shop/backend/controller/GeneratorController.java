@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.relyy.shop.backend.common.PageBean;
 import com.relyy.shop.backend.common.ResponseResult;
 import com.relyy.shop.backend.entity.GenColumnsDO;
+import com.relyy.shop.backend.entity.GenTableDO;
 import com.relyy.shop.backend.services.GeneratorService;
 import com.relyy.shop.backend.utils.GeneratorUtil;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/common/generator")
-public class GeneratorController {
+public class GeneratorController extends BaseController {
 
 	private String perfix = "common/generator";
 
@@ -40,8 +41,8 @@ public class GeneratorController {
 
 	@ResponseBody
 	@GetMapping("/list")
-	public List<Map<String,Object>> list(String tableName){
-		return generatorService.list(tableName);
+	public ResponseResult<List<GenTableDO>> list(String tableName){
+		return ResponseResult.ok().put(generatorService.list(tableName));
 	}
 
 	@GetMapping("/addTable")
@@ -49,6 +50,17 @@ public class GeneratorController {
 		return perfix + "/addTable";
 	}
 
+	@ResponseBody
+	@PostMapping("/saveTable")
+	public ResponseResult saveTable(GenTableDO tableDO) {
+		Long userId = getUserId();
+		tableDO.setCreateUser(userId);
+		Configuration config = GeneratorUtil.getConfig();
+		tableDO.setPackageName(config.getProperty("package")+"");
+		tableDO.setSrcDir(config.getProperty("srcPath")+"");
+		generatorService.saveTable(tableDO);
+		return ResponseResult.ok();
+	}
 	@GetMapping("/editProperties")
 	public String editProperties(Model model){
 		Configuration config = GeneratorUtil.getConfig();
@@ -105,7 +117,7 @@ public class GeneratorController {
 	@ResponseBody
 	@PostMapping("/genColumns/execGen")
 	public ResponseResult execGen(@RequestBody List<GenColumnsDO> list) {
-		generatorService.genColumnsSave(list);
+
 		return ResponseResult.ok();
 	}
 
@@ -113,12 +125,20 @@ public class GeneratorController {
 	 * 新增列
 	 */
 	@ApiOperation(value = "新增列", notes = "新增列")
-	@GetMapping("/genColumns/addColumn")
-	public String addColumn(String tableName, Model model) {
+	@GetMapping("/genColumns/addColumn/{tableName}")
+	public String addColumn(@PathVariable("tableName") String tableName, Model model) {
 		model.addAttribute("tableName", tableName);
 		return "common/genColumns/add";
 	}
 
+	@ResponseBody
+	@PostMapping("/saveColumn")
+	public ResponseResult saveColumn(GenColumnsDO columnsDO) {
+		Long userId = getUserId();
+		columnsDO.setCreateUser(userId);
+		generatorService.genColumnsSave(columnsDO);
+		return ResponseResult.ok();
+	}
 
 	@ResponseBody
 	@PostMapping("/genCode")

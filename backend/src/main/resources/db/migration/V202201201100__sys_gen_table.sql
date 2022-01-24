@@ -26,19 +26,19 @@ CREATE TABLE `sys_gen_columns`
 DROP TABLE IF EXISTS `sys_gen_table`;
 CREATE TABLE `sys_gen_table`
 (
-    `id`             int         NOT NULL COMMENT '主键',
+    `id`             int NOT NULL AUTO_INCREMENT COMMENT '主键',
     `table_name`     varchar(64) NOT NULL COMMENT '表名',
-    `class_name`     varchar(64)          DEFAULT NULL COMMENT '实体类名称',
-    `table_comments` varchar(64)          DEFAULT NULL COMMENT '表说明',
-    `table_engine`   varchar(32) NOT NULL DEFAULT 'InnoDb' COMMENT '数据表引擎',
-    `table_charset`  tinyint(32) NOT NULL DEFAULT 'utf8mb4' COMMENT '数据表字符类型',
-    `package_name`   varchar(256)         DEFAULT NULL COMMENT '生成包路径',
-    `module_name`    varchar(256)         DEFAULT NULL COMMENT '生成模块名',
-    `src_dir`        varchar(256)         DEFAULT NULL COMMENT 'src目录',
-    `status`         varchar(32)          DEFAULT 'unable' COMMENT '要执行的操作，add 新增； del 删除； update 更新；done 完成；unable 未使用 ',
-    `create_user`    bigint(20)           DEFAULT NULL COMMENT '创建用户id',
+    `class_name`     varchar(64) DEFAULT NULL COMMENT '实体类名称',
+    `table_comment`  varchar(64)  DEFAULT NULL COMMENT '表说明',
+    `table_engine`   varchar(32) DEFAULT 'InnoDb' COMMENT '数据表引擎',
+    `table_charset`  varchar(32) DEFAULT 'utf8mb4' COMMENT '数据表字符类型',
+    `package_name`   varchar(256)DEFAULT NULL COMMENT '生成包路径',
+    `module_name`    varchar(256)DEFAULT NULL COMMENT '生成模块名',
+    `src_dir`        varchar(256)DEFAULT NULL COMMENT 'src目录',
+    `status`         varchar(32) DEFAULT 'unable' COMMENT '要执行的操作，add 新增； del 删除； update 更新；done 完成；unable 未使用 ',
+    `create_user`    bigint(20)  DEFAULT NULL COMMENT '创建用户id',
     `gmt_create`     datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_user`    bigint(20)           DEFAULT NULL COMMENT '修改用户id',
+    `update_user`    bigint(20)  DEFAULT NULL COMMENT '修改用户id',
     `gmt_modified`   datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COMMENT ='代码生成表';

@@ -184,6 +184,7 @@ public class GeneratorUtil {
 		genColumnsDO.setColumnLabel(column.get("columnComment")+"");
 		genColumnsDO.setDefaultValue(column.get("defaultValue")+"");
 		genColumnsDO.setColumnKey(column.get("columnKey")+"");
+		genColumnsDO.setStatus("done");
 		return genColumnsDO;
 	}
 

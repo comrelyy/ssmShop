@@ -11,7 +11,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/common/genColumns/save",
+		url : "/common/generator/saveColumn",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
