@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Maps;
 import com.relyy.shop.backend.common.Constant;
 import com.relyy.shop.backend.entity.GenColumnsDO;
+import com.relyy.shop.backend.entity.GenTableDO;
 import com.relyy.shop.backend.entity.TableDO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -154,7 +155,7 @@ public class GeneratorUtil {
 		}
 		if (template.contains("menu.sql.vm")) {
 			return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "sql"
-					+ File.separator + moduleName + File.separator + className + File.separator + "menu.js";
+					+ File.separator + moduleName + File.separator + className + File.separator + className+"menu.sql";
 		}
 
 //		if(template.contains("menu.sql.vm")){
@@ -188,18 +189,27 @@ public class GeneratorUtil {
 		return genColumnsDO;
 	}
 
-	public static void generatorCode(Map<String,String> tableMap, GenColumnsDO priKeyColumn,List<GenColumnsDO> columnsDOList){
+	@SneakyThrows
+	public static void generatorCode(GenTableDO genTableDO, GenColumnsDO priKeyColumn, List<GenColumnsDO> columnsDOList){
 		Configuration config = getConfig();
 		//封装表信息
+		//PropertiesConfiguration conf = new PropertiesConfiguration("generator.properties");
 		TableDO tableDO = new TableDO();
-		tableDO.setTableName(tableMap.get("tableName"));
-		tableDO.setComments(tableMap.get("tableComment"));
+		tableDO.setTableName(genTableDO.getTableName());
+		tableDO.setComments(genTableDO.getTableComment());
 		String className = tableToJava(tableDO.getTableName(), config.getString("tablePrefix"), config.getString("autoRemovePre"));
 		tableDO.setClassNameUpFirst(className);
 		tableDO.setClassName(StringUtils.uncapitalize(className));
 
 		Collections.sort(columnsDOList, Comparator.comparingInt(GenColumnsDO::getColumnSort));
 		columnsDOList.forEach(genColumnsDO -> {
+			genColumnsDO.setColumnLabel(genColumnsDO.getColumnComment());
+			genColumnsDO.setJavaType(config.getString(genColumnsDO.getColumnType()+""));
+			if ("Date".equals(config.getString(genColumnsDO.getColumnType()+""))) {
+				genColumnsDO.setPageType(4);
+			} else {
+				genColumnsDO.setPageType(1);
+			}
 			String column = columnToJava(genColumnsDO.getColumnName());
 			genColumnsDO.setAttrNameUpFirst(column);
 			genColumnsDO.setAttrName(StringUtils.uncapitalize(column));
@@ -210,7 +220,7 @@ public class GeneratorUtil {
 		priKeyColumn.setAttrName(StringUtils.uncapitalize(columnName));
 
 		tableDO.setPriKeyColumn(priKeyColumn);
-		columnsDOList.add(0,priKeyColumn);
+		//columnsDOList.add(0,priKeyColumn);
 		tableDO.setColumns(columnsDOList);
 
 		//设置velocity资源加载器

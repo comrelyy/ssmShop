@@ -117,8 +117,9 @@ public class GeneratorController extends BaseController {
 	@ResponseBody
 	@PostMapping("/genColumns/execGen")
 	public ResponseResult execGen(@RequestBody List<GenColumnsDO> list) {
-
-		return ResponseResult.ok();
+//		String[] tableNames = new String[]{tableName};
+//		generatorService.generatorCode(tableNames);
+		return ResponseResult.ok("代码生成成功，请到本地项目中查看！");
 	}
 
 	/**

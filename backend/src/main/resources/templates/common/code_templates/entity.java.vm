@@ -3,14 +3,15 @@ package ${package}.entity;
 import java.io.Serializable;
 
 
-import java.math.BigDecimal;
-
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.relyy.shop.backend.utils.Long2StringSerializer;
 import lombok.Data;
 
 
+import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ import java.util.Date;
  * @email ${email}
  * @date ${datetime}
  */
+@Accessors(chain = true)
 @Data
 @TableName("")
 public class ${classNameUpFirst}DO implements Serializable {
@@ -38,8 +40,8 @@ public class ${classNameUpFirst}DO implements Serializable {
 	//所以通过序列化成字符串来解决
 	@JsonSerialize(using = Long2StringSerializer.class)
 	#end
-	#if($column.attrName == "${className}Id")
-	@TableId
+	#if($column.attrName == "id")
+	@TableId(type = IdType.AUTO)
 	#end
 	#if($column.javaType == "Date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${file.id}"
+                               type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文件名称：</label>
+                            <div class="col-sm-8">
+                                <input id="fileName" name="fileName"
+                                       th:value="${file.fileName}"
+                                       class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文件类型：</label>
+                            <div class="col-sm-8">
+                                <input id="fileType" name="fileType"
+                                       th:value="${file.fileType}"
+                                       class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">URL地址：</label>
+                            <div class="col-sm-8">
+                                <input id="url" name="url"
+                                       th:value="${file.url}"
+                                       class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">1 有效 0 已删除：</label>
+                            <div class="col-sm-8">
+                                <input id="status" name="status"
+                                       th:value="${file.status}"
+                                       class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建用户id：</label>
+                            <div class="col-sm-8">
+                                <input id="createUser" name="createUser"
+                                       th:value="${file.createUser}"
+                                       class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="laydate-icon layer-date form-control"
+                                       id="gmtCreate"
+                                       name="gmtCreate"
+                                       th:value="${file.gmtCreate}==null?null:${#dates.format(file.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"
+                                       onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
+                                       style="background-color: #fff;" readonly="readonly"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改用户id：</label>
+                            <div class="col-sm-8">
+                                <input id="updateUser" name="updateUser"
+                                       th:value="${file.updateUser}"
+                                       class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改时间：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="laydate-icon layer-date form-control"
+                                       id="gmtModified"
+                                       name="gmtModified"
+                                       th:value="${file.gmtModified}==null?null:${#dates.format(file.gmtModified,'yyyy-MM-dd HH:mm:ss')}"
+                                       onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
+                                       style="background-color: #fff;" readonly="readonly"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/static/wangEditor/release/wangEditor.js"></script>
+<script type="text/javascript" src="/js/appjs/backend/file/edit.js">
+</script>
+</body>
+</html>

@@ -63,6 +63,7 @@ public class GenColumnsDO implements Serializable {
 	 */
 	private Integer pageType;
 	//是否必填
+	@TableField
 	private Integer isRequired;
 	//默认值
 	private String defaultValue;

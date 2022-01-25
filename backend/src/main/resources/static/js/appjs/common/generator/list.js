@@ -71,11 +71,14 @@ function load() {
 										/*var d = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="在线下载代码" onclick="downloadCode(\''
 												+ row.tableName
 												+ '\')"><i class="fa fa-cloud-download"></i></a> ';*/
-										var g = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="本地生成代码" onclick="columnEdit(\''
+										var e = '<a class="btn btn-info btn-sm" href="#" mce_href="#" title="本地生成代码" onclick="genCode(\''
+											+ row.tableName
+											+ '\')"><i class="fa fa-rocket"></i></a> ';
+										var g = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="编辑表信息" onclick="columnEdit(\''
 											+ row.tableName
 											+ '\')"><i class="fa fa-bug"></i></a> ';
 
-										return g;
+										return e + g;
 									}
 								} ]
 					});

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${file.id}"
+                               type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文件名称：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.fileName}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文件类型：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.fileType}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">URL地址：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.url}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">1 有效 0 已删除：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.status}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建用户id：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.createUser}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.gmtCreate}==null?null:${#dates.format(file.gmtCreate,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改用户id：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.updateUser}">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改时间：</label>
+
+                            <div style="padding-top:8px" class="col-sm-8"
+                                 th:text="${file.gmtModified}==null?null:${#dates.format(file.gmtModified,'yyyy-MM-dd HH:mm:ss')}">
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>

@@ -8,12 +8,15 @@ import com.relyy.shop.backend.mapper.GenColumnsMapper;
 import com.relyy.shop.backend.mapper.GenTableMapper;
 import com.relyy.shop.backend.mapper.GeneratorMapper;
 import com.relyy.shop.backend.utils.GeneratorUtil;
+import lombok.SneakyThrows;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @Description
@@ -47,25 +50,39 @@ public class GeneratorService {
 	public void generatorCode(String[] tableNames) {
 		for (String tableName : tableNames) {
 			//查询表信息
-			Map<String, String> table = generatorMapper.get(tableName);
+			GenTableDO table = generatorMapper.get(tableName);
 			//查询列信息
-			List<Map<String, Object>> maps = generatorMapper.listColumns(tableName);
+			List<GenColumnsDO> genColumnsDOS = generatorMapper.listColumns(tableName);
+			GenColumnsDO priColumn = genColumnsDOS.stream().filter(genColumnsDO -> Objects.equals(genColumnsDO.getColumnKey(), "PRI"))
+					.findFirst().get();
+			//List<GenColumnsDO> genColumnsDOS = transMap(tableName, maps);
 
-			Map<String, Object> priColum = generatorMapper.getPriColum(tableName);
+			//Map<String, Object> priColum = generatorMapper.getPriColum(tableName);
 			//生成代码
-			GeneratorUtil.generatorCode(table, GeneratorUtil.transGenColumnDO(tableName,priColum,0), transMap(tableName,maps));
+			GeneratorUtil.generatorCode(table, priColumn, genColumnsDOS);
 		}
 	}
 
+	@SneakyThrows
 	public List<GenColumnsDO> listColumnsByTableName(String tableName) {
 		//查询列信息
 		QueryWrapper<GenColumnsDO> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("table_name",tableName);
 		queryWrapper.eq("status","unable");
 		List<GenColumnsDO> genColumnsDOS1 = genColumnsMapper.selectList(queryWrapper);
-		List<Map<String, Object>> maps = generatorMapper.listColumns(tableName);
+		List<GenColumnsDO> genColumnsDOS = generatorMapper.listColumns(tableName);
+		PropertiesConfiguration config = new PropertiesConfiguration("generator.properties");
+		genColumnsDOS.forEach(genColumnsDO -> {
+
+			genColumnsDO.setJavaType(config.getString(genColumnsDO.getColumnType()+""));
+			if ("Date".equals(genColumnsDO.getJavaType())) {
+				genColumnsDO.setPageType(4);
+			} else {
+				genColumnsDO.setPageType(1);
+			}
+		});
 		//Map<String, Object> priColum = generatorMapper.getPriColum(tableName);
-		List<GenColumnsDO> genColumnsDOS = transMap(tableName, maps);
+		//List<GenColumnsDO> genColumnsDOS = transMap(tableName, maps);
 		genColumnsDOS1.addAll(genColumnsDOS);
 		//genColumnsDOS.add(GeneratorUtil.transGenColumnDO(tableName,priColum,0));
 		return genColumnsDOS1;

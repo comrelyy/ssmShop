@@ -3,6 +3,7 @@ package ${package}.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,9 +50,8 @@ public class ${classNameUpFirst}Controller {
     public ResponseResult<PageBean> list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
-        List<${classNameUpFirst}DO> ${className}List = ${className}Service.list(query);
-        int total = ${className}Service.count(query);
-        PageBean pageBean = new PageBean(${className}List, total);
+	    IPage<${classNameUpFirst}DO> page = ${className}Service.listByPage(query);
+        PageBean pageBean = new PageBean(page);
         return ResponseResult.ok().put(pageBean);
     }
 

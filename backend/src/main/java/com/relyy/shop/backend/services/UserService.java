@@ -1,16 +1,13 @@
 package com.relyy.shop.backend.services;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.relyy.shop.backend.common.Constant;
 import com.relyy.shop.backend.common.Query;
-import com.relyy.shop.backend.entity.DictDO;
 import com.relyy.shop.backend.entity.UserDO;
 import com.relyy.shop.backend.mapper.UserMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

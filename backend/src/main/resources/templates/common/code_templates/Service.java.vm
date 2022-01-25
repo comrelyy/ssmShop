@@ -1,5 +1,9 @@
 package ${package}.services;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.relyy.shop.backend.common.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,11 +24,13 @@ public class ${classNameUpFirst}Service {
 	private ${classNameUpFirst}Mapper ${className}Mapper;
 
 	public ${classNameUpFirst}DO get(${priKeyColumn.javaType} ${priKeyColumn.attrName}){
-		return ${className}Mapper.get(${priKeyColumn.attrName});
+		return ${className}Mapper.selectById(${priKeyColumn.attrName});
 	}
 
-	public List<${classNameUpFirst}DO> list(Map<String, Object> map){
-		return ${className}Mapper.list(map);
+	public IPage<${classNameUpFirst}DO> listByPage(Query<${classNameUpFirst}DO> query){
+		IPage page = new Page(query.getPage(),query.getLimit());
+		QueryWrapper<${classNameUpFirst}DO> wrapper = new QueryWrapper<>(query.getCondition());
+		return ${className}Mapper.selectPage(page,wrapper);
 	}
 
 	public int count(Map<String, Object> map){
