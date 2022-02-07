@@ -229,7 +229,8 @@
 
   //css内部加载器
   Layui.prototype.addcss = function(firename, fn, cssname){
-    return layui.link(config.dir + 'css/' + firename, fn, cssname);
+    return layui.link(config.dir + 'plugins/layer/theme/default/layer.css', fn, cssname);
+    //return layui.link(config.dir + 'css/' + firename, fn, cssname);
   };
 
   //图片预加载

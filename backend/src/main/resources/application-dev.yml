@@ -54,3 +54,8 @@ mybatis-plus:
   configuration-properties:
     map-underscore-to-camel-case: true
   mapper-locations: mapper/*Mapper.xml
+
+qiqi:
+  uploadPath: E:\helloWorld\
+  username: admin
+  password: 111111

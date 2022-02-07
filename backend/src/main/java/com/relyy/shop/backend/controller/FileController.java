@@ -6,13 +6,20 @@ import com.relyy.shop.backend.common.Query;
 import com.relyy.shop.backend.common.ResponseResult;
 import com.relyy.shop.backend.entity.FileDO;
 import com.relyy.shop.backend.services.FileService;
+import com.relyy.shop.backend.utils.FileType;
+import com.relyy.shop.backend.utils.FileUtil;
+import com.relyy.shop.backend.utils.JnConfig;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -28,6 +35,8 @@ import java.util.Map;
 public class FileController {
     @Autowired
     private FileService fileService;
+    @Autowired
+    private JnConfig jnConfig;
 
     @GetMapping()
     @RequiresPermissions("backend:file:file")
@@ -123,5 +132,31 @@ public class FileController {
             fileService.batchRemove(ids);
         return ResponseResult.ok();
     }
+    @ResponseBody
+    @PostMapping("/upload")
+    public ResponseResult upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 
+        Date date = new Date();
+//        String year = DateUtils.format(date,DateUtils.YEAR_PATTERN);
+//        String month = DateUtils.format(date,DateUtils.MONTH_PATTERN);
+//        String day = DateUtils.format(date,DateUtils.DAY_PATTERN);
+
+        String fileName = file.getOriginalFilename();
+        //String fileDir = year+"/"+month+"/"+day + "/";
+        String fileDir = "/";
+        fileName = FileUtil.renameToUUID(fileName);
+        FileDO sysFile = new FileDO();
+        sysFile.setFileName(fileName).setFileType(FileType.fileType(fileName))
+                .setUrl(jnConfig.getUploadPath() + fileDir);
+        try {
+            FileUtil.uploadFile(file.getBytes(), jnConfig.getUploadPath()+fileDir, fileName);
+        } catch (Exception e) {
+            return ResponseResult.error();
+        }
+
+        if (fileService.save(sysFile) > 0) {
+            return ResponseResult.ok();
+        }
+        return ResponseResult.error();
+    }
 }
